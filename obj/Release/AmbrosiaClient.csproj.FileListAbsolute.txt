@@ -1,0 +1,12 @@
+C:\AmbrosiaClient\bin\Release\AmbrosiaClient.exe
+C:\AmbrosiaClient\bin\Release\AmbrosiaClient.pdb
+C:\AmbrosiaClient\obj\Release\ResolveAssemblyReference.cache
+C:\AmbrosiaClient\obj\Release\Ambrosia.Properties.Resources.resources
+C:\AmbrosiaClient\obj\Release\AmbrosiaClient.csproj.GenerateResource.Cache
+C:\AmbrosiaClient\obj\Release\AmbrosiaClient.exe
+C:\AmbrosiaClient\obj\Release\AmbrosiaClient.pdb
+C:\AmbrosiaClient\bin\Release\Newtonsoft.Json.dll
+C:\AmbrosiaClient\bin\Release\Newtonsoft.Json.pdb
+C:\AmbrosiaClient\bin\Release\Newtonsoft.Json.xml
+C:\AmbrosiaClient\obj\Release\Ambrosia.Pedidos.resources
+C:\AmbrosiaClient\obj\Release\Ambrosia.VentInic.resources
