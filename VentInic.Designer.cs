@@ -75,7 +75,7 @@
             // 
             // pbClientes
             // 
-            this.pbClientes.Image = global::Ambrosia.Properties.Resources.clientes;
+            this.pbClientes.Image = global::Ambrosia.Properties.Resources.group;
             this.pbClientes.Location = new System.Drawing.Point(12, 374);
             this.pbClientes.Name = "pbClientes";
             this.pbClientes.Size = new System.Drawing.Size(96, 96);

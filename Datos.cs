@@ -41,6 +41,9 @@ namespace Ambrosia
     {
         public int IdNodo { get; set; }
         public int IdPadre { get; set; }
+        public int IdRefMenu { get; set; }
+        public int Unid { get; set; }
+        public string Descripcion { get; set; }
     }
 
     public class Path

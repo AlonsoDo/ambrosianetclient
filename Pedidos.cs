@@ -25,6 +25,7 @@ namespace Ambrosia
         List<Path> Path = new List<Path>();
         int ContNodos = 0;
         int NodoPadre = 0;
+        bool TreeMode = false;
         
         public Pedidos()
         {
@@ -151,7 +152,10 @@ namespace Ambrosia
         }
 
         private void Element_Click(object sender, EventArgs e)
-        {            
+        {
+            btMas.Enabled = true;
+            btMenos.Enabled = true;
+            
             PictureBox Pb = sender as PictureBox;
             IndexAbs = Convert.ToInt32(Pb.Tag);
 
@@ -170,13 +174,18 @@ namespace Ambrosia
                     InfoNodo infoNodo = new InfoNodo();
                     infoNodo.IdNodo = ContNodos;
                     infoNodo.IdPadre = NodoPadre;
+                    infoNodo.IdRefMenu = elementos.data.ElementAt(IndexAbs - 1).PadreId;
+                    infoNodo.Unid = 1;
+                    infoNodo.Descripcion = nodeText;
+                    
                     treeNode.Name = ContNodos.ToString();
-                    treeNode.Text = nodeText;
+                    treeNode.Text = "1 " + nodeText;
                     treeNode.Tag = infoNodo;                    
 
                     MyNode[0].Nodes.Add(treeNode);
 
                     MyNode[0].Expand();
+                    tvOrden.SelectedNode = treeNode;
 
                     btEntrar.Enabled = true;
                 }
@@ -214,22 +223,35 @@ namespace Ambrosia
         private void btBack_Click(object sender, EventArgs e)
         {
             btEntrar.Enabled = false;
-            
-            if (Path[Level].Final == 1)
+            int PadreId = 0;
+
+            if (TreeMode)
+            {
+                TreeMode = false;
+                NodoPadre = 0;
+                Level = 0;
+                PadreId = 0;
+                TreeNode[] MyNode;
+                MyNode = tvOrden.Nodes.Find(NodoPadre.ToString(), true);
+                
+                tvOrden.SelectedNode = MyNode[0];
+            }
+            else
             {
                 TreeNode[] MyNode;
                 MyNode = tvOrden.Nodes.Find(NodoPadre.ToString(), true);
                 InfoNodo infoNodo = new InfoNodo();
                 infoNodo = (InfoNodo)MyNode[0].Tag;
                 NodoPadre = infoNodo.IdPadre;
+                tvOrden.SelectedNode = MyNode[0];
+                
+                Level--;
+                if (Level == -1)
+                {
+                    Level = 0;
+                }
+                PadreId = Path[Level].PadreId;
             }
-            
-            Level--;
-            if (Level == -1)
-            {
-                Level = 0;
-            }
-            int PadreId = Path[Level].PadreId;            
 
             EventoAskForElements eventoAskForElements = new EventoAskForElements();
             eventoAskForElements.NombreEvento = "AskForElements";
@@ -243,8 +265,16 @@ namespace Ambrosia
 
         private void btEntrar_Click(object sender, EventArgs e)
         {
-            //Elemento Final
-            NodoPadre = ContNodos;
+            if (TreeMode)
+            {
+                InfoNodo infoNodo = new InfoNodo();
+                infoNodo = (InfoNodo)tvOrden.SelectedNode.Tag;
+                NodoPadre = infoNodo.IdNodo;
+            }
+            else
+            {
+                NodoPadre = ContNodos;
+            }            
 
             btEntrar.Enabled = false;
             
@@ -271,6 +301,58 @@ namespace Ambrosia
                 path.PadreId = eventoAskForElements.PadreId;
                 path.Final = 1;
                 Path[Level] = path;
+            }
+        }               
+
+        private void tvOrden_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            TreeMode = true;
+            btEntrar.Enabled = true;
+
+            InfoNodo infoNodo = new InfoNodo();
+
+            infoNodo = (InfoNodo)e.Node.Tag;
+            NodoPadre = infoNodo.IdPadre;
+
+            EventoAskForElements eventoAskForElements = new EventoAskForElements();
+            eventoAskForElements.NombreEvento = "AskForElements";
+            eventoAskForElements.PadreId = infoNodo.IdRefMenu;
+            string output = JsonConvert.SerializeObject(eventoAskForElements);
+
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
+            serverStream.Write(outStream, 0, outStream.Length);
+            serverStream.Flush();
+        }
+
+        private void btMas_Click(object sender, EventArgs e)
+        {
+            int Unids = 0;
+            InfoNodo infoNodo = new InfoNodo();
+
+            if (tvOrden.SelectedNode.Text != "ORDEN:")
+            {
+                infoNodo = (InfoNodo)tvOrden.SelectedNode.Tag;
+                Unids = infoNodo.Unid;
+                Unids++;
+                infoNodo.Unid = Unids;
+                tvOrden.SelectedNode.Text = Convert.ToString(Unids) + " " + infoNodo.Descripcion;
+                tvOrden.SelectedNode.Tag = infoNodo;
+            }
+        }
+
+        private void btMenos_Click(object sender, EventArgs e)
+        {
+            int Unids = 0;
+            InfoNodo infoNodo = new InfoNodo();
+
+            if (tvOrden.SelectedNode.Text != "ORDEN:")
+            {
+                infoNodo = (InfoNodo)tvOrden.SelectedNode.Tag;
+                Unids = infoNodo.Unid;
+                Unids--;
+                infoNodo.Unid = Unids;
+                tvOrden.SelectedNode.Text = Convert.ToString(Unids) + " " + infoNodo.Descripcion;
+                tvOrden.SelectedNode.Tag = infoNodo;
             }
         }        
     }
