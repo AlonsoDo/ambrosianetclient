@@ -29,6 +29,8 @@ namespace Ambrosia
         public string Descripcion { get; set; }
         public string PathImg { get; set; }
         public int Final { get; set; }
+        public decimal Precio { get; set; }
+        public decimal Impuesto { get; set; }
     }
 
     public class GetElementsData
@@ -44,6 +46,9 @@ namespace Ambrosia
         public int IdRefMenu { get; set; }
         public int Unid { get; set; }
         public string Descripcion { get; set; }
+        public int IdElemento { get; set; }
+        public decimal Precio { get; set; }
+        public decimal Impuesto { get; set; }
     }
 
     public class Path

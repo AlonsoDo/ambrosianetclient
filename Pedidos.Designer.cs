@@ -50,17 +50,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.tvOrden = new System.Windows.Forms.TreeView();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btMenos = new System.Windows.Forms.Button();
-            this.btMas = new System.Windows.Forms.Button();
-            this.btEntrar = new System.Windows.Forms.Button();
-            this.btBack = new System.Windows.Forms.Button();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.pictureBox23 = new System.Windows.Forms.PictureBox();
             this.pictureBox22 = new System.Windows.Forms.PictureBox();
@@ -76,8 +65,11 @@
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -85,9 +77,36 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tvOrden = new System.Windows.Forms.TreeView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.tbTotal = new System.Windows.Forms.TextBox();
+            this.tbDescripcion = new System.Windows.Forms.TextBox();
+            this.tbPor = new System.Windows.Forms.TextBox();
+            this.tbUnid = new System.Windows.Forms.TextBox();
+            this.btEnviar = new System.Windows.Forms.Button();
+            this.btBorrar = new System.Windows.Forms.Button();
+            this.btAbajo = new System.Windows.Forms.Button();
+            this.btArriba = new System.Windows.Forms.Button();
+            this.btMenos = new System.Windows.Forms.Button();
+            this.btMas = new System.Windows.Forms.Button();
+            this.btEntrar = new System.Windows.Forms.Button();
+            this.btBack = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btX = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.bt3 = new System.Windows.Forms.Button();
+            this.bt2 = new System.Windows.Forms.Button();
+            this.bt6 = new System.Windows.Forms.Button();
+            this.bt1 = new System.Windows.Forms.Button();
+            this.bt5 = new System.Windows.Forms.Button();
+            this.bt0 = new System.Windows.Forms.Button();
+            this.bt4 = new System.Windows.Forms.Button();
+            this.bt9 = new System.Windows.Forms.Button();
+            this.bt8 = new System.Windows.Forms.Button();
+            this.bt7 = new System.Windows.Forms.Button();
+            this.tbNumeCuen = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
@@ -112,6 +131,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -402,148 +424,6 @@
             this.label5.Text = "Lenguado Menier";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(328, 114);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 32);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Lenguado Menier";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(222, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 32);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Lenguado Menier";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(116, 114);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 32);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Lenguado Menier";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.LavenderBlush;
-            this.panel2.Controls.Add(this.tvOrden);
-            this.panel2.Location = new System.Drawing.Point(665, 10);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(296, 438);
-            this.panel2.TabIndex = 2;
-            // 
-            // tvOrden
-            // 
-            this.tvOrden.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tvOrden.HideSelection = false;
-            this.tvOrden.Location = new System.Drawing.Point(10, 10);
-            this.tvOrden.Name = "tvOrden";
-            this.tvOrden.Size = new System.Drawing.Size(276, 414);
-            this.tvOrden.TabIndex = 0;
-            this.tvOrden.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvOrden_NodeMouseClick);
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.LavenderBlush;
-            this.panel3.Controls.Add(this.btMenos);
-            this.panel3.Controls.Add(this.btMas);
-            this.panel3.Controls.Add(this.btEntrar);
-            this.panel3.Controls.Add(this.btBack);
-            this.panel3.Location = new System.Drawing.Point(10, 638);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(951, 116);
-            this.panel3.TabIndex = 3;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.LavenderBlush;
-            this.panel4.Location = new System.Drawing.Point(665, 454);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(296, 174);
-            this.panel4.TabIndex = 4;
-            // 
-            // btMenos
-            // 
-            this.btMenos.Enabled = false;
-            this.btMenos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenos.ForeColor = System.Drawing.Color.Red;
-            this.btMenos.Image = global::Ambrosia.Properties.Resources.menos;
-            this.btMenos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenos.Location = new System.Drawing.Point(322, 12);
-            this.btMenos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btMenos.Name = "btMenos";
-            this.btMenos.Size = new System.Drawing.Size(102, 45);
-            this.btMenos.TabIndex = 3;
-            this.btMenos.Text = "Menos";
-            this.btMenos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btMenos.UseVisualStyleBackColor = true;
-            this.btMenos.Click += new System.EventHandler(this.btMenos_Click);
-            // 
-            // btMas
-            // 
-            this.btMas.Enabled = false;
-            this.btMas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMas.ForeColor = System.Drawing.Color.Red;
-            this.btMas.Image = global::Ambrosia.Properties.Resources.mas;
-            this.btMas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMas.Location = new System.Drawing.Point(227, 12);
-            this.btMas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btMas.Name = "btMas";
-            this.btMas.Size = new System.Drawing.Size(82, 45);
-            this.btMas.TabIndex = 2;
-            this.btMas.Text = "Mas";
-            this.btMas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btMas.UseVisualStyleBackColor = true;
-            this.btMas.Click += new System.EventHandler(this.btMas_Click);
-            // 
-            // btEntrar
-            // 
-            this.btEntrar.Enabled = false;
-            this.btEntrar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btEntrar.ForeColor = System.Drawing.Color.Red;
-            this.btEntrar.Image = global::Ambrosia.Properties.Resources.adelante;
-            this.btEntrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btEntrar.Location = new System.Drawing.Point(119, 12);
-            this.btEntrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btEntrar.Name = "btEntrar";
-            this.btEntrar.Size = new System.Drawing.Size(94, 45);
-            this.btEntrar.TabIndex = 1;
-            this.btEntrar.Text = "Entrar";
-            this.btEntrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btEntrar.UseVisualStyleBackColor = true;
-            this.btEntrar.Click += new System.EventHandler(this.btEntrar_Click);
-            // 
-            // btBack
-            // 
-            this.btBack.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBack.ForeColor = System.Drawing.Color.Red;
-            this.btBack.Image = global::Ambrosia.Properties.Resources.atras1;
-            this.btBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btBack.Location = new System.Drawing.Point(10, 12);
-            this.btBack.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btBack.Name = "btBack";
-            this.btBack.Size = new System.Drawing.Size(94, 45);
-            this.btBack.TabIndex = 0;
-            this.btBack.Text = "Atras ";
-            this.btBack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btBack.UseVisualStyleBackColor = true;
-            this.btBack.Click += new System.EventHandler(this.btBack_Click);
-            // 
             // pictureBox24
             // 
             this.pictureBox24.InitialImage = null;
@@ -739,6 +619,17 @@
             this.pictureBox8.Tag = "8";
             this.pictureBox8.Click += new System.EventHandler(this.Element_Click);
             // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(328, 114);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 32);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Lenguado Menier";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pictureBox19
             // 
             this.pictureBox19.InitialImage = null;
@@ -752,6 +643,17 @@
             this.pictureBox19.Tag = "19";
             this.pictureBox19.Click += new System.EventHandler(this.Element_Click);
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(222, 114);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 32);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Lenguado Menier";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pictureBox13
             // 
             this.pictureBox13.InitialImage = null;
@@ -764,6 +666,17 @@
             this.pictureBox13.TabStop = false;
             this.pictureBox13.Tag = "13";
             this.pictureBox13.Click += new System.EventHandler(this.Element_Click);
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(116, 114);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 32);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Lenguado Menier";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox7
             // 
@@ -856,6 +769,423 @@
             this.pictureBox1.Tag = "1";
             this.pictureBox1.Click += new System.EventHandler(this.Element_Click);
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LavenderBlush;
+            this.panel2.Controls.Add(this.tvOrden);
+            this.panel2.Location = new System.Drawing.Point(665, 10);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(296, 438);
+            this.panel2.TabIndex = 2;
+            // 
+            // tvOrden
+            // 
+            this.tvOrden.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tvOrden.HideSelection = false;
+            this.tvOrden.Location = new System.Drawing.Point(10, 10);
+            this.tvOrden.Name = "tvOrden";
+            this.tvOrden.Size = new System.Drawing.Size(276, 414);
+            this.tvOrden.TabIndex = 0;
+            this.tvOrden.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvOrden_AfterSelect);
+            this.tvOrden.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvOrden_NodeMouseClick);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.LavenderBlush;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.tbTotal);
+            this.panel3.Controls.Add(this.tbDescripcion);
+            this.panel3.Controls.Add(this.tbPor);
+            this.panel3.Controls.Add(this.tbUnid);
+            this.panel3.Controls.Add(this.btEnviar);
+            this.panel3.Controls.Add(this.btBorrar);
+            this.panel3.Controls.Add(this.btAbajo);
+            this.panel3.Controls.Add(this.btArriba);
+            this.panel3.Controls.Add(this.btMenos);
+            this.panel3.Controls.Add(this.btMas);
+            this.panel3.Controls.Add(this.btEntrar);
+            this.panel3.Controls.Add(this.btBack);
+            this.panel3.Location = new System.Drawing.Point(10, 638);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel3.Name = "panel3";
+            this.panel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.panel3.Size = new System.Drawing.Size(951, 116);
+            this.panel3.TabIndex = 3;
+            // 
+            // tbTotal
+            // 
+            this.tbTotal.BackColor = System.Drawing.Color.Black;
+            this.tbTotal.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTotal.ForeColor = System.Drawing.Color.White;
+            this.tbTotal.Location = new System.Drawing.Point(700, 66);
+            this.tbTotal.MaxLength = 5;
+            this.tbTotal.Multiline = true;
+            this.tbTotal.Name = "tbTotal";
+            this.tbTotal.Size = new System.Drawing.Size(113, 34);
+            this.tbTotal.TabIndex = 11;
+            this.tbTotal.Text = "0.00";
+            // 
+            // tbDescripcion
+            // 
+            this.tbDescripcion.BackColor = System.Drawing.Color.Black;
+            this.tbDescripcion.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDescripcion.ForeColor = System.Drawing.Color.White;
+            this.tbDescripcion.Location = new System.Drawing.Point(376, 66);
+            this.tbDescripcion.MaxLength = 30;
+            this.tbDescripcion.Multiline = true;
+            this.tbDescripcion.Name = "tbDescripcion";
+            this.tbDescripcion.ReadOnly = true;
+            this.tbDescripcion.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tbDescripcion.Size = new System.Drawing.Size(318, 34);
+            this.tbDescripcion.TabIndex = 10;
+            // 
+            // tbPor
+            // 
+            this.tbPor.BackColor = System.Drawing.Color.Black;
+            this.tbPor.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPor.ForeColor = System.Drawing.Color.White;
+            this.tbPor.Location = new System.Drawing.Point(341, 66);
+            this.tbPor.MaxLength = 5;
+            this.tbPor.Multiline = true;
+            this.tbPor.Name = "tbPor";
+            this.tbPor.Size = new System.Drawing.Size(29, 34);
+            this.tbPor.TabIndex = 9;
+            this.tbPor.TabStop = false;
+            this.tbPor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbUnid
+            // 
+            this.tbUnid.BackColor = System.Drawing.Color.Black;
+            this.tbUnid.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUnid.ForeColor = System.Drawing.Color.White;
+            this.tbUnid.Location = new System.Drawing.Point(260, 66);
+            this.tbUnid.MaxLength = 5;
+            this.tbUnid.Multiline = true;
+            this.tbUnid.Name = "tbUnid";
+            this.tbUnid.Size = new System.Drawing.Size(75, 34);
+            this.tbUnid.TabIndex = 8;
+            this.tbUnid.Click += new System.EventHandler(this.tbUnid_Click);
+            // 
+            // btEnviar
+            // 
+            this.btEnviar.BackColor = System.Drawing.Color.MistyRose;
+            this.btEnviar.Enabled = false;
+            this.btEnviar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEnviar.ForeColor = System.Drawing.Color.Red;
+            this.btEnviar.Image = global::Ambrosia.Properties.Resources.enviar;
+            this.btEnviar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btEnviar.Location = new System.Drawing.Point(838, 12);
+            this.btEnviar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btEnviar.Name = "btEnviar";
+            this.btEnviar.Size = new System.Drawing.Size(103, 90);
+            this.btEnviar.TabIndex = 7;
+            this.btEnviar.Text = "Enviar";
+            this.btEnviar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btEnviar.UseVisualStyleBackColor = false;
+            // 
+            // btBorrar
+            // 
+            this.btBorrar.BackColor = System.Drawing.Color.Gold;
+            this.btBorrar.Enabled = false;
+            this.btBorrar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBorrar.ForeColor = System.Drawing.Color.Red;
+            this.btBorrar.Image = global::Ambrosia.Properties.Resources.borrar;
+            this.btBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btBorrar.Location = new System.Drawing.Point(715, 12);
+            this.btBorrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btBorrar.Name = "btBorrar";
+            this.btBorrar.Size = new System.Drawing.Size(98, 45);
+            this.btBorrar.TabIndex = 6;
+            this.btBorrar.Text = "Borrar";
+            this.btBorrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btBorrar.UseVisualStyleBackColor = false;
+            this.btBorrar.Click += new System.EventHandler(this.btBorrar_Click);
+            // 
+            // btAbajo
+            // 
+            this.btAbajo.BackColor = System.Drawing.Color.Gold;
+            this.btAbajo.Enabled = false;
+            this.btAbajo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAbajo.ForeColor = System.Drawing.Color.Red;
+            this.btAbajo.Image = global::Ambrosia.Properties.Resources.abajo;
+            this.btAbajo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btAbajo.Location = new System.Drawing.Point(597, 12);
+            this.btAbajo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btAbajo.Name = "btAbajo";
+            this.btAbajo.Size = new System.Drawing.Size(97, 45);
+            this.btAbajo.TabIndex = 5;
+            this.btAbajo.Text = "Abajo";
+            this.btAbajo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btAbajo.UseVisualStyleBackColor = false;
+            this.btAbajo.Click += new System.EventHandler(this.btAbajo_Click);
+            // 
+            // btArriba
+            // 
+            this.btArriba.BackColor = System.Drawing.Color.Gold;
+            this.btArriba.Enabled = false;
+            this.btArriba.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btArriba.ForeColor = System.Drawing.Color.Red;
+            this.btArriba.Image = global::Ambrosia.Properties.Resources.arriba;
+            this.btArriba.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btArriba.Location = new System.Drawing.Point(482, 12);
+            this.btArriba.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btArriba.Name = "btArriba";
+            this.btArriba.Size = new System.Drawing.Size(97, 45);
+            this.btArriba.TabIndex = 4;
+            this.btArriba.Text = "Arriba";
+            this.btArriba.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btArriba.UseVisualStyleBackColor = false;
+            this.btArriba.Click += new System.EventHandler(this.btArriba_Click);
+            // 
+            // btMenos
+            // 
+            this.btMenos.BackColor = System.Drawing.Color.Gold;
+            this.btMenos.Enabled = false;
+            this.btMenos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btMenos.ForeColor = System.Drawing.Color.Red;
+            this.btMenos.Image = global::Ambrosia.Properties.Resources.menos;
+            this.btMenos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btMenos.Location = new System.Drawing.Point(362, 12);
+            this.btMenos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btMenos.Name = "btMenos";
+            this.btMenos.Size = new System.Drawing.Size(102, 45);
+            this.btMenos.TabIndex = 3;
+            this.btMenos.Text = "Menos";
+            this.btMenos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btMenos.UseVisualStyleBackColor = false;
+            this.btMenos.Click += new System.EventHandler(this.btMenos_Click);
+            // 
+            // btMas
+            // 
+            this.btMas.BackColor = System.Drawing.Color.Gold;
+            this.btMas.Enabled = false;
+            this.btMas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btMas.ForeColor = System.Drawing.Color.Red;
+            this.btMas.Image = global::Ambrosia.Properties.Resources.mas;
+            this.btMas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btMas.Location = new System.Drawing.Point(260, 12);
+            this.btMas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btMas.Name = "btMas";
+            this.btMas.Size = new System.Drawing.Size(82, 45);
+            this.btMas.TabIndex = 2;
+            this.btMas.Text = "Mas";
+            this.btMas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btMas.UseVisualStyleBackColor = false;
+            this.btMas.Click += new System.EventHandler(this.btMas_Click);
+            // 
+            // btEntrar
+            // 
+            this.btEntrar.BackColor = System.Drawing.Color.MistyRose;
+            this.btEntrar.Enabled = false;
+            this.btEntrar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEntrar.ForeColor = System.Drawing.Color.Red;
+            this.btEntrar.Image = global::Ambrosia.Properties.Resources.adelante;
+            this.btEntrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btEntrar.Location = new System.Drawing.Point(138, 12);
+            this.btEntrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btEntrar.Name = "btEntrar";
+            this.btEntrar.Size = new System.Drawing.Size(94, 90);
+            this.btEntrar.TabIndex = 1;
+            this.btEntrar.Text = "Entrar";
+            this.btEntrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btEntrar.UseVisualStyleBackColor = false;
+            this.btEntrar.Click += new System.EventHandler(this.btEntrar_Click);
+            // 
+            // btBack
+            // 
+            this.btBack.BackColor = System.Drawing.Color.MistyRose;
+            this.btBack.Enabled = false;
+            this.btBack.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBack.ForeColor = System.Drawing.Color.Red;
+            this.btBack.Image = global::Ambrosia.Properties.Resources.atras1;
+            this.btBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btBack.Location = new System.Drawing.Point(19, 12);
+            this.btBack.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btBack.Name = "btBack";
+            this.btBack.Size = new System.Drawing.Size(94, 90);
+            this.btBack.TabIndex = 0;
+            this.btBack.Text = "Atras ";
+            this.btBack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btBack.UseVisualStyleBackColor = false;
+            this.btBack.Click += new System.EventHandler(this.btBack_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.LavenderBlush;
+            this.panel4.Controls.Add(this.btX);
+            this.panel4.Controls.Add(this.button11);
+            this.panel4.Controls.Add(this.bt3);
+            this.panel4.Controls.Add(this.bt2);
+            this.panel4.Controls.Add(this.bt6);
+            this.panel4.Controls.Add(this.bt1);
+            this.panel4.Controls.Add(this.bt5);
+            this.panel4.Controls.Add(this.bt0);
+            this.panel4.Controls.Add(this.bt4);
+            this.panel4.Controls.Add(this.bt9);
+            this.panel4.Controls.Add(this.bt8);
+            this.panel4.Controls.Add(this.bt7);
+            this.panel4.Controls.Add(this.tbNumeCuen);
+            this.panel4.Location = new System.Drawing.Point(665, 454);
+            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(296, 174);
+            this.panel4.TabIndex = 4;
+            // 
+            // btX
+            // 
+            this.btX.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btX.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btX.Location = new System.Drawing.Point(86, 130);
+            this.btX.Name = "btX";
+            this.btX.Size = new System.Drawing.Size(40, 40);
+            this.btX.TabIndex = 21;
+            this.btX.Text = "X";
+            this.btX.UseVisualStyleBackColor = false;
+            this.btX.Click += new System.EventHandler(this.btX_Click);
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.button11.Location = new System.Drawing.Point(44, 130);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(40, 40);
+            this.button11.TabIndex = 20;
+            this.button11.UseVisualStyleBackColor = false;
+            // 
+            // bt3
+            // 
+            this.bt3.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt3.Location = new System.Drawing.Point(86, 88);
+            this.bt3.Name = "bt3";
+            this.bt3.Size = new System.Drawing.Size(40, 40);
+            this.bt3.TabIndex = 19;
+            this.bt3.Text = "3";
+            this.bt3.UseVisualStyleBackColor = false;
+            this.bt3.Click += new System.EventHandler(this.bt3_Click);
+            // 
+            // bt2
+            // 
+            this.bt2.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt2.Location = new System.Drawing.Point(44, 88);
+            this.bt2.Name = "bt2";
+            this.bt2.Size = new System.Drawing.Size(40, 40);
+            this.bt2.TabIndex = 18;
+            this.bt2.Text = "2";
+            this.bt2.UseVisualStyleBackColor = false;
+            this.bt2.Click += new System.EventHandler(this.bt2_Click);
+            // 
+            // bt6
+            // 
+            this.bt6.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt6.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt6.Location = new System.Drawing.Point(86, 45);
+            this.bt6.Name = "bt6";
+            this.bt6.Size = new System.Drawing.Size(40, 40);
+            this.bt6.TabIndex = 17;
+            this.bt6.Text = "6";
+            this.bt6.UseVisualStyleBackColor = false;
+            this.bt6.Click += new System.EventHandler(this.bt6_Click);
+            // 
+            // bt1
+            // 
+            this.bt1.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt1.Location = new System.Drawing.Point(3, 88);
+            this.bt1.Name = "bt1";
+            this.bt1.Size = new System.Drawing.Size(40, 40);
+            this.bt1.TabIndex = 16;
+            this.bt1.Text = "1";
+            this.bt1.UseVisualStyleBackColor = false;
+            this.bt1.Click += new System.EventHandler(this.bt1_Click);
+            // 
+            // bt5
+            // 
+            this.bt5.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt5.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt5.Location = new System.Drawing.Point(44, 45);
+            this.bt5.Name = "bt5";
+            this.bt5.Size = new System.Drawing.Size(40, 40);
+            this.bt5.TabIndex = 15;
+            this.bt5.Text = "5";
+            this.bt5.UseVisualStyleBackColor = false;
+            this.bt5.Click += new System.EventHandler(this.bt5_Click);
+            // 
+            // bt0
+            // 
+            this.bt0.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt0.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt0.Location = new System.Drawing.Point(3, 130);
+            this.bt0.Name = "bt0";
+            this.bt0.Size = new System.Drawing.Size(40, 40);
+            this.bt0.TabIndex = 14;
+            this.bt0.Text = "0";
+            this.bt0.UseVisualStyleBackColor = false;
+            this.bt0.Click += new System.EventHandler(this.bt0_Click);
+            // 
+            // bt4
+            // 
+            this.bt4.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt4.Location = new System.Drawing.Point(3, 45);
+            this.bt4.Name = "bt4";
+            this.bt4.Size = new System.Drawing.Size(40, 40);
+            this.bt4.TabIndex = 13;
+            this.bt4.Text = "4";
+            this.bt4.UseVisualStyleBackColor = false;
+            this.bt4.Click += new System.EventHandler(this.bt4_Click);
+            // 
+            // bt9
+            // 
+            this.bt9.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt9.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt9.Location = new System.Drawing.Point(86, 3);
+            this.bt9.Name = "bt9";
+            this.bt9.Size = new System.Drawing.Size(40, 40);
+            this.bt9.TabIndex = 12;
+            this.bt9.Text = "9";
+            this.bt9.UseVisualStyleBackColor = false;
+            this.bt9.Click += new System.EventHandler(this.bt9_Click);
+            // 
+            // bt8
+            // 
+            this.bt8.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt8.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt8.Location = new System.Drawing.Point(44, 3);
+            this.bt8.Name = "bt8";
+            this.bt8.Size = new System.Drawing.Size(40, 40);
+            this.bt8.TabIndex = 11;
+            this.bt8.Text = "8";
+            this.bt8.UseVisualStyleBackColor = false;
+            this.bt8.Click += new System.EventHandler(this.bt8_Click);
+            // 
+            // bt7
+            // 
+            this.bt7.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt7.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt7.Location = new System.Drawing.Point(3, 3);
+            this.bt7.Name = "bt7";
+            this.bt7.Size = new System.Drawing.Size(40, 40);
+            this.bt7.TabIndex = 10;
+            this.bt7.Text = "7";
+            this.bt7.UseVisualStyleBackColor = false;
+            this.bt7.Click += new System.EventHandler(this.bt7_Click);
+            // 
+            // tbNumeCuen
+            // 
+            this.tbNumeCuen.BackColor = System.Drawing.Color.Black;
+            this.tbNumeCuen.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNumeCuen.ForeColor = System.Drawing.Color.White;
+            this.tbNumeCuen.Location = new System.Drawing.Point(211, 129);
+            this.tbNumeCuen.MaxLength = 5;
+            this.tbNumeCuen.Multiline = true;
+            this.tbNumeCuen.Name = "tbNumeCuen";
+            this.tbNumeCuen.Size = new System.Drawing.Size(75, 34);
+            this.tbNumeCuen.TabIndex = 9;
+            this.tbNumeCuen.Click += new System.EventHandler(this.tbNumeCuen_Click);
+            // 
             // Pedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -874,8 +1204,6 @@
             this.Load += new System.EventHandler(this.Pedidos_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Pedidos_FormClosing);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
@@ -900,6 +1228,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -963,5 +1296,26 @@
         private System.Windows.Forms.Button btEntrar;
         private System.Windows.Forms.Button btMas;
         private System.Windows.Forms.Button btMenos;
+        private System.Windows.Forms.Button btArriba;
+        private System.Windows.Forms.Button btAbajo;
+        private System.Windows.Forms.Button btBorrar;
+        private System.Windows.Forms.Button btEnviar;
+        private System.Windows.Forms.TextBox tbUnid;
+        private System.Windows.Forms.TextBox tbTotal;
+        private System.Windows.Forms.TextBox tbDescripcion;
+        private System.Windows.Forms.TextBox tbPor;
+        private System.Windows.Forms.TextBox tbNumeCuen;
+        private System.Windows.Forms.Button bt4;
+        private System.Windows.Forms.Button bt9;
+        private System.Windows.Forms.Button bt8;
+        private System.Windows.Forms.Button bt7;
+        private System.Windows.Forms.Button bt1;
+        private System.Windows.Forms.Button bt5;
+        private System.Windows.Forms.Button bt0;
+        private System.Windows.Forms.Button btX;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button bt3;
+        private System.Windows.Forms.Button bt2;
+        private System.Windows.Forms.Button bt6;
     }
 }

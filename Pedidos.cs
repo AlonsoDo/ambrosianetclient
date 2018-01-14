@@ -26,6 +26,11 @@ namespace Ambrosia
         int ContNodos = 0;
         int NodoPadre = 0;
         bool TreeMode = false;
+        bool bNumeCuen = true;
+        bool bPor = false;
+        bool bUnid = false;
+        bool bNuevaUnid = true;
+        public Decimal Total = 0;
         
         public Pedidos()
         {
@@ -47,6 +52,8 @@ namespace Ambrosia
             infoNodo.IdPadre = 0;
             treeNode.Name = "0";
             treeNode.Text = "ORDEN:";
+            infoNodo.Precio = 0;
+            infoNodo.Impuesto = 0;
             treeNode.Tag = infoNodo;
             tvOrden.Nodes.Add(treeNode);
             
@@ -75,7 +82,7 @@ namespace Ambrosia
             {
                 serverStream = clientSocket.GetStream();
                 int buffSize = 0;
-                byte[] inStream = new byte[10025];
+                byte[] inStream = new byte[262144];
                 buffSize = clientSocket.ReceiveBufferSize;
                 serverStream.Read(inStream, 0, buffSize);
                 string returndata = System.Text.Encoding.ASCII.GetString(inStream);
@@ -114,6 +121,11 @@ namespace Ambrosia
         private void DrawElements()
         {
             int Cont = elementos.data.Count;
+            if (Cont == 0)
+            {
+                btEntrar.Enabled = false;
+            }
+            
             PictureBox control2 = new PictureBox();
             Label control = new Label();
 
@@ -121,7 +133,7 @@ namespace Ambrosia
             {
                 Control[] controls2 = this.panel1.Controls.Find("pictureBox" + (i + 1).ToString(), true);
                 control2 = controls2[0] as PictureBox;
-                control2.Image = null;
+                control2.Image = null; // Reset
                 if (i < Cont)
                 {
                     string path = elementos.data.ElementAt(i).PathImg;
@@ -152,34 +164,56 @@ namespace Ambrosia
         }
 
         private void Element_Click(object sender, EventArgs e)
-        {
-            btMas.Enabled = true;
-            btMenos.Enabled = true;
-            
+        {            
+            //Unidades
+            int Unidades = 1;
+            if (bPor & bUnid)
+            {
+                if (tbUnid.Text == "")
+                {
+                    Unidades = 1;
+                }
+                else
+                {
+                    Unidades = int.Parse(tbUnid.Text);
+                }
+            }
+            else
+            {
+                Unidades = 1;
+                tbUnid.Text = "1";
+                tbPor.Text = "X";
+            }
+
             PictureBox Pb = sender as PictureBox;
             IndexAbs = Convert.ToInt32(Pb.Tag);
 
             if (IndexAbs <= elementos.data.Count)
             {
                 if (Convert.ToBoolean(elementos.data.ElementAt(IndexAbs - 1).Final))
-                {
+                {                    
                     //Elemento Final
+                    btBorrar.Enabled = true;
                     TreeNode[] MyNode;
                     MyNode = tvOrden.Nodes.Find(NodoPadre.ToString(),true);
                     
                     ContNodos++;
 
                     var nodeText = elementos.data.ElementAt(IndexAbs - 1).Descripcion;
+                    tbDescripcion.Text = nodeText;
                     TreeNode treeNode = new TreeNode();
                     InfoNodo infoNodo = new InfoNodo();
                     infoNodo.IdNodo = ContNodos;
                     infoNodo.IdPadre = NodoPadre;
                     infoNodo.IdRefMenu = elementos.data.ElementAt(IndexAbs - 1).PadreId;
-                    infoNodo.Unid = 1;
+                    infoNodo.IdElemento = elementos.data.ElementAt(IndexAbs - 1).ElementoId;
+                    infoNodo.Unid = Unidades;
                     infoNodo.Descripcion = nodeText;
+                    infoNodo.Precio = elementos.data.ElementAt(IndexAbs - 1).Precio;
+                    infoNodo.Impuesto = elementos.data.ElementAt(IndexAbs - 1).Impuesto;
                     
                     treeNode.Name = ContNodos.ToString();
-                    treeNode.Text = "1 " + nodeText;
+                    treeNode.Text = Unidades.ToString() + " " + nodeText;
                     treeNode.Tag = infoNodo;                    
 
                     MyNode[0].Nodes.Add(treeNode);
@@ -188,9 +222,37 @@ namespace Ambrosia
                     tvOrden.SelectedNode = treeNode;
 
                     btEntrar.Enabled = true;
+                    btMas.Enabled = true;
+                    btMenos.Enabled = true;
+
+                    if (tvOrden.SelectedNode.Parent.Nodes.Count > 1)
+                    {
+                        btArriba.Enabled = true;
+                        btAbajo.Enabled = true;
+                    }
+                    else
+                    { 
+                        btArriba.Enabled = false;
+                        btAbajo.Enabled = false;
+                    }
+                    bPor = false;
+                    bUnid = false;
+                    bNuevaUnid = true;
+
+                    Total = 0;
+                    
+                    TreeNodeCollection nodes = tvOrden.Nodes;
+                    //Aqui recorres todos los nodos
+                    foreach (TreeNode n in nodes)
+                    {
+                        RecorrerNodos(n); 
+                    }
+                    tbTotal.Text = String.Format("{0:0.00}",Total); 
                 }
                 else
                 {
+                    btBack.Enabled = true;
+                    
                     //Load next
                     EventoAskForElements eventoAskForElements = new EventoAskForElements();
                     eventoAskForElements.NombreEvento = "AskForElements";
@@ -220,6 +282,28 @@ namespace Ambrosia
             }
         }
 
+        private void RecorrerNodos(TreeNode treeNode)
+        {
+            try
+            {
+                //Si el nodo que recibimos tiene hijos se recorrerá                
+                foreach (TreeNode tn in treeNode.Nodes)
+                {
+                    InfoNodo infoNodo = new InfoNodo();
+                    infoNodo = (InfoNodo)tn.Tag;
+
+                    Total = Total + (infoNodo.Unid * ((infoNodo.Precio) + ((infoNodo.Impuesto * infoNodo.Precio) / 100)));
+                    //Ahora hago verificacion a los hijos del nodo actual
+                    //Esta iteración no acabara hasta llegar al ultimo nodo principal
+                    RecorrerNodos(tn);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private void btBack_Click(object sender, EventArgs e)
         {
             btEntrar.Enabled = false;
@@ -235,6 +319,7 @@ namespace Ambrosia
                 MyNode = tvOrden.Nodes.Find(NodoPadre.ToString(), true);
                 
                 tvOrden.SelectedNode = MyNode[0];
+                btBack.Enabled = false;
             }
             else
             {
@@ -246,7 +331,11 @@ namespace Ambrosia
                 tvOrden.SelectedNode = MyNode[0];
                 
                 Level--;
-                if (Level == -1)
+                if (Level == 0)
+                {
+                    btBack.Enabled = false;
+                }
+                else if (Level == -1)
                 {
                     Level = 0;
                 }
@@ -265,22 +354,27 @@ namespace Ambrosia
 
         private void btEntrar_Click(object sender, EventArgs e)
         {
+            InfoNodo infoNodo = new InfoNodo();
+            infoNodo = (InfoNodo)tvOrden.SelectedNode.Tag;
+            int Index = 0;
+
             if (TreeMode)
-            {
-                InfoNodo infoNodo = new InfoNodo();
-                infoNodo = (InfoNodo)tvOrden.SelectedNode.Tag;
+            {                
                 NodoPadre = infoNodo.IdNodo;
+                Index = infoNodo.IdElemento;
+                //TreeMode = false;
             }
             else
             {
                 NodoPadre = ContNodos;
+                Index = elementos.data.ElementAt(IndexAbs - 1).ElementoId;
             }            
 
             btEntrar.Enabled = false;
             
             EventoAskForElements eventoAskForElements = new EventoAskForElements();
             eventoAskForElements.NombreEvento = "AskForElements";
-            eventoAskForElements.PadreId = elementos.data.ElementAt(IndexAbs - 1).ElementoId;
+            eventoAskForElements.PadreId = Index;
             string output = JsonConvert.SerializeObject(eventoAskForElements);
 
             byte[] outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
@@ -302,13 +396,13 @@ namespace Ambrosia
                 path.Final = 1;
                 Path[Level] = path;
             }
+            btBack.Enabled = true;
         }               
 
         private void tvOrden_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             TreeMode = true;
-            btEntrar.Enabled = true;
-
+            
             InfoNodo infoNodo = new InfoNodo();
 
             infoNodo = (InfoNodo)e.Node.Tag;
@@ -337,6 +431,16 @@ namespace Ambrosia
                 infoNodo.Unid = Unids;
                 tvOrden.SelectedNode.Text = Convert.ToString(Unids) + " " + infoNodo.Descripcion;
                 tvOrden.SelectedNode.Tag = infoNodo;
+
+                Total = 0;
+
+                TreeNodeCollection nodes = tvOrden.Nodes;
+                //Aqui recorres todos los nodos
+                foreach (TreeNode n in nodes)
+                {
+                    RecorrerNodos(n);
+                }
+                tbTotal.Text = String.Format("{0:0.00}", Total);
             }
         }
 
@@ -353,6 +457,419 @@ namespace Ambrosia
                 infoNodo.Unid = Unids;
                 tvOrden.SelectedNode.Text = Convert.ToString(Unids) + " " + infoNodo.Descripcion;
                 tvOrden.SelectedNode.Tag = infoNodo;
+
+                Total = 0;
+
+                TreeNodeCollection nodes = tvOrden.Nodes;
+                //Aqui recorres todos los nodos
+                foreach (TreeNode n in nodes)
+                {
+                    RecorrerNodos(n);
+                }
+                tbTotal.Text = String.Format("{0:0.00}", Total);
+            }
+        }
+
+        private void btArriba_Click(object sender, EventArgs e)
+        {
+            TreeNode node = tvOrden.SelectedNode;
+            TreeNode parent = tvOrden.SelectedNode.Parent;
+            TreeView view = tvOrden.SelectedNode.TreeView;
+            if (parent != null)
+            {
+                int index = parent.Nodes.IndexOf(node);
+                if (index > 0)
+                {
+                    parent.Nodes.RemoveAt(index);
+                    parent.Nodes.Insert(index - 1, node);
+                }
+            }
+            else if (node.TreeView.Nodes.Contains(node)) //root node
+            {
+                int index = view.Nodes.IndexOf(node);
+                if (index > 0)
+                {
+                    view.Nodes.RemoveAt(index);
+                    view.Nodes.Insert(index - 1, node);
+                }
+            }
+            tvOrden.SelectedNode = node;            
+        }
+
+        private void btAbajo_Click(object sender, EventArgs e)
+        {
+            TreeNode node = tvOrden.SelectedNode;
+            TreeNode parent = node.Parent;
+            TreeView view = node.TreeView;
+            if (parent != null)
+            {
+                int index = parent.Nodes.IndexOf(node);
+                if (index < parent.Nodes.Count - 1)
+                {
+                    parent.Nodes.RemoveAt(index);
+                    parent.Nodes.Insert(index + 1, node);
+                }
+            }
+            else if (view != null && view.Nodes.Contains(node)) //root node
+            {
+                int index = view.Nodes.IndexOf(node);
+                if (index < view.Nodes.Count - 1)
+                {
+                    view.Nodes.RemoveAt(index);
+                    view.Nodes.Insert(index + 1, node);
+                }
+            }
+            tvOrden.SelectedNode = node;
+        }
+
+        private void btBorrar_Click(object sender, EventArgs e)
+        {
+            TreeNode node = tvOrden.SelectedNode;
+            TreeNode parent = node.Parent;
+
+            if (node.Text != "ORDEN:")
+            {
+                btBack.Enabled = false;
+                TreeMode = false;
+                NodoPadre = 0;
+                Level = 0;
+                int index = parent.Nodes.IndexOf(node);
+
+                parent.Nodes.RemoveAt(index);
+
+                if (tvOrden.Nodes.Count < 3)
+                {
+                    btArriba.Enabled = false;
+                    btAbajo.Enabled = false;
+                }
+                if (tvOrden.Nodes.Count == 1)
+                {
+                    btBorrar.Enabled = false;
+                    btEntrar.Enabled = false;
+                    btMas.Enabled = false;
+                    btMenos.Enabled = false;
+                }
+
+                TreeNode[] MyNode;
+                MyNode = tvOrden.Nodes.Find(NodoPadre.ToString(),true);
+                tvOrden.SelectedNode = MyNode[0];
+                EventoAskForElements eventoAskForElements = new EventoAskForElements();
+                eventoAskForElements.NombreEvento = "AskForElements";
+                eventoAskForElements.PadreId = 0;
+                string output = JsonConvert.SerializeObject(eventoAskForElements);
+
+                byte[] outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
+                serverStream.Write(outStream, 0, outStream.Length);
+                serverStream.Flush();
+
+                Total = 0;
+
+                TreeNodeCollection nodes = tvOrden.Nodes;
+                //Aqui recorres todos los nodos
+                foreach (TreeNode n in nodes)
+                {
+                    RecorrerNodos(n);
+                }
+                tbTotal.Text = String.Format("{0:0.00}", Total);
+            }
+        }
+
+        private void tvOrden_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (tvOrden.SelectedNode.Text != "ORDEN:")
+            {
+                btEntrar.Enabled = true;
+                btBack.Enabled = true;
+                btBorrar.Enabled = true;
+                btMas.Enabled = true;
+                btMenos.Enabled = true;
+                if (tvOrden.SelectedNode.Parent.Nodes.Count > 1)
+                {
+                    btArriba.Enabled = true;
+                    btAbajo.Enabled = true;
+                }
+                else
+                {
+                    btArriba.Enabled = false;
+                    btAbajo.Enabled = false;
+                }
+            }
+            else
+            {
+                btEntrar.Enabled = false;
+                btBack.Enabled = false;
+                btArriba.Enabled = false;
+                btAbajo.Enabled = false;
+                btBorrar.Enabled = false;
+                btMas.Enabled = false;
+                btMenos.Enabled = false;
+            }            
+        }
+
+        private void tbNumeCuen_Click(object sender, EventArgs e)
+        {
+            tbNumeCuen.Text = string.Empty;
+            bNumeCuen = true;
+            bPor = false;
+            bUnid = false;
+        }
+
+        private void tbUnid_Click(object sender, EventArgs e)
+        {
+            tbUnid.Text = string.Empty;
+            tbPor.Text = string.Empty;
+            tbDescripcion.Text = string.Empty;
+            bUnid = true;
+            bPor = false;
+            bNumeCuen = false;
+        }
+
+        private void btX_Click(object sender, EventArgs e)
+        {
+            if (bUnid)
+            {
+                tbPor.Text = "X";
+                bPor = true;
+            }
+        }
+
+        private void bt1_Click(object sender, EventArgs e)
+        {
+            if (bNumeCuen)
+            {
+                tbNumeCuen.Text = tbNumeCuen.Text + "1";
+            }
+            else
+            {
+                if (bNuevaUnid)
+                {
+                    tbUnid.Text = "1";
+                    bNuevaUnid = false;
+                    bPor = false;
+                    tbPor.Text = "";
+                    tbDescripcion.Text = "";
+                    bUnid = true;
+                }
+                else
+                {
+                    tbUnid.Text = tbUnid.Text + "1";
+                }
+            }
+        }
+
+        private void bt2_Click(object sender, EventArgs e)
+        {
+            if (bNumeCuen)
+            {
+                tbNumeCuen.Text = tbNumeCuen.Text + "2";
+            }
+            else
+            {
+                if (bNuevaUnid)
+                {
+                    tbUnid.Text = "2";
+                    bNuevaUnid = false;
+                    bPor = false;
+                    tbPor.Text = "";
+                    tbDescripcion.Text = "";
+                    bUnid = true;
+                }
+                else
+                {
+                    tbUnid.Text = tbUnid.Text + "2";
+                }
+            }
+        }
+
+        private void bt3_Click(object sender, EventArgs e)
+        {
+            if (bNumeCuen)
+            {
+                tbNumeCuen.Text = tbNumeCuen.Text + "3";
+            }
+            else
+            {
+                if (bNuevaUnid)
+                {
+                    tbUnid.Text = "3";
+                    bNuevaUnid = false;
+                    bPor = false;
+                    tbPor.Text = "";
+                    tbDescripcion.Text = "";
+                    bUnid = true;
+                }
+                else
+                {
+                    tbUnid.Text = tbUnid.Text + "3";
+                }
+            }
+        }
+
+        private void bt4_Click(object sender, EventArgs e)
+        {
+            if (bNumeCuen)
+            {
+                tbNumeCuen.Text = tbNumeCuen.Text + "4";
+            }
+            else
+            {
+                if (bNuevaUnid)
+                {
+                    tbUnid.Text = "4";
+                    bNuevaUnid = false;
+                    bPor = false;
+                    tbPor.Text = "";
+                    tbDescripcion.Text = "";
+                    bUnid = true;
+                }
+                else
+                {
+                    tbUnid.Text = tbUnid.Text + "4";
+                }
+            }
+        }
+
+        private void bt5_Click(object sender, EventArgs e)
+        {
+            if (bNumeCuen)
+            {
+                tbNumeCuen.Text = tbNumeCuen.Text + "5";
+            }
+            else
+            {
+                if (bNuevaUnid)
+                {
+                    tbUnid.Text = "5";
+                    bNuevaUnid = false;
+                    bPor = false;
+                    tbPor.Text = "";
+                    tbDescripcion.Text = "";
+                    bUnid = true;
+                }
+                else
+                {
+                    tbUnid.Text = tbUnid.Text + "5";
+                }
+            }
+        }
+
+        private void bt6_Click(object sender, EventArgs e)
+        {
+            if (bNumeCuen)
+            {
+                tbNumeCuen.Text = tbNumeCuen.Text + "6";
+            }
+            else
+            {
+                if (bNuevaUnid)
+                {
+                    tbUnid.Text = "6";
+                    bNuevaUnid = false;
+                    bPor = false;
+                    tbPor.Text = "";
+                    tbDescripcion.Text = "";
+                    bUnid = true;
+                }
+                else
+                {
+                    tbUnid.Text = tbUnid.Text + "6";
+                }
+            }
+        }
+
+        private void bt7_Click(object sender, EventArgs e)
+        {
+            if (bNumeCuen)
+            {
+                tbNumeCuen.Text = tbNumeCuen.Text + "7";
+            }
+            else
+            {
+                if (bNuevaUnid)
+                {
+                    tbUnid.Text = "7";
+                    bNuevaUnid = false;
+                    bPor = false;
+                    tbPor.Text = "";
+                    tbDescripcion.Text = "";
+                    bUnid = true;
+                }
+                else
+                {
+                    tbUnid.Text = tbUnid.Text + "7";
+                }
+            }
+        }
+
+        private void bt8_Click(object sender, EventArgs e)
+        {
+            if (bNumeCuen)
+            {
+                tbNumeCuen.Text = tbNumeCuen.Text + "8";
+            }
+            else
+            {
+                if (bNuevaUnid)
+                {
+                    tbUnid.Text = "8";
+                    bNuevaUnid = false;
+                    bPor = false;
+                    tbPor.Text = "";
+                    tbDescripcion.Text = "";
+                    bUnid = true;
+                }
+                else
+                {
+                    tbUnid.Text = tbUnid.Text + "8";
+                }
+            }
+        }
+
+        private void bt9_Click(object sender, EventArgs e)
+        {
+            if (bNumeCuen)
+            {
+                tbNumeCuen.Text = tbNumeCuen.Text + "9";
+            }
+            else
+            {
+                if (bNuevaUnid)
+                {
+                    tbUnid.Text = "9";
+                    bNuevaUnid = false;
+                    bPor = false;
+                    tbPor.Text = "";
+                    tbDescripcion.Text = "";
+                    bUnid = true;
+                }
+                else
+                {
+                    tbUnid.Text = tbUnid.Text + "9";
+                }
+            }
+        }
+
+        private void bt0_Click(object sender, EventArgs e)
+        {
+            if (bNumeCuen)
+            {
+                tbNumeCuen.Text = tbNumeCuen.Text + "0";
+            }
+            else
+            {
+                if (bNuevaUnid)
+                {
+                    tbUnid.Text = "0";
+                    bNuevaUnid = false;
+                    bPor = false;
+                    tbPor.Text = "";
+                    tbDescripcion.Text = "";
+                    bUnid = true;
+                }
+                else
+                {
+                    tbUnid.Text = tbUnid.Text + "0";
+                }
             }
         }        
     }

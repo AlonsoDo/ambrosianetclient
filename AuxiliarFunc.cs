@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Ambrosia
 {
@@ -21,22 +22,6 @@ namespace Ambrosia
             var finalString = new String(stringChars);
 
             return finalString;
-        }
+        }        
     }
-
-    /*int j = 0;                   
-    for (var i = 0; i <= tvOrden.Nodes.Count; i++)
-    {
-        InfoNodo prueba = new InfoNodo();
-        prueba = (InfoNodo)tvOrden.Nodes[i].Tag;
-        
-        if (prueba.IdNodo == ContNodos)
-        {            
-            tvOrden.Nodes[i].BackColor = Color.Pink;
-            j = 1;
-        }
-    }
-    if (j == 0)
-        MessageBox.Show("not found");
-    */
 }

@@ -138,6 +138,18 @@
   <ItemGroup>
     <None Include="Ico\menos.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Ico\arriba.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ico\abajo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ico\borrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ico\enviar.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
