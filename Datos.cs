@@ -56,4 +56,18 @@ namespace Ambrosia
         public int PadreId { get; set; }
         public int Final { get; set; } 
     }
+
+    public class LineaPedido
+    {
+        public int IdElemento { get; set; }
+        public int Unids { get; set; }
+        public string Descripcion { get; set; }        
+    }
+
+    public class Envio
+    {
+        public string NombreEvento { get; set; }
+        public string NumeCuen { get; set; }
+        public List<LineaPedido> dataLinea { get; set; }
+    }
 }

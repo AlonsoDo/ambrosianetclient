@@ -14,7 +14,7 @@ namespace Ambrosia
 {
     public partial class Pedidos : Form
     {
-        System.Net.Sockets.TcpClient clientSocket;
+        public static System.Net.Sockets.TcpClient clientSocket;
         NetworkStream serverStream;
         string readData = null;
         Thread ctThread;
@@ -31,6 +31,7 @@ namespace Ambrosia
         bool bUnid = false;
         bool bNuevaUnid = true;
         public Decimal Total = 0;
+        List<LineaPedido> dataLinea = new List<LineaPedido>();
         
         public Pedidos()
         {
@@ -54,40 +55,44 @@ namespace Ambrosia
             treeNode.Text = "ORDEN:";
             infoNodo.Precio = 0;
             infoNodo.Impuesto = 0;
+            infoNodo.Unid = 0;
             treeNode.Tag = infoNodo;
             tvOrden.Nodes.Add(treeNode);
             
             //Conectar
             clientSocket = new System.Net.Sockets.TcpClient();
             serverStream = default(NetworkStream);
-            clientSocket.Connect("192.168.1.2", 8888);
+            clientSocket.Connect("192.168.1.2",10001);
             serverStream = clientSocket.GetStream();
 
             FuncionesAuxiliares funcionAuxiliar = new FuncionesAuxiliares();
             IdClient = funcionAuxiliar.GenerarIdCliente();
             
-            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(IdClient + "$");
+            /*byte[] outStream = System.Text.Encoding.ASCII.GetBytes(IdClient + "$");
             serverStream.Write(outStream, 0, outStream.Length);
-            serverStream.Flush();
+            serverStream.Flush();*/
 
             ctThread = new Thread(getMessage);
             ctThread.Start();
+
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(IdClient + "$");
+            serverStream.Write(outStream, 0, outStream.Length);
+            serverStream.Flush();
         }        
 
         private void getMessage()
         {
-            string NombreEvento = null;
-                        
+            string NombreEvento = null;            
+
             while (true)
-            {
-                serverStream = clientSocket.GetStream();
+            {                
                 int buffSize = 0;
                 byte[] inStream = new byte[262144];
                 buffSize = clientSocket.ReceiveBufferSize;
                 serverStream.Read(inStream, 0, buffSize);
                 string returndata = System.Text.Encoding.ASCII.GetString(inStream);
                 returndata = returndata.Substring(0, returndata.IndexOf("$"));
-                readData = "" + returndata;
+                readData = "" + returndata;                    
 
                 var definition = new { NombreEvento = "" };
                 var EventosControl = JsonConvert.DeserializeAnonymousType(readData, definition);
@@ -97,9 +102,8 @@ namespace Ambrosia
                 {
                     elementos = JsonConvert.DeserializeObject<GetElementsData>(readData);
                     DrawElements();
-                }
-            }
-            
+                }                 
+            }            
         }
 
         private void Pedidos_FormClosing(object sender, FormClosingEventArgs e)
@@ -240,6 +244,7 @@ namespace Ambrosia
                     bNuevaUnid = true;
 
                     Total = 0;
+                    dataLinea.Clear();
                     
                     TreeNodeCollection nodes = tvOrden.Nodes;
                     //Aqui recorres todos los nodos
@@ -293,6 +298,15 @@ namespace Ambrosia
                     infoNodo = (InfoNodo)tn.Tag;
 
                     Total = Total + (infoNodo.Unid * ((infoNodo.Precio) + ((infoNodo.Impuesto * infoNodo.Precio) / 100)));
+                    
+                    //Rellenar pedido con el arbol
+                    dataLinea.Add(new LineaPedido()
+                    {
+                        IdElemento = infoNodo.IdElemento,
+                        Unids = infoNodo.Unid,
+                        Descripcion = infoNodo.Descripcion
+                    });
+                    
                     //Ahora hago verificacion a los hijos del nodo actual
                     //Esta iteración no acabara hasta llegar al ultimo nodo principal
                     RecorrerNodos(tn);
@@ -433,6 +447,7 @@ namespace Ambrosia
                 tvOrden.SelectedNode.Tag = infoNodo;
 
                 Total = 0;
+                dataLinea.Clear();
 
                 TreeNodeCollection nodes = tvOrden.Nodes;
                 //Aqui recorres todos los nodos
@@ -459,6 +474,7 @@ namespace Ambrosia
                 tvOrden.SelectedNode.Tag = infoNodo;
 
                 Total = 0;
+                dataLinea.Clear();
 
                 TreeNodeCollection nodes = tvOrden.Nodes;
                 //Aqui recorres todos los nodos
@@ -563,6 +579,7 @@ namespace Ambrosia
                 serverStream.Flush();
 
                 Total = 0;
+                dataLinea.Clear();
 
                 TreeNodeCollection nodes = tvOrden.Nodes;
                 //Aqui recorres todos los nodos
@@ -870,6 +887,74 @@ namespace Ambrosia
                 {
                     tbUnid.Text = tbUnid.Text + "0";
                 }
+            }
+        }
+
+        private void btEnviar_Click(object sender, EventArgs e)
+        {
+            if (tbNumeCuen.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Debe de indicar un numero de cuenta");
+            }
+            else if (tvOrden.Nodes[0].GetNodeCount(true) == 0)
+            {
+                MessageBox.Show("Debe de introducir un pedido");
+            }
+            else
+            {
+                Envio DatosEnvio = new Envio();
+                DatosEnvio.NombreEvento = "EnvioPedido";
+                DatosEnvio.NumeCuen = tbNumeCuen.Text.Trim();
+                DatosEnvio.dataLinea = dataLinea;
+                string output = JsonConvert.SerializeObject(DatosEnvio);
+
+                byte[] outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
+                serverStream.Write(outStream, 0, outStream.Length);
+                serverStream.Flush();
+
+                //Reset
+                tbNumeCuen.Text = string.Empty;
+                tvOrden.Nodes.Clear();                
+                ContNodos = 0;
+                NodoPadre = 0;
+                TreeMode = false;
+                bNumeCuen = true;
+                bPor = false;
+                bUnid = false;
+                bNuevaUnid = true;
+
+                TreeNode treeNode = new TreeNode();
+                InfoNodo infoNodo = new InfoNodo();
+                infoNodo.IdNodo = 0;
+                infoNodo.IdPadre = 0;
+                treeNode.Name = "0";
+                treeNode.Text = "ORDEN:";
+                infoNodo.Precio = 0;
+                infoNodo.Impuesto = 0;
+                infoNodo.Unid = 0;
+                treeNode.Tag = infoNodo;
+                tvOrden.Nodes.Add(treeNode);
+                tvOrden.SelectedNode = tvOrden.Nodes[0];
+
+                Level = 0;
+                btEntrar.Enabled = false;
+                btBack.Enabled = false;
+                btArriba.Enabled = false;
+                btAbajo.Enabled = false;
+                btBorrar.Enabled = false;
+                btMas.Enabled = false;
+                btMenos.Enabled = false;
+
+                EventoAskForElements eventoAskForElements = new EventoAskForElements();
+                eventoAskForElements.NombreEvento = "AskForElements";
+                eventoAskForElements.PadreId = 0;
+                output = JsonConvert.SerializeObject(eventoAskForElements);
+
+                outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
+                serverStream.Write(outStream, 0, outStream.Length);
+                serverStream.Flush();
+                
+                MessageBox.Show("Pedido enviado");
             }
         }        
     }

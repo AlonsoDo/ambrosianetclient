@@ -870,7 +870,6 @@
             // btEnviar
             // 
             this.btEnviar.BackColor = System.Drawing.Color.MistyRose;
-            this.btEnviar.Enabled = false;
             this.btEnviar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btEnviar.ForeColor = System.Drawing.Color.Red;
             this.btEnviar.Image = global::Ambrosia.Properties.Resources.enviar;
@@ -883,6 +882,7 @@
             this.btEnviar.Text = "Enviar";
             this.btEnviar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btEnviar.UseVisualStyleBackColor = false;
+            this.btEnviar.Click += new System.EventHandler(this.btEnviar_Click);
             // 
             // btBorrar
             // 
