@@ -56,6 +56,8 @@ namespace Ambrosia
             infoNodo.Precio = 0;
             infoNodo.Impuesto = 0;
             infoNodo.Unid = 0;
+            infoNodo.ImprimirEnComanda = 0;
+            infoNodo.ImprimirEnFactura = 0;
             treeNode.Tag = infoNodo;
             tvOrden.Nodes.Add(treeNode);
             
@@ -215,16 +217,20 @@ namespace Ambrosia
                     infoNodo.Descripcion = nodeText;
                     infoNodo.Precio = elementos.data.ElementAt(IndexAbs - 1).Precio;
                     infoNodo.Impuesto = elementos.data.ElementAt(IndexAbs - 1).Impuesto;
+                    infoNodo.ImprimirEnComanda = elementos.data.ElementAt(IndexAbs - 1).ImprimirEnComanda;
+                    infoNodo.ImprimirEnFactura = elementos.data.ElementAt(IndexAbs - 1).ImprimirEnFactura;
                     
+
                     treeNode.Name = ContNodos.ToString();
                     treeNode.Text = Unidades.ToString() + " " + nodeText;
                     treeNode.Tag = infoNodo;                    
 
                     MyNode[0].Nodes.Add(treeNode);
-
+                    
                     MyNode[0].Expand();
                     tvOrden.SelectedNode = treeNode;
-
+                    //int TabLevel = tvOrden.SelectedNode.Level;
+                    
                     btEntrar.Enabled = true;
                     btMas.Enabled = true;
                     btMenos.Enabled = true;
@@ -304,7 +310,12 @@ namespace Ambrosia
                     {
                         IdElemento = infoNodo.IdElemento,
                         Unids = infoNodo.Unid,
-                        Descripcion = infoNodo.Descripcion
+                        Descripcion = infoNodo.Descripcion,
+                        Precio = infoNodo.Precio,
+                        Impuesto = infoNodo.Impuesto,
+                        ImprimirEnComanda = infoNodo.ImprimirEnComanda,
+                        ImprimirEnFactura = infoNodo.ImprimirEnFactura,
+                        TabLevel = tn.Level
                     });
                     
                     //Ahora hago verificacion a los hijos del nodo actual
@@ -654,7 +665,8 @@ namespace Ambrosia
         {
             if (bNumeCuen)
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "1";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "1";
             }
             else
             {
@@ -669,7 +681,8 @@ namespace Ambrosia
                 }
                 else
                 {
-                    tbUnid.Text = tbUnid.Text + "1";
+                    if (tbUnid.Text.Length < 5)
+                        tbUnid.Text = tbUnid.Text + "1";
                 }
             }
         }
@@ -678,7 +691,8 @@ namespace Ambrosia
         {
             if (bNumeCuen)
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "2";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "2";
             }
             else
             {
@@ -693,7 +707,8 @@ namespace Ambrosia
                 }
                 else
                 {
-                    tbUnid.Text = tbUnid.Text + "2";
+                    if (tbUnid.Text.Length < 5)
+                        tbUnid.Text = tbUnid.Text + "2";
                 }
             }
         }
@@ -702,7 +717,8 @@ namespace Ambrosia
         {
             if (bNumeCuen)
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "3";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "3";
             }
             else
             {
@@ -717,7 +733,8 @@ namespace Ambrosia
                 }
                 else
                 {
-                    tbUnid.Text = tbUnid.Text + "3";
+                    if (tbUnid.Text.Length < 5)
+                        tbUnid.Text = tbUnid.Text + "3";
                 }
             }
         }
@@ -726,7 +743,8 @@ namespace Ambrosia
         {
             if (bNumeCuen)
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "4";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "4";
             }
             else
             {
@@ -741,7 +759,8 @@ namespace Ambrosia
                 }
                 else
                 {
-                    tbUnid.Text = tbUnid.Text + "4";
+                    if (tbUnid.Text.Length < 5)
+                        tbUnid.Text = tbUnid.Text + "4";
                 }
             }
         }
@@ -750,7 +769,8 @@ namespace Ambrosia
         {
             if (bNumeCuen)
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "5";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "5";
             }
             else
             {
@@ -765,7 +785,8 @@ namespace Ambrosia
                 }
                 else
                 {
-                    tbUnid.Text = tbUnid.Text + "5";
+                    if (tbUnid.Text.Length < 5)
+                        tbUnid.Text = tbUnid.Text + "5";
                 }
             }
         }
@@ -774,7 +795,8 @@ namespace Ambrosia
         {
             if (bNumeCuen)
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "6";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "6";
             }
             else
             {
@@ -789,7 +811,8 @@ namespace Ambrosia
                 }
                 else
                 {
-                    tbUnid.Text = tbUnid.Text + "6";
+                    if (tbUnid.Text.Length < 5)
+                        tbUnid.Text = tbUnid.Text + "6";
                 }
             }
         }
@@ -798,7 +821,8 @@ namespace Ambrosia
         {
             if (bNumeCuen)
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "7";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "7";
             }
             else
             {
@@ -813,7 +837,8 @@ namespace Ambrosia
                 }
                 else
                 {
-                    tbUnid.Text = tbUnid.Text + "7";
+                    if (tbUnid.Text.Length < 5)
+                        tbUnid.Text = tbUnid.Text + "7";
                 }
             }
         }
@@ -822,7 +847,8 @@ namespace Ambrosia
         {
             if (bNumeCuen)
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "8";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "8";
             }
             else
             {
@@ -837,7 +863,8 @@ namespace Ambrosia
                 }
                 else
                 {
-                    tbUnid.Text = tbUnid.Text + "8";
+                    if (tbUnid.Text.Length < 5)
+                        tbUnid.Text = tbUnid.Text + "8";
                 }
             }
         }
@@ -846,7 +873,8 @@ namespace Ambrosia
         {
             if (bNumeCuen)
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "9";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "9";
             }
             else
             {
@@ -861,7 +889,8 @@ namespace Ambrosia
                 }
                 else
                 {
-                    tbUnid.Text = tbUnid.Text + "9";
+                    if (tbUnid.Text.Length < 5)
+                        tbUnid.Text = tbUnid.Text + "9";
                 }
             }
         }
@@ -870,7 +899,8 @@ namespace Ambrosia
         {
             if (bNumeCuen)
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "0";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "0";
             }
             else
             {
@@ -885,7 +915,8 @@ namespace Ambrosia
                 }
                 else
                 {
-                    tbUnid.Text = tbUnid.Text + "0";
+                    if (tbUnid.Text.Length < 5)
+                        tbUnid.Text = tbUnid.Text + "0";
                 }
             }
         }
@@ -932,6 +963,8 @@ namespace Ambrosia
                 infoNodo.Precio = 0;
                 infoNodo.Impuesto = 0;
                 infoNodo.Unid = 0;
+                infoNodo.ImprimirEnComanda = 0;
+                infoNodo.ImprimirEnFactura = 0;
                 treeNode.Tag = infoNodo;
                 tvOrden.Nodes.Add(treeNode);
                 tvOrden.SelectedNode = tvOrden.Nodes[0];
