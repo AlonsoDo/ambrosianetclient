@@ -19,8 +19,13 @@ namespace Ambrosia
         private void pbPedidos_Click(object sender, EventArgs e)
         {
             Pedidos FormPedidos = new Pedidos();
-            FormPedidos.ShowDialog(this);
-            //FormPedidos.MdiParent = this;
+            FormPedidos.ShowDialog(this);            
+        }
+
+        private void pbTerminal_Click(object sender, EventArgs e)
+        {
+            Terminal FormTerminal = new Terminal();
+            FormTerminal.ShowDialog(this);
         }
     }
 }

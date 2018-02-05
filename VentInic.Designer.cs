@@ -32,9 +32,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.pbTerminal = new System.Windows.Forms.PictureBox();
             this.pbClientes = new System.Windows.Forms.PictureBox();
             this.pbCaja = new System.Windows.Forms.PictureBox();
             this.pbPedidos = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTerminal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCaja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPedidos)).BeginInit();
@@ -73,6 +76,17 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Clientes";
             // 
+            // pbTerminal
+            // 
+            this.pbTerminal.Image = global::Ambrosia.Properties.Resources.terminal;
+            this.pbTerminal.Location = new System.Drawing.Point(12, 570);
+            this.pbTerminal.Name = "pbTerminal";
+            this.pbTerminal.Size = new System.Drawing.Size(96, 96);
+            this.pbTerminal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbTerminal.TabIndex = 9;
+            this.pbTerminal.TabStop = false;
+            this.pbTerminal.Click += new System.EventHandler(this.pbTerminal_Click);
+            // 
             // pbClientes
             // 
             this.pbClientes.Image = global::Ambrosia.Properties.Resources.group;
@@ -106,12 +120,25 @@
             this.pbPedidos.TabStop = false;
             this.pbPedidos.Click += new System.EventHandler(this.pbPedidos_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(12, 672);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(101, 26);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Terminal";
+            // 
             // VentInic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Salmon;
-            this.ClientSize = new System.Drawing.Size(292, 522);
+            this.ClientSize = new System.Drawing.Size(292, 710);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.pbTerminal);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -124,6 +151,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            ((System.ComponentModel.ISupportInitialize)(this.pbTerminal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbClientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCaja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPedidos)).EndInit();
@@ -140,5 +168,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pbTerminal;
+        private System.Windows.Forms.Label label4;
     }
 }

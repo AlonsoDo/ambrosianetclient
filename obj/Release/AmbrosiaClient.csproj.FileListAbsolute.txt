@@ -10,3 +10,4 @@ C:\AmbrosiaClient\bin\Release\Newtonsoft.Json.pdb
 C:\AmbrosiaClient\bin\Release\Newtonsoft.Json.xml
 C:\AmbrosiaClient\obj\Release\Ambrosia.Pedidos.resources
 C:\AmbrosiaClient\obj\Release\Ambrosia.VentInic.resources
+C:\AmbrosiaClient\obj\Release\Ambrosia.Terminal.resources

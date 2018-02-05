@@ -68,11 +68,7 @@ namespace Ambrosia
             serverStream = clientSocket.GetStream();
 
             FuncionesAuxiliares funcionAuxiliar = new FuncionesAuxiliares();
-            IdClient = funcionAuxiliar.GenerarIdCliente();
-            
-            /*byte[] outStream = System.Text.Encoding.ASCII.GetBytes(IdClient + "$");
-            serverStream.Write(outStream, 0, outStream.Length);
-            serverStream.Flush();*/
+            IdClient = funcionAuxiliar.GenerarIdCliente();            
 
             ctThread = new Thread(getMessage);
             ctThread.Start();
@@ -104,7 +100,7 @@ namespace Ambrosia
                 {
                     elementos = JsonConvert.DeserializeObject<GetElementsData>(readData);
                     DrawElements();
-                }                 
+                }                
             }            
         }
 

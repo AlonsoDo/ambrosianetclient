@@ -79,4 +79,53 @@ namespace Ambrosia
         public string NumeCuen { get; set; }
         public List<LineaPedido> dataLinea { get; set; }
     }
+
+    public class SalidaPedido
+    {
+        public int Unids { get; set; }
+        public string Descripcion { get; set; }
+        public int TabLevel { get; set; }
+    }
+    
+    public class ImpresoraSalida
+    {
+        public string NombreImpresora { get; set; }
+        public List<SalidaPedido> dataLinea { get; set; }
+    }
+
+    public class TerminalSalida
+    {
+        public string NombreTerminal { get; set; }
+        public List<SalidaPedido> dataLinea { get; set; }
+    }
+    
+    public class PedidoCompleto
+    {
+        public string NombreEvento { get; set; }
+        public string NombreCuenta { get; set; }
+        public List<ImpresoraSalida> impresoraSalida { get; set; }
+        public List<TerminalSalida> terminalSalida { get; set; }
+    }
+
+    public class ImpresorasTer
+    {
+        public string NombreImpresora { get; set; }
+    }
+
+    public class ListaImpresorasTer
+    {
+        public string NombreEvento { get; set; }
+        public List<ImpresorasTer> impresorasTer { get; set; }
+    }
+
+    public class TerminalesTer
+    {
+        public string NombreTerminal { get; set; }
+    }
+
+    public class ListaTerminalesTer
+    {
+        public string NombreEvento { get; set; }
+        public List<TerminalesTer> terminalesTer { get; set; }
+    }
 }
