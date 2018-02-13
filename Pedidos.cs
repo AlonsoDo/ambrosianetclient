@@ -42,6 +42,8 @@ namespace Ambrosia
         {
             Control.CheckForIllegalCrossThreadCalls = false;
 
+            //Cursor.Current = Cursors.WaitCursor;
+
             Path ini = new Path();
             ini.PadreId = 0;
             ini.Final = 0;
@@ -100,6 +102,7 @@ namespace Ambrosia
                 {
                     elementos = JsonConvert.DeserializeObject<GetElementsData>(readData);
                     DrawElements();
+                    //Cursor.Current = Cursors.Default;
                 }                
             }            
         }
@@ -216,7 +219,6 @@ namespace Ambrosia
                     infoNodo.ImprimirEnComanda = elementos.data.ElementAt(IndexAbs - 1).ImprimirEnComanda;
                     infoNodo.ImprimirEnFactura = elementos.data.ElementAt(IndexAbs - 1).ImprimirEnFactura;
                     
-
                     treeNode.Name = ContNodos.ToString();
                     treeNode.Text = Unidades.ToString() + " " + nodeText;
                     treeNode.Tag = infoNodo;                    

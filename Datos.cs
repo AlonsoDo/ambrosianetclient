@@ -127,5 +127,12 @@ namespace Ambrosia
     {
         public string NombreEvento { get; set; }
         public List<TerminalesTer> terminalesTer { get; set; }
+    }    
+    
+    public class MemoPedido
+    {
+        public string NombCuen { get; set; }
+        public string NombImprTerm { get; set; }
+        public List<SalidaPedido> salidaPedido { get; set; }
     }
 }
