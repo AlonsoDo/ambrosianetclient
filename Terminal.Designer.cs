@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panelbotones = new System.Windows.Forms.Panel();
+            this.btDelante = new System.Windows.Forms.Button();
+            this.btBack = new System.Windows.Forms.Button();
             this.cbImpresoras = new System.Windows.Forms.ComboBox();
             this.cbTerminales = new System.Windows.Forms.ComboBox();
             this.labelimpresora = new System.Windows.Forms.Label();
@@ -51,6 +53,20 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.lNombCuen6 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.btIr = new System.Windows.Forms.Button();
+            this.bt3 = new System.Windows.Forms.Button();
+            this.bt2 = new System.Windows.Forms.Button();
+            this.bt6 = new System.Windows.Forms.Button();
+            this.bt1 = new System.Windows.Forms.Button();
+            this.bt5 = new System.Windows.Forms.Button();
+            this.bt0 = new System.Windows.Forms.Button();
+            this.bt4 = new System.Windows.Forms.Button();
+            this.bt9 = new System.Windows.Forms.Button();
+            this.bt8 = new System.Windows.Forms.Button();
+            this.bt7 = new System.Windows.Forms.Button();
+            this.tbContColu = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelbotones.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -64,11 +80,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelbotones
             // 
             this.panelbotones.BackColor = System.Drawing.Color.LavenderBlush;
+            this.panelbotones.Controls.Add(this.panel7);
+            this.panelbotones.Controls.Add(this.btDelante);
+            this.panelbotones.Controls.Add(this.btBack);
             this.panelbotones.Controls.Add(this.cbImpresoras);
             this.panelbotones.Controls.Add(this.cbTerminales);
             this.panelbotones.Controls.Add(this.labelimpresora);
@@ -77,6 +97,40 @@
             this.panelbotones.Name = "panelbotones";
             this.panelbotones.Size = new System.Drawing.Size(197, 742);
             this.panelbotones.TabIndex = 0;
+            // 
+            // btDelante
+            // 
+            this.btDelante.BackColor = System.Drawing.Color.MistyRose;
+            this.btDelante.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btDelante.ForeColor = System.Drawing.Color.Red;
+            this.btDelante.Image = global::Ambrosia.Properties.Resources.delante;
+            this.btDelante.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btDelante.Location = new System.Drawing.Point(100, 147);
+            this.btDelante.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btDelante.Name = "btDelante";
+            this.btDelante.Size = new System.Drawing.Size(87, 108);
+            this.btDelante.TabIndex = 5;
+            this.btDelante.Text = "Delante";
+            this.btDelante.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btDelante.UseVisualStyleBackColor = false;
+            this.btDelante.Click += new System.EventHandler(this.btDelante_Click);
+            // 
+            // btBack
+            // 
+            this.btBack.BackColor = System.Drawing.Color.MistyRose;
+            this.btBack.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBack.ForeColor = System.Drawing.Color.Red;
+            this.btBack.Image = global::Ambrosia.Properties.Resources.previous;
+            this.btBack.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btBack.Location = new System.Drawing.Point(7, 147);
+            this.btBack.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btBack.Name = "btBack";
+            this.btBack.Size = new System.Drawing.Size(87, 108);
+            this.btBack.TabIndex = 4;
+            this.btBack.Text = "Atras ";
+            this.btBack.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btBack.UseVisualStyleBackColor = false;
+            this.btBack.Click += new System.EventHandler(this.btBack_Click);
             // 
             // cbImpresoras
             // 
@@ -142,13 +196,17 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(16, 36);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.Size = new System.Drawing.Size(212, 313);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             // 
             // lNombCuen1
             // 
@@ -174,13 +232,17 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(16, 38);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView2.Size = new System.Drawing.Size(212, 313);
             this.dataGridView2.TabIndex = 4;
+            this.dataGridView2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView2_MouseClick);
             // 
             // lNombCuen2
             // 
@@ -206,13 +268,17 @@
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.AllowUserToResizeColumns = false;
+            this.dataGridView3.AllowUserToResizeRows = false;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(16, 36);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersVisible = false;
+            this.dataGridView3.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView3.Size = new System.Drawing.Size(212, 313);
             this.dataGridView3.TabIndex = 5;
+            this.dataGridView3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView3_MouseClick);
             // 
             // lNombCuen3
             // 
@@ -238,13 +304,17 @@
             // 
             this.dataGridView4.AllowUserToAddRows = false;
             this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.AllowUserToResizeColumns = false;
+            this.dataGridView4.AllowUserToResizeRows = false;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(16, 38);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.RowHeadersVisible = false;
+            this.dataGridView4.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView4.Size = new System.Drawing.Size(212, 313);
             this.dataGridView4.TabIndex = 5;
+            this.dataGridView4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView4_MouseClick);
             // 
             // lNombCuen4
             // 
@@ -270,13 +340,17 @@
             // 
             this.dataGridView5.AllowUserToAddRows = false;
             this.dataGridView5.AllowUserToDeleteRows = false;
+            this.dataGridView5.AllowUserToResizeColumns = false;
+            this.dataGridView5.AllowUserToResizeRows = false;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.Location = new System.Drawing.Point(15, 36);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.ReadOnly = true;
             this.dataGridView5.RowHeadersVisible = false;
+            this.dataGridView5.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView5.Size = new System.Drawing.Size(212, 313);
             this.dataGridView5.TabIndex = 5;
+            this.dataGridView5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView5_MouseClick);
             // 
             // lNombCuen5
             // 
@@ -302,13 +376,17 @@
             // 
             this.dataGridView6.AllowUserToAddRows = false;
             this.dataGridView6.AllowUserToDeleteRows = false;
+            this.dataGridView6.AllowUserToResizeColumns = false;
+            this.dataGridView6.AllowUserToResizeRows = false;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView6.Location = new System.Drawing.Point(15, 38);
             this.dataGridView6.Name = "dataGridView6";
             this.dataGridView6.ReadOnly = true;
             this.dataGridView6.RowHeadersVisible = false;
+            this.dataGridView6.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView6.Size = new System.Drawing.Size(212, 313);
             this.dataGridView6.TabIndex = 5;
+            this.dataGridView6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView6_MouseClick);
             // 
             // lNombCuen6
             // 
@@ -319,6 +397,171 @@
             this.lNombCuen6.Size = new System.Drawing.Size(47, 16);
             this.lNombCuen6.TabIndex = 1;
             this.lNombCuen6.Text = "label1";
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.LavenderBlush;
+            this.panel7.Controls.Add(this.label1);
+            this.panel7.Controls.Add(this.btIr);
+            this.panel7.Controls.Add(this.bt3);
+            this.panel7.Controls.Add(this.bt2);
+            this.panel7.Controls.Add(this.bt6);
+            this.panel7.Controls.Add(this.bt1);
+            this.panel7.Controls.Add(this.bt5);
+            this.panel7.Controls.Add(this.bt0);
+            this.panel7.Controls.Add(this.bt4);
+            this.panel7.Controls.Add(this.bt9);
+            this.panel7.Controls.Add(this.bt8);
+            this.panel7.Controls.Add(this.bt7);
+            this.panel7.Controls.Add(this.tbContColu);
+            this.panel7.Location = new System.Drawing.Point(7, 274);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(171, 174);
+            this.panel7.TabIndex = 6;
+            // 
+            // btIr
+            // 
+            this.btIr.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btIr.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btIr.Location = new System.Drawing.Point(86, 88);
+            this.btIr.Name = "btIr";
+            this.btIr.Size = new System.Drawing.Size(81, 40);
+            this.btIr.TabIndex = 20;
+            this.btIr.Text = "Ir";
+            this.btIr.UseVisualStyleBackColor = false;
+            // 
+            // bt3
+            // 
+            this.bt3.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt3.Location = new System.Drawing.Point(128, 3);
+            this.bt3.Name = "bt3";
+            this.bt3.Size = new System.Drawing.Size(40, 40);
+            this.bt3.TabIndex = 19;
+            this.bt3.Text = "3";
+            this.bt3.UseVisualStyleBackColor = false;
+            // 
+            // bt2
+            // 
+            this.bt2.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt2.Location = new System.Drawing.Point(86, 3);
+            this.bt2.Name = "bt2";
+            this.bt2.Size = new System.Drawing.Size(40, 40);
+            this.bt2.TabIndex = 18;
+            this.bt2.Text = "2";
+            this.bt2.UseVisualStyleBackColor = false;
+            // 
+            // bt6
+            // 
+            this.bt6.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt6.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt6.Location = new System.Drawing.Point(86, 45);
+            this.bt6.Name = "bt6";
+            this.bt6.Size = new System.Drawing.Size(40, 40);
+            this.bt6.TabIndex = 17;
+            this.bt6.Text = "6";
+            this.bt6.UseVisualStyleBackColor = false;
+            // 
+            // bt1
+            // 
+            this.bt1.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt1.Location = new System.Drawing.Point(45, 3);
+            this.bt1.Name = "bt1";
+            this.bt1.Size = new System.Drawing.Size(40, 40);
+            this.bt1.TabIndex = 16;
+            this.bt1.Text = "1";
+            this.bt1.UseVisualStyleBackColor = false;
+            // 
+            // bt5
+            // 
+            this.bt5.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt5.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt5.Location = new System.Drawing.Point(44, 45);
+            this.bt5.Name = "bt5";
+            this.bt5.Size = new System.Drawing.Size(40, 40);
+            this.bt5.TabIndex = 15;
+            this.bt5.Text = "5";
+            this.bt5.UseVisualStyleBackColor = false;
+            // 
+            // bt0
+            // 
+            this.bt0.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt0.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt0.Location = new System.Drawing.Point(3, 3);
+            this.bt0.Name = "bt0";
+            this.bt0.Size = new System.Drawing.Size(40, 40);
+            this.bt0.TabIndex = 14;
+            this.bt0.Text = "0";
+            this.bt0.UseVisualStyleBackColor = false;
+            // 
+            // bt4
+            // 
+            this.bt4.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt4.Location = new System.Drawing.Point(3, 45);
+            this.bt4.Name = "bt4";
+            this.bt4.Size = new System.Drawing.Size(40, 40);
+            this.bt4.TabIndex = 13;
+            this.bt4.Text = "4";
+            this.bt4.UseVisualStyleBackColor = false;
+            // 
+            // bt9
+            // 
+            this.bt9.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt9.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt9.Location = new System.Drawing.Point(44, 88);
+            this.bt9.Name = "bt9";
+            this.bt9.Size = new System.Drawing.Size(40, 40);
+            this.bt9.TabIndex = 12;
+            this.bt9.Text = "9";
+            this.bt9.UseVisualStyleBackColor = false;
+            // 
+            // bt8
+            // 
+            this.bt8.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt8.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt8.Location = new System.Drawing.Point(3, 88);
+            this.bt8.Name = "bt8";
+            this.bt8.Size = new System.Drawing.Size(40, 40);
+            this.bt8.TabIndex = 11;
+            this.bt8.Text = "8";
+            this.bt8.UseVisualStyleBackColor = false;
+            // 
+            // bt7
+            // 
+            this.bt7.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt7.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt7.Location = new System.Drawing.Point(128, 45);
+            this.bt7.Name = "bt7";
+            this.bt7.Size = new System.Drawing.Size(40, 40);
+            this.bt7.TabIndex = 10;
+            this.bt7.Text = "7";
+            this.bt7.UseVisualStyleBackColor = false;
+            // 
+            // tbContColu
+            // 
+            this.tbContColu.BackColor = System.Drawing.Color.Black;
+            this.tbContColu.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbContColu.ForeColor = System.Drawing.Color.White;
+            this.tbContColu.Location = new System.Drawing.Point(85, 134);
+            this.tbContColu.MaxLength = 5;
+            this.tbContColu.Multiline = true;
+            this.tbContColu.Name = "tbContColu";
+            this.tbContColu.Size = new System.Drawing.Size(82, 34);
+            this.tbContColu.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 143);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 19);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Posicion:";
             // 
             // Terminal
             // 
@@ -337,7 +580,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Terminal";
             this.Load += new System.EventHandler(this.Terminal_Load);
-            this.Activated += new System.EventHandler(this.Terminal_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Terminal_FormClosing);
             this.panelbotones.ResumeLayout(false);
             this.panelbotones.PerformLayout();
@@ -359,6 +601,8 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -388,5 +632,21 @@
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.DataGridView dataGridView6;
+        private System.Windows.Forms.Button btBack;
+        private System.Windows.Forms.Button btDelante;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button btIr;
+        private System.Windows.Forms.Button bt3;
+        private System.Windows.Forms.Button bt2;
+        private System.Windows.Forms.Button bt6;
+        private System.Windows.Forms.Button bt1;
+        private System.Windows.Forms.Button bt5;
+        private System.Windows.Forms.Button bt0;
+        private System.Windows.Forms.Button bt4;
+        private System.Windows.Forms.Button bt9;
+        private System.Windows.Forms.Button bt8;
+        private System.Windows.Forms.Button bt7;
+        private System.Windows.Forms.TextBox tbContColu;
+        private System.Windows.Forms.Label label1;
     }
 }

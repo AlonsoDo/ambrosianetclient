@@ -132,7 +132,16 @@ namespace Ambrosia
     public class MemoPedido
     {
         public string NombCuen { get; set; }
-        public string NombImprTerm { get; set; }
+        public string NombImpr { get; set; }
+        public string NombTerm { get; set; }
+        public string Hora { get; set; }
         public List<SalidaPedido> salidaPedido { get; set; }
+    }
+
+    public class ImpresorasTerminales
+    {
+        public string NombreEvento { get; set; }
+        public List<ImpresorasTer> impresorasTer { get; set; }
+        public List<TerminalesTer> terminalesTer { get; set; }
     }
 }

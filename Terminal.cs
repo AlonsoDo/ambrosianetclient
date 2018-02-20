@@ -59,7 +59,7 @@ namespace Ambrosia
             column2.HeaderText = "Descripcion";
             column2.DataPropertyName = "Descripcion";
             column2.ReadOnly = true;
-            column2.Width = 140;
+            column2.Width = 160;
             dataGridView1.Columns.Add(column2);
 
             dataGridView2.AutoGenerateColumns = false;
@@ -76,7 +76,7 @@ namespace Ambrosia
             column4.HeaderText = "Descripcion";
             column4.DataPropertyName = "Descripcion";
             column4.ReadOnly = true;
-            column4.Width = 140;
+            column4.Width = 160;
             dataGridView2.Columns.Add(column4);
 
             dataGridView3.AutoGenerateColumns = false;
@@ -93,7 +93,7 @@ namespace Ambrosia
             column6.HeaderText = "Descripcion";
             column6.DataPropertyName = "Descripcion";
             column6.ReadOnly = true;
-            column6.Width = 140;
+            column6.Width = 160;
             dataGridView3.Columns.Add(column6);
 
             dataGridView4.AutoGenerateColumns = false;
@@ -110,7 +110,7 @@ namespace Ambrosia
             column8.HeaderText = "Descripcion";
             column8.DataPropertyName = "Descripcion";
             column8.ReadOnly = true;
-            column8.Width = 140;
+            column8.Width = 160;
             dataGridView4.Columns.Add(column8);
 
             dataGridView5.AutoGenerateColumns = false;
@@ -127,7 +127,7 @@ namespace Ambrosia
             column10.HeaderText = "Descripcion";
             column10.DataPropertyName = "Descripcion";
             column10.ReadOnly = true;
-            column10.Width = 140;
+            column10.Width = 160;
             dataGridView5.Columns.Add(column10);
 
             dataGridView6.AutoGenerateColumns = false;
@@ -144,7 +144,7 @@ namespace Ambrosia
             column12.HeaderText = "Descripcion";
             column12.DataPropertyName = "Descripcion";
             column12.ReadOnly = true;
-            column12.Width = 140;
+            column12.Width = 160;
             dataGridView6.Columns.Add(column12);
 
             //Conectar
@@ -162,12 +162,7 @@ namespace Ambrosia
             byte[] outStream = System.Text.Encoding.ASCII.GetBytes(IdClient + "$");
             serverStream.Write(outStream, 0, outStream.Length);
             serverStream.Flush();
-        }
-
-        private void Terminal_Activated(object sender, EventArgs e)
-        {
-            
-        }
+        }        
 
         private void getMessage()
         {
@@ -192,34 +187,17 @@ namespace Ambrosia
                     pedidoCompleto = JsonConvert.DeserializeObject<PedidoCompleto>(readData);
                     CargarPedido();
                 }
-                else if (NombreEvento == "SendTerminalesBack")
+                else if (NombreEvento == "ImpresorasTerminalesBak")
                 {
-                    ListaTerminalesTer listTerminal = new ListaTerminalesTer();
-                    listTerminal = JsonConvert.DeserializeObject<ListaTerminalesTer>(readData);
-                    CargarTerminales(listTerminal);                                                         
-                }
-                else if (NombreEvento == "SendPrintersBack")
-                {                    
-                    ListaImpresorasTer listPrinter = new ListaImpresorasTer(); 
-                    listPrinter = JsonConvert.DeserializeObject<ListaImpresorasTer>(readData);
-                    CargarImpresoras(listPrinter);                    
-                }                
+                    ImpresorasTerminales impresorasTerminales = new ImpresorasTerminales();
+                    impresorasTerminales = JsonConvert.DeserializeObject<ImpresorasTerminales>(readData);
+                    cbTerminales.DisplayMember = "NombreTerminal";
+                    cbTerminales.DataSource = impresorasTerminales.terminalesTer;
+                    cbImpresoras.DisplayMember = "NombreImpresora";
+                    cbImpresoras.DataSource = impresorasTerminales.impresorasTer;
+                }                             
             }
-        }
-
-        private void CargarTerminales(ListaTerminalesTer listTerminal)
-        {
-            //MessageBox.Show("Cargando terminales");
-            cbTerminales.DisplayMember = "NombreTerminal";
-            cbTerminales.DataSource = listTerminal.terminalesTer;
-        }
-
-        private void CargarImpresoras(ListaImpresorasTer listPrinter)
-        {
-            //MessageBox.Show("Cargando impresoras");
-            cbImpresoras.DisplayMember = "NombreImpresora";
-            cbImpresoras.DataSource = listPrinter.impresorasTer;
-        }
+        }        
 
         private void Terminal_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -243,17 +221,25 @@ namespace Ambrosia
             {
                 MemoPedido pedido = new MemoPedido();
                 pedido.NombCuen = pedidoCompleto.NombreCuenta;
-                pedido.NombImprTerm = pedidoCompleto.impresoraSalida[i].NombreImpresora;
+                pedido.NombImpr = pedidoCompleto.impresoraSalida[i].NombreImpresora;
                 pedido.salidaPedido = pedidoCompleto.impresoraSalida[i].dataLinea;
-                memoPedidos.Add(pedido);                
+                pedido.Hora = DateTime.Now.ToString("HH:mm");
+                if ((pedidoCompleto.impresoraSalida[i].NombreImpresora == cbImpresoras.Text) || (cbImpresoras.Text == "Todas"))
+                {
+                    memoPedidos.Add(pedido);
+                }
             }
             for (int i = 0; i < pedidoCompleto.terminalSalida.Count; i++)
             {
                 MemoPedido pedido = new MemoPedido();
                 pedido.NombCuen = pedidoCompleto.NombreCuenta;
-                pedido.NombImprTerm = pedidoCompleto.terminalSalida[i].NombreTerminal;
+                pedido.NombTerm = pedidoCompleto.terminalSalida[i].NombreTerminal;
                 pedido.salidaPedido = pedidoCompleto.terminalSalida[i].dataLinea;
-                memoPedidos.Add(pedido);
+                pedido.Hora = DateTime.Now.ToString("HH:mm");
+                if ((pedidoCompleto.terminalSalida[i].NombreTerminal == cbTerminales.Text) || (cbTerminales.Text == "Todas"))
+                {
+                    memoPedidos.Add(pedido);
+                }
             }
 
             MostrarPedido();
@@ -261,27 +247,166 @@ namespace Ambrosia
 
         private void MostrarPedido()
         {
+            dataGridView1.DataSource = "Nothing";
+            dataGridView2.DataSource = "Nothing";
+            dataGridView3.DataSource = "Nothing";
+            dataGridView4.DataSource = "Nothing";
+            dataGridView5.DataSource = "Nothing";
+            dataGridView6.DataSource = "Nothing";
+
+            lNombCuen1.Text = string.Empty;
+            lNombCuen2.Text = string.Empty;
+            lNombCuen3.Text = string.Empty;
+            lNombCuen4.Text = string.Empty;
+            lNombCuen5.Text = string.Empty;
+            lNombCuen6.Text = string.Empty;
+            
             int i = 0;
             for (int j = IndexMemo; j < memoPedidos.Count; j++)
             {
-                Control[] controls = this.Controls.Find("lNombCuen" + (i+1).ToString(), true);
-                Label control = new Label();
-                control = controls[0] as Label;
-                control.Text = "N:" + memoPedidos[j].NombCuen + " " + memoPedidos[j].NombImprTerm + " " + DateTime.Now.ToString("HH:mm");
-                
-                Control[] controls2 = this.Controls.Find("dataGridView" + (i+1).ToString(), true);
-                DataGridView control2 = new DataGridView();
-                control2 = controls2[0] as DataGridView;
-
-                control2.DataSource = typeof(SalidaPedido);
-                control2.DataSource = memoPedidos[j].salidaPedido;
-
-                i++;
-                if (i == 6)
+                if (memoPedidos[j].NombTerm == cbTerminales.Text)
                 {
-                    break;
+                    Control[] controls = this.Controls.Find("lNombCuen" + (i + 1).ToString(), true);
+                    Label control = new Label();
+                    control = controls[0] as Label;
+                    control.Text = "N:" + memoPedidos[j].NombCuen + " " + memoPedidos[j].NombTerm + " " + memoPedidos[j].Hora;    //DateTime.Now.ToString("HH:mm");
+
+                    Control[] controls2 = this.Controls.Find("dataGridView" + (i + 1).ToString(), true);
+                    DataGridView control2 = new DataGridView();
+                    control2 = controls2[0] as DataGridView;
+
+                    control2.DataSource = typeof(SalidaPedido);
+                    control2.DataSource = memoPedidos[j].salidaPedido;
+
+                    i++;
+                    if (i == 6)
+                    {
+                        break;
+                    }
                 }
+                else if ((cbTerminales.Text == "Todas")&&(memoPedidos[j].NombTerm != null))
+                {
+                    Control[] controls = this.Controls.Find("lNombCuen" + (i + 1).ToString(), true);
+                    Label control = new Label();
+                    control = controls[0] as Label;
+                    control.Text = "N:" + memoPedidos[j].NombCuen + " " + memoPedidos[j].NombTerm + " " + memoPedidos[j].Hora;    //DateTime.Now.ToString("HH:mm");
+
+                    Control[] controls2 = this.Controls.Find("dataGridView" + (i + 1).ToString(), true);
+                    DataGridView control2 = new DataGridView();
+                    control2 = controls2[0] as DataGridView;
+
+                    control2.DataSource = typeof(SalidaPedido);
+                    control2.DataSource = memoPedidos[j].salidaPedido;
+
+                    i++;
+                    if (i == 6)
+                    {
+                        break;
+                    }
+                }
+                else if (memoPedidos[j].NombImpr == cbImpresoras.Text)
+                {
+                    Control[] controls = this.Controls.Find("lNombCuen" + (i + 1).ToString(), true);
+                    Label control = new Label();
+                    control = controls[0] as Label;
+                    control.Text = "N:" + memoPedidos[j].NombCuen + " " + memoPedidos[j].NombImpr + " " + memoPedidos[j].Hora;    //DateTime.Now.ToString("HH:mm");
+
+                    Control[] controls2 = this.Controls.Find("dataGridView" + (i + 1).ToString(), true);
+                    DataGridView control2 = new DataGridView();
+                    control2 = controls2[0] as DataGridView;
+
+                    control2.DataSource = typeof(SalidaPedido);
+                    control2.DataSource = memoPedidos[j].salidaPedido;
+
+                    i++;
+                    if (i == 6)
+                    {
+                        break;
+                    }
+                }
+                else if ((cbImpresoras.Text == "Todas") && (memoPedidos[j].NombImpr != null))
+                {
+                    Control[] controls = this.Controls.Find("lNombCuen" + (i + 1).ToString(), true);
+                    Label control = new Label();
+                    control = controls[0] as Label;
+                    control.Text = "N:" + memoPedidos[j].NombCuen + " " + memoPedidos[j].NombImpr + " " + memoPedidos[j].Hora;    //DateTime.Now.ToString("HH:mm");
+
+                    Control[] controls2 = this.Controls.Find("dataGridView" + (i + 1).ToString(), true);
+                    DataGridView control2 = new DataGridView();
+                    control2 = controls2[0] as DataGridView;
+
+                    control2.DataSource = typeof(SalidaPedido);
+                    control2.DataSource = memoPedidos[j].salidaPedido;
+
+                    i++;
+                    if (i == 6)
+                    {
+                        break;
+                    }
+                }                
             }
-        }                              
+        }
+
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            dataGridView1.ScrollBars = ScrollBars.Both;
+        }
+
+        private void dataGridView3_MouseClick(object sender, MouseEventArgs e)
+        {
+            dataGridView3.ScrollBars = ScrollBars.Both;
+        }
+
+        private void dataGridView5_MouseClick(object sender, MouseEventArgs e)
+        {
+            dataGridView5.ScrollBars = ScrollBars.Both;
+        }
+
+        private void dataGridView2_MouseClick(object sender, MouseEventArgs e)
+        {
+            dataGridView2.ScrollBars = ScrollBars.Both;
+        }
+
+        private void dataGridView4_MouseClick(object sender, MouseEventArgs e)
+        {
+            dataGridView4.ScrollBars = ScrollBars.Both;
+        }
+
+        private void dataGridView6_MouseClick(object sender, MouseEventArgs e)
+        {
+            dataGridView6.ScrollBars = ScrollBars.Both;
+        }
+
+        private void btDelante_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show(cbTerminales.Text);
+            
+            btBack.Enabled = true;            
+
+            IndexMemo = IndexMemo + 2;
+
+            MostrarPedido();
+
+            if (IndexMemo > memoPedidos.Count)
+            {
+                IndexMemo = IndexMemo - 2;
+                btDelante.Enabled = false;                
+            }
+        }
+
+        private void btBack_Click(object sender, EventArgs e)
+        {
+            btDelante.Enabled = true;            
+
+            IndexMemo = IndexMemo - 2;            
+
+            if (IndexMemo < 0)
+            {
+                IndexMemo = 0;
+                btBack.Enabled = false;                
+            }
+
+            MostrarPedido();
+        }                      
     }
 }
