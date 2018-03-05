@@ -195,9 +195,117 @@ namespace Ambrosia
                     cbTerminales.DataSource = impresorasTerminales.terminalesTer;
                     cbImpresoras.DisplayMember = "NombreImpresora";
                     cbImpresoras.DataSource = impresorasTerminales.impresorasTer;
-                }                             
+                }
+                else if (NombreEvento == "CargarPedidosDesdeBack")
+                {
+                    //MessageBox.Show("CargarPedidosDesdeBack");
+                    CargarDetallePedidos cargarDetallePedidos = new CargarDetallePedidos();
+                    cargarDetallePedidos = JsonConvert.DeserializeObject<CargarDetallePedidos>(readData);
+                    CargarPedidosDesdeBack(cargarDetallePedidos);
+                }
             }
-        }        
+        }
+
+        private void CargarPedidosDesdeBack(CargarDetallePedidos cargarDetallePedidos)
+        {
+            int LoteId = 0;
+            int i = 0;
+            int j = 0;            
+            List<SalidaPedido> salidaPedidoList = new List<SalidaPedido>();
+
+            if (cargarDetallePedidos.detallePedidos.Count > 0)
+            {
+                LoteId = cargarDetallePedidos.detallePedidos[0].LoteId;
+                memoPedidos.Clear();
+                cbTerminales.Text = "Todas";
+                cbImpresoras.Text = "Todas";
+            }
+            
+            for ( i = 0; i < cargarDetallePedidos.detallePedidos.Count; i++ )
+            {
+                LoteId = cargarDetallePedidos.detallePedidos[i].LoteId;
+                for ( j = i; j < cargarDetallePedidos.detallePedidos.Count; j++ )
+                {
+                    if (LoteId == cargarDetallePedidos.detallePedidos[j].LoteId)
+                    {
+                        // Cargar Pedido
+                        SalidaPedido pedido = new SalidaPedido();
+                        pedido.Unids = cargarDetallePedidos.detallePedidos[i].Unidades;
+                        pedido.Descripcion = cargarDetallePedidos.detallePedidos[i].Descripcion;
+                        pedido.TabLevel = cargarDetallePedidos.detallePedidos[i].TabLevel;
+                        salidaPedidoList.Add(pedido); 
+                        i++;
+                    }
+                    else
+                    {
+                        MemoPedido pedidoM = new MemoPedido();
+                        pedidoM.NombCuen = cargarDetallePedidos.detallePedidos[j-1].NombCuen;
+                        pedidoM.NombImpr = "General";
+                        pedidoM.NombTerm = "General";
+                        pedidoM.salidaPedido = salidaPedidoList.ToList();                                               
+                        pedidoM.Hora = cargarDetallePedidos.detallePedidos[j-1].Momento.ToString("HH:mm");   //DateTime.Now.ToString("HH:mm");
+                        memoPedidos.Add(pedidoM);
+                        salidaPedidoList.Clear();
+                        i--;
+                        break;
+                    }                     
+                }                
+            }
+
+            MemoPedido pedidoUltimo = new MemoPedido();
+            pedidoUltimo.NombCuen = cargarDetallePedidos.detallePedidos[j - 1].NombCuen;
+            pedidoUltimo.NombImpr = "General";
+            pedidoUltimo.NombTerm = "General";
+            pedidoUltimo.salidaPedido = salidaPedidoList.ToList();
+            pedidoUltimo.Hora = cargarDetallePedidos.detallePedidos[j - 1].Momento.ToString("HH:mm");   //DateTime.Now.ToString("HH:mm");
+            memoPedidos.Add(pedidoUltimo);
+            salidaPedidoList.Clear();
+
+            if (cargarDetallePedidos.detallePedidos.Count > 0)
+            {
+                IndexMemo = 0;
+                MostrarCargaPedidos();
+            }
+        }
+
+        private void MostrarCargaPedidos()
+        {
+            dataGridView1.DataSource = "Nothing";
+            dataGridView2.DataSource = "Nothing";
+            dataGridView3.DataSource = "Nothing";
+            dataGridView4.DataSource = "Nothing";
+            dataGridView5.DataSource = "Nothing";
+            dataGridView6.DataSource = "Nothing";
+
+            lNombCuen1.Text = string.Empty;
+            lNombCuen2.Text = string.Empty;
+            lNombCuen3.Text = string.Empty;
+            lNombCuen4.Text = string.Empty;
+            lNombCuen5.Text = string.Empty;
+            lNombCuen6.Text = string.Empty;
+            
+            int i = 0;
+            for (int j = IndexMemo; j < memoPedidos.Count; j++)
+            {
+                Control[] controls = this.Controls.Find("lNombCuen" + (i + 1).ToString(), true);
+                Label control = new Label();
+                control = controls[0] as Label;
+                control.Text = "N:" + memoPedidos[j].NombCuen + " " + memoPedidos[j].NombImpr + " " + memoPedidos[j].Hora;    //DateTime.Now.ToString("HH:mm");
+
+                Control[] controls2 = this.Controls.Find("dataGridView" + (i + 1).ToString(), true);
+                DataGridView control2 = new DataGridView();
+                control2 = controls2[0] as DataGridView;
+
+                control2.DataSource = typeof(SalidaPedido);
+                control2.DataSource = memoPedidos[j].salidaPedido;
+
+                i++;
+                if (i == 6)
+                {
+                    break;
+                }
+            }
+        }
 
         private void Terminal_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -407,6 +515,104 @@ namespace Ambrosia
             }
 
             MostrarPedido();
-        }                      
+        }
+
+        private void bt1_Click(object sender, EventArgs e)
+        {
+            if (tbContColu.Text.Length < 5)
+            {
+                tbContColu.Text = tbContColu.Text + "1"; 
+            }
+        }
+
+        private void bt2_Click(object sender, EventArgs e)
+        {
+            if (tbContColu.Text.Length < 5)
+            {
+                tbContColu.Text = tbContColu.Text + "2";
+            }
+        }
+
+        private void bt3_Click(object sender, EventArgs e)
+        {
+            if (tbContColu.Text.Length < 5)
+            {
+                tbContColu.Text = tbContColu.Text + "3";
+            }
+        }
+
+        private void bt4_Click(object sender, EventArgs e)
+        {
+            if (tbContColu.Text.Length < 5)
+            {
+                tbContColu.Text = tbContColu.Text + "4";
+            }
+        }
+
+        private void bt5_Click(object sender, EventArgs e)
+        {
+            if (tbContColu.Text.Length < 5)
+            {
+                tbContColu.Text = tbContColu.Text + "5";
+            }
+        }
+
+        private void bt6_Click(object sender, EventArgs e)
+        {
+            if (tbContColu.Text.Length < 5)
+            {
+                tbContColu.Text = tbContColu.Text + "6";
+            }
+        }
+
+        private void bt7_Click(object sender, EventArgs e)
+        {
+            if (tbContColu.Text.Length < 5)
+            {
+                tbContColu.Text = tbContColu.Text + "7";
+            }
+        }
+
+        private void bt8_Click(object sender, EventArgs e)
+        {
+            if (tbContColu.Text.Length < 5)
+            {
+                tbContColu.Text = tbContColu.Text + "8";
+            }
+        }
+
+        private void bt9_Click(object sender, EventArgs e)
+        {
+            if (tbContColu.Text.Length < 5)
+            {
+                tbContColu.Text = tbContColu.Text + "9";
+            }
+        }
+
+        private void bt0_Click(object sender, EventArgs e)
+        {
+            if (tbContColu.Text.Length < 5)
+            {
+                tbContColu.Text = tbContColu.Text + "0";
+            }
+        }
+
+        private void tbContColu_Click(object sender, EventArgs e)
+        {
+            tbContColu.Text = "";
+        }
+
+        private void btIr_Click(object sender, EventArgs e)
+        {
+            IndexMemo = 0;
+            EventoCargarPedidosDesde evento = new EventoCargarPedidosDesde();
+            evento.NombreEvento = "CargarPedidosDesde";
+            evento.IndexDesde = Int32.Parse(tbContColu.Text);
+            string output = JsonConvert.SerializeObject(evento);
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
+            serverStream.Write(outStream, 0, outStream.Length);
+            serverStream.Flush();
+        }        
+             
     }
 }

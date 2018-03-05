@@ -29,6 +29,20 @@
         private void InitializeComponent()
         {
             this.panelbotones = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btIr = new System.Windows.Forms.Button();
+            this.bt3 = new System.Windows.Forms.Button();
+            this.bt2 = new System.Windows.Forms.Button();
+            this.bt6 = new System.Windows.Forms.Button();
+            this.bt1 = new System.Windows.Forms.Button();
+            this.bt5 = new System.Windows.Forms.Button();
+            this.bt0 = new System.Windows.Forms.Button();
+            this.bt4 = new System.Windows.Forms.Button();
+            this.bt9 = new System.Windows.Forms.Button();
+            this.bt8 = new System.Windows.Forms.Button();
+            this.bt7 = new System.Windows.Forms.Button();
+            this.tbContColu = new System.Windows.Forms.TextBox();
             this.btDelante = new System.Windows.Forms.Button();
             this.btBack = new System.Windows.Forms.Button();
             this.cbImpresoras = new System.Windows.Forms.ComboBox();
@@ -53,21 +67,8 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.lNombCuen6 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.btIr = new System.Windows.Forms.Button();
-            this.bt3 = new System.Windows.Forms.Button();
-            this.bt2 = new System.Windows.Forms.Button();
-            this.bt6 = new System.Windows.Forms.Button();
-            this.bt1 = new System.Windows.Forms.Button();
-            this.bt5 = new System.Windows.Forms.Button();
-            this.bt0 = new System.Windows.Forms.Button();
-            this.bt4 = new System.Windows.Forms.Button();
-            this.bt9 = new System.Windows.Forms.Button();
-            this.bt8 = new System.Windows.Forms.Button();
-            this.bt7 = new System.Windows.Forms.Button();
-            this.tbContColu = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelbotones.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -80,7 +81,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
-            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelbotones
@@ -97,6 +97,183 @@
             this.panelbotones.Name = "panelbotones";
             this.panelbotones.Size = new System.Drawing.Size(197, 742);
             this.panelbotones.TabIndex = 0;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.LavenderBlush;
+            this.panel7.Controls.Add(this.label1);
+            this.panel7.Controls.Add(this.btIr);
+            this.panel7.Controls.Add(this.bt3);
+            this.panel7.Controls.Add(this.bt2);
+            this.panel7.Controls.Add(this.bt6);
+            this.panel7.Controls.Add(this.bt1);
+            this.panel7.Controls.Add(this.bt5);
+            this.panel7.Controls.Add(this.bt0);
+            this.panel7.Controls.Add(this.bt4);
+            this.panel7.Controls.Add(this.bt9);
+            this.panel7.Controls.Add(this.bt8);
+            this.panel7.Controls.Add(this.bt7);
+            this.panel7.Controls.Add(this.tbContColu);
+            this.panel7.Location = new System.Drawing.Point(7, 274);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(171, 174);
+            this.panel7.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 143);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 19);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Posicion:";
+            // 
+            // btIr
+            // 
+            this.btIr.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btIr.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btIr.Location = new System.Drawing.Point(86, 88);
+            this.btIr.Name = "btIr";
+            this.btIr.Size = new System.Drawing.Size(81, 40);
+            this.btIr.TabIndex = 20;
+            this.btIr.Text = "Ir";
+            this.btIr.UseVisualStyleBackColor = false;
+            this.btIr.Click += new System.EventHandler(this.btIr_Click);
+            // 
+            // bt3
+            // 
+            this.bt3.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt3.Location = new System.Drawing.Point(128, 3);
+            this.bt3.Name = "bt3";
+            this.bt3.Size = new System.Drawing.Size(40, 40);
+            this.bt3.TabIndex = 19;
+            this.bt3.Text = "3";
+            this.bt3.UseVisualStyleBackColor = false;
+            this.bt3.Click += new System.EventHandler(this.bt3_Click);
+            // 
+            // bt2
+            // 
+            this.bt2.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt2.Location = new System.Drawing.Point(86, 3);
+            this.bt2.Name = "bt2";
+            this.bt2.Size = new System.Drawing.Size(40, 40);
+            this.bt2.TabIndex = 18;
+            this.bt2.Text = "2";
+            this.bt2.UseVisualStyleBackColor = false;
+            this.bt2.Click += new System.EventHandler(this.bt2_Click);
+            // 
+            // bt6
+            // 
+            this.bt6.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt6.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt6.Location = new System.Drawing.Point(86, 45);
+            this.bt6.Name = "bt6";
+            this.bt6.Size = new System.Drawing.Size(40, 40);
+            this.bt6.TabIndex = 17;
+            this.bt6.Text = "6";
+            this.bt6.UseVisualStyleBackColor = false;
+            this.bt6.Click += new System.EventHandler(this.bt6_Click);
+            // 
+            // bt1
+            // 
+            this.bt1.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt1.Location = new System.Drawing.Point(45, 3);
+            this.bt1.Name = "bt1";
+            this.bt1.Size = new System.Drawing.Size(40, 40);
+            this.bt1.TabIndex = 16;
+            this.bt1.Text = "1";
+            this.bt1.UseVisualStyleBackColor = false;
+            this.bt1.Click += new System.EventHandler(this.bt1_Click);
+            // 
+            // bt5
+            // 
+            this.bt5.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt5.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt5.Location = new System.Drawing.Point(44, 45);
+            this.bt5.Name = "bt5";
+            this.bt5.Size = new System.Drawing.Size(40, 40);
+            this.bt5.TabIndex = 15;
+            this.bt5.Text = "5";
+            this.bt5.UseVisualStyleBackColor = false;
+            this.bt5.Click += new System.EventHandler(this.bt5_Click);
+            // 
+            // bt0
+            // 
+            this.bt0.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt0.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt0.Location = new System.Drawing.Point(3, 3);
+            this.bt0.Name = "bt0";
+            this.bt0.Size = new System.Drawing.Size(40, 40);
+            this.bt0.TabIndex = 14;
+            this.bt0.Text = "0";
+            this.bt0.UseVisualStyleBackColor = false;
+            this.bt0.Click += new System.EventHandler(this.bt0_Click);
+            // 
+            // bt4
+            // 
+            this.bt4.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt4.Location = new System.Drawing.Point(3, 45);
+            this.bt4.Name = "bt4";
+            this.bt4.Size = new System.Drawing.Size(40, 40);
+            this.bt4.TabIndex = 13;
+            this.bt4.Text = "4";
+            this.bt4.UseVisualStyleBackColor = false;
+            this.bt4.Click += new System.EventHandler(this.bt4_Click);
+            // 
+            // bt9
+            // 
+            this.bt9.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt9.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt9.Location = new System.Drawing.Point(44, 88);
+            this.bt9.Name = "bt9";
+            this.bt9.Size = new System.Drawing.Size(40, 40);
+            this.bt9.TabIndex = 12;
+            this.bt9.Text = "9";
+            this.bt9.UseVisualStyleBackColor = false;
+            this.bt9.Click += new System.EventHandler(this.bt9_Click);
+            // 
+            // bt8
+            // 
+            this.bt8.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt8.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt8.Location = new System.Drawing.Point(3, 88);
+            this.bt8.Name = "bt8";
+            this.bt8.Size = new System.Drawing.Size(40, 40);
+            this.bt8.TabIndex = 11;
+            this.bt8.Text = "8";
+            this.bt8.UseVisualStyleBackColor = false;
+            this.bt8.Click += new System.EventHandler(this.bt8_Click);
+            // 
+            // bt7
+            // 
+            this.bt7.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt7.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt7.Location = new System.Drawing.Point(128, 45);
+            this.bt7.Name = "bt7";
+            this.bt7.Size = new System.Drawing.Size(40, 40);
+            this.bt7.TabIndex = 10;
+            this.bt7.Text = "7";
+            this.bt7.UseVisualStyleBackColor = false;
+            this.bt7.Click += new System.EventHandler(this.bt7_Click);
+            // 
+            // tbContColu
+            // 
+            this.tbContColu.BackColor = System.Drawing.Color.Black;
+            this.tbContColu.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbContColu.ForeColor = System.Drawing.Color.White;
+            this.tbContColu.Location = new System.Drawing.Point(85, 134);
+            this.tbContColu.MaxLength = 5;
+            this.tbContColu.Multiline = true;
+            this.tbContColu.Name = "tbContColu";
+            this.tbContColu.Size = new System.Drawing.Size(82, 34);
+            this.tbContColu.TabIndex = 9;
+            this.tbContColu.Click += new System.EventHandler(this.tbContColu_Click);
             // 
             // btDelante
             // 
@@ -398,171 +575,6 @@
             this.lNombCuen6.TabIndex = 1;
             this.lNombCuen6.Text = "label1";
             // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.LavenderBlush;
-            this.panel7.Controls.Add(this.label1);
-            this.panel7.Controls.Add(this.btIr);
-            this.panel7.Controls.Add(this.bt3);
-            this.panel7.Controls.Add(this.bt2);
-            this.panel7.Controls.Add(this.bt6);
-            this.panel7.Controls.Add(this.bt1);
-            this.panel7.Controls.Add(this.bt5);
-            this.panel7.Controls.Add(this.bt0);
-            this.panel7.Controls.Add(this.bt4);
-            this.panel7.Controls.Add(this.bt9);
-            this.panel7.Controls.Add(this.bt8);
-            this.panel7.Controls.Add(this.bt7);
-            this.panel7.Controls.Add(this.tbContColu);
-            this.panel7.Location = new System.Drawing.Point(7, 274);
-            this.panel7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(171, 174);
-            this.panel7.TabIndex = 6;
-            // 
-            // btIr
-            // 
-            this.btIr.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btIr.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btIr.Location = new System.Drawing.Point(86, 88);
-            this.btIr.Name = "btIr";
-            this.btIr.Size = new System.Drawing.Size(81, 40);
-            this.btIr.TabIndex = 20;
-            this.btIr.Text = "Ir";
-            this.btIr.UseVisualStyleBackColor = false;
-            // 
-            // bt3
-            // 
-            this.bt3.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.bt3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt3.Location = new System.Drawing.Point(128, 3);
-            this.bt3.Name = "bt3";
-            this.bt3.Size = new System.Drawing.Size(40, 40);
-            this.bt3.TabIndex = 19;
-            this.bt3.Text = "3";
-            this.bt3.UseVisualStyleBackColor = false;
-            // 
-            // bt2
-            // 
-            this.bt2.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.bt2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt2.Location = new System.Drawing.Point(86, 3);
-            this.bt2.Name = "bt2";
-            this.bt2.Size = new System.Drawing.Size(40, 40);
-            this.bt2.TabIndex = 18;
-            this.bt2.Text = "2";
-            this.bt2.UseVisualStyleBackColor = false;
-            // 
-            // bt6
-            // 
-            this.bt6.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.bt6.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt6.Location = new System.Drawing.Point(86, 45);
-            this.bt6.Name = "bt6";
-            this.bt6.Size = new System.Drawing.Size(40, 40);
-            this.bt6.TabIndex = 17;
-            this.bt6.Text = "6";
-            this.bt6.UseVisualStyleBackColor = false;
-            // 
-            // bt1
-            // 
-            this.bt1.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.bt1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt1.Location = new System.Drawing.Point(45, 3);
-            this.bt1.Name = "bt1";
-            this.bt1.Size = new System.Drawing.Size(40, 40);
-            this.bt1.TabIndex = 16;
-            this.bt1.Text = "1";
-            this.bt1.UseVisualStyleBackColor = false;
-            // 
-            // bt5
-            // 
-            this.bt5.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.bt5.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt5.Location = new System.Drawing.Point(44, 45);
-            this.bt5.Name = "bt5";
-            this.bt5.Size = new System.Drawing.Size(40, 40);
-            this.bt5.TabIndex = 15;
-            this.bt5.Text = "5";
-            this.bt5.UseVisualStyleBackColor = false;
-            // 
-            // bt0
-            // 
-            this.bt0.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.bt0.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt0.Location = new System.Drawing.Point(3, 3);
-            this.bt0.Name = "bt0";
-            this.bt0.Size = new System.Drawing.Size(40, 40);
-            this.bt0.TabIndex = 14;
-            this.bt0.Text = "0";
-            this.bt0.UseVisualStyleBackColor = false;
-            // 
-            // bt4
-            // 
-            this.bt4.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.bt4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt4.Location = new System.Drawing.Point(3, 45);
-            this.bt4.Name = "bt4";
-            this.bt4.Size = new System.Drawing.Size(40, 40);
-            this.bt4.TabIndex = 13;
-            this.bt4.Text = "4";
-            this.bt4.UseVisualStyleBackColor = false;
-            // 
-            // bt9
-            // 
-            this.bt9.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.bt9.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt9.Location = new System.Drawing.Point(44, 88);
-            this.bt9.Name = "bt9";
-            this.bt9.Size = new System.Drawing.Size(40, 40);
-            this.bt9.TabIndex = 12;
-            this.bt9.Text = "9";
-            this.bt9.UseVisualStyleBackColor = false;
-            // 
-            // bt8
-            // 
-            this.bt8.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.bt8.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt8.Location = new System.Drawing.Point(3, 88);
-            this.bt8.Name = "bt8";
-            this.bt8.Size = new System.Drawing.Size(40, 40);
-            this.bt8.TabIndex = 11;
-            this.bt8.Text = "8";
-            this.bt8.UseVisualStyleBackColor = false;
-            // 
-            // bt7
-            // 
-            this.bt7.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.bt7.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt7.Location = new System.Drawing.Point(128, 45);
-            this.bt7.Name = "bt7";
-            this.bt7.Size = new System.Drawing.Size(40, 40);
-            this.bt7.TabIndex = 10;
-            this.bt7.Text = "7";
-            this.bt7.UseVisualStyleBackColor = false;
-            // 
-            // tbContColu
-            // 
-            this.tbContColu.BackColor = System.Drawing.Color.Black;
-            this.tbContColu.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbContColu.ForeColor = System.Drawing.Color.White;
-            this.tbContColu.Location = new System.Drawing.Point(85, 134);
-            this.tbContColu.MaxLength = 5;
-            this.tbContColu.Multiline = true;
-            this.tbContColu.Name = "tbContColu";
-            this.tbContColu.Size = new System.Drawing.Size(82, 34);
-            this.tbContColu.TabIndex = 9;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 143);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 19);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Posicion:";
-            // 
             // Terminal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,6 +595,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Terminal_FormClosing);
             this.panelbotones.ResumeLayout(false);
             this.panelbotones.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -601,8 +615,6 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
