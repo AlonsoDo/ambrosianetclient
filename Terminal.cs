@@ -21,7 +21,7 @@ namespace Ambrosia
         string IdClient = null;
         PedidoCompleto pedidoCompleto = new PedidoCompleto();
         public List<MemoPedido> memoPedidos = new List<MemoPedido>();
-        public int IndexMemo = 0;                  
+        public int IndexMemo = 0;
         
         public Terminal()
         {
@@ -149,6 +149,7 @@ namespace Ambrosia
 
             //Conectar
             clientSocket = new System.Net.Sockets.TcpClient();
+            clientSocket.ReceiveBufferSize = 1048576;
             serverStream = default(NetworkStream);
             clientSocket.Connect("192.168.1.2",10001);
             serverStream = clientSocket.GetStream();            
@@ -171,9 +172,12 @@ namespace Ambrosia
             while (true)
             {
                 int buffSize = 0;
-                byte[] inStream = new byte[262144];
-                buffSize = clientSocket.ReceiveBufferSize;
+                byte[] inStream = new byte[1048576]; // 1Mbyte
+
+                //serverStream.ReadTimeout = 200;
+                buffSize = clientSocket.ReceiveBufferSize;                
                 serverStream.Read(inStream, 0, buffSize);
+
                 string returndata = System.Text.Encoding.ASCII.GetString(inStream);
                 returndata = returndata.Substring(0, returndata.IndexOf("$"));
                 readData = "" + returndata;
@@ -198,7 +202,6 @@ namespace Ambrosia
                 }
                 else if (NombreEvento == "CargarPedidosDesdeBack")
                 {
-                    //MessageBox.Show("CargarPedidosDesdeBack");
                     CargarDetallePedidos cargarDetallePedidos = new CargarDetallePedidos();
                     cargarDetallePedidos = JsonConvert.DeserializeObject<CargarDetallePedidos>(readData);
                     CargarPedidosDesdeBack(cargarDetallePedidos);
@@ -599,7 +602,7 @@ namespace Ambrosia
 
         private void tbContColu_Click(object sender, EventArgs e)
         {
-            tbContColu.Text = "";
+            tbContColu.Text = "";            
         }
 
         private void btIr_Click(object sender, EventArgs e)
@@ -612,7 +615,7 @@ namespace Ambrosia
             byte[] outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
             serverStream.Write(outStream, 0, outStream.Length);
             serverStream.Flush();
-        }        
-             
+        }
+                     
     }
 }

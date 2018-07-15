@@ -96,6 +96,7 @@
             this.pbClientes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbClientes.TabIndex = 4;
             this.pbClientes.TabStop = false;
+            this.pbClientes.Click += new System.EventHandler(this.pbClientes_Click);
             // 
             // pbCaja
             // 

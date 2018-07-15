@@ -18,7 +18,6 @@ namespace Ambrosia
 
         private void pbPedidos_Click(object sender, EventArgs e)
         {
-            //Cursor.Current = Cursors.WaitCursor;
             Pedidos FormPedidos = new Pedidos();
             FormPedidos.ShowDialog(this);            
         }
@@ -27,6 +26,12 @@ namespace Ambrosia
         {
             Terminal FormTerminal = new Terminal();
             FormTerminal.ShowDialog(this);
+        }
+
+        private void pbClientes_Click(object sender, EventArgs e)
+        {
+            Clientes FormClientes = new Clientes();
+            FormClientes.ShowDialog(this);
         }
     }
 }
