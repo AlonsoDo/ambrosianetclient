@@ -79,6 +79,7 @@
             this.tbNombreComercial.Name = "tbNombreComercial";
             this.tbNombreComercial.Size = new System.Drawing.Size(415, 26);
             this.tbNombreComercial.TabIndex = 1;
+            this.tbNombreComercial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNombreComercial_KeyPress);
             // 
             // label2
             // 
@@ -99,6 +100,7 @@
             this.tbNombreFiscal.Name = "tbNombreFiscal";
             this.tbNombreFiscal.Size = new System.Drawing.Size(447, 26);
             this.tbNombreFiscal.TabIndex = 3;
+            this.tbNombreFiscal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNombreFiscal_KeyPress);
             // 
             // label3
             // 
@@ -119,6 +121,7 @@
             this.tbDireccion.Name = "tbDireccion";
             this.tbDireccion.Size = new System.Drawing.Size(484, 26);
             this.tbDireccion.TabIndex = 5;
+            this.tbDireccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbDireccion_KeyPress);
             // 
             // label4
             // 
@@ -139,6 +142,7 @@
             this.tbNIF.Name = "tbNIF";
             this.tbNIF.Size = new System.Drawing.Size(190, 26);
             this.tbNIF.TabIndex = 7;
+            this.tbNIF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNIF_KeyPress);
             // 
             // label5
             // 
@@ -169,6 +173,7 @@
             this.tbMovil.Name = "tbMovil";
             this.tbMovil.Size = new System.Drawing.Size(176, 26);
             this.tbMovil.TabIndex = 10;
+            this.tbMovil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMovil_KeyPress);
             // 
             // label6
             // 
@@ -199,6 +204,7 @@
             this.tbFijo.Name = "tbFijo";
             this.tbFijo.Size = new System.Drawing.Size(187, 26);
             this.tbFijo.TabIndex = 13;
+            this.tbFijo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFijo_KeyPress);
             // 
             // panel1
             // 
@@ -221,6 +227,7 @@
             this.tbContenidoBuscarCliente.Name = "tbContenidoBuscarCliente";
             this.tbContenidoBuscarCliente.Size = new System.Drawing.Size(235, 26);
             this.tbContenidoBuscarCliente.TabIndex = 3;
+            this.tbContenidoBuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbContenidoBuscarCliente_KeyPress);
             // 
             // cbCargarClientes
             // 
@@ -242,15 +249,18 @@
             // 
             // btFiltrarCliente
             // 
+            this.btFiltrarCliente.Enabled = false;
             this.btFiltrarCliente.Image = global::Ambrosia.Properties.Resources.filter;
             this.btFiltrarCliente.Location = new System.Drawing.Point(508, 12);
             this.btFiltrarCliente.Name = "btFiltrarCliente";
             this.btFiltrarCliente.Size = new System.Drawing.Size(51, 43);
             this.btFiltrarCliente.TabIndex = 1;
             this.btFiltrarCliente.UseVisualStyleBackColor = true;
+            this.btFiltrarCliente.Click += new System.EventHandler(this.btFiltrarCliente_Click);
             // 
             // btBuscarCliente
             // 
+            this.btBuscarCliente.Enabled = false;
             this.btBuscarCliente.Image = global::Ambrosia.Properties.Resources.find;
             this.btBuscarCliente.Location = new System.Drawing.Point(451, 12);
             this.btBuscarCliente.Name = "btBuscarCliente";
@@ -285,6 +295,7 @@
             this.btPrimero.Size = new System.Drawing.Size(51, 43);
             this.btPrimero.TabIndex = 9;
             this.btPrimero.UseVisualStyleBackColor = true;
+            this.btPrimero.Click += new System.EventHandler(this.btPrimero_Click);
             // 
             // btPrevio
             // 
@@ -317,6 +328,7 @@
             this.btUltimo.Size = new System.Drawing.Size(51, 43);
             this.btUltimo.TabIndex = 6;
             this.btUltimo.UseVisualStyleBackColor = true;
+            this.btUltimo.Click += new System.EventHandler(this.btUltimo_Click);
             // 
             // btNuevoCliente
             // 
@@ -337,6 +349,7 @@
             this.btBorrar.Size = new System.Drawing.Size(51, 43);
             this.btBorrar.TabIndex = 4;
             this.btBorrar.UseVisualStyleBackColor = true;
+            this.btBorrar.Click += new System.EventHandler(this.btBorrar_Click);
             // 
             // btConfirmar
             // 
@@ -358,6 +371,7 @@
             this.btAnular.Size = new System.Drawing.Size(51, 43);
             this.btAnular.TabIndex = 2;
             this.btAnular.UseVisualStyleBackColor = true;
+            this.btAnular.Click += new System.EventHandler(this.btAnular_Click);
             // 
             // Clientes
             // 

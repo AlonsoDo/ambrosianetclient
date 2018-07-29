@@ -15,13 +15,15 @@ namespace Ambrosia
     public partial class Clientes : Form
     {
         public Cliente cliente = new Cliente();
+        public Cliente BufferCliente = new Cliente();
         public List<Cliente> listaClientes = new List<Cliente>();
+        string EstadoCliente = "ModificarCliente";
         int IndexClientes = 0;
         int IndexAbsoluto = 0;
         string UltimoBoton = "";
-        int Cont = 0;
-        int ClientesCount = 0;
-        bool FinalClientes = false;
+        //int UltimoClienteMostrado = 0;
+        int ContDif = 0;
+        bool Filtrando = false;        
         public static System.Net.Sockets.TcpClient clientSocket;
         NetworkStream serverStream;
         string readData = null;
@@ -35,7 +37,14 @@ namespace Ambrosia
 
         private void btConfirmar_Click(object sender, EventArgs e)
         {
-            cliente.ClienteId = -1;
+            if (tbCodigoCliente.Text == "")
+            {
+                cliente.ClienteId = -1;
+            }
+            else
+            {
+                cliente.ClienteId = Convert.ToInt32(tbCodigoCliente.Text);
+            }
             cliente.NombreComercial = tbNombreComercial.Text;
             cliente.NombreFiscal = tbNombreFiscal.Text;
             cliente.Direccion = tbDireccion.Text;
@@ -45,14 +54,22 @@ namespace Ambrosia
 
             SalvarCliente salvarCliente = new SalvarCliente();
             salvarCliente.cliente = cliente;
-            salvarCliente.NombreEvento = "SalvarCliente";
+
+            if (EstadoCliente == "NuevoCliente")
+            {
+                salvarCliente.NombreEvento = "SalvarCliente";                
+            }
+            else
+            {
+                salvarCliente.NombreEvento = "ActualizarCliente";
+            }
+            EstadoCliente = "ModificarCliente";
 
            string output = JsonConvert.SerializeObject(salvarCliente);
 
             byte[] outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
             serverStream.Write(outStream, 0, outStream.Length);
             serverStream.Flush();
-
         }
 
         private void Clientes_Load(object sender, EventArgs e)
@@ -109,7 +126,29 @@ namespace Ambrosia
                         //Exito
                         tbCodigoCliente.Text = LastClientId.ToString();
                         btConfirmar.Enabled = false;
-                        MessageBox.Show("Datos clientes guardados");
+                        btAnular.Enabled = false;
+                        btBorrar.Enabled = true;
+                        MessageBox.Show( this , "Datos clientes guardados" );
+                    }
+                }
+                else if (NombreEvento == "BorrarCliente")
+                {
+                    ClienteIdBak clienteIdBak = new ClienteIdBak();
+                    clienteIdBak = JsonConvert.DeserializeObject<ClienteIdBak>(readData);
+                    int LastClientId = clienteIdBak.clienteId;
+                    if (LastClientId == -1)
+                    {
+                        tbCodigoCliente.Text = "-1";
+                        MessageBox.Show(this , "Error en el servidor");
+                    }
+                    else
+                    {
+                        //Exito
+                        tbCodigoCliente.Text = LastClientId.ToString();
+                        btConfirmar.Enabled = false;
+                        btAnular.Enabled = false;
+                        btBorrar.Enabled = false;
+                        MessageBox.Show(this , "Datos cliente borrados");
                     }
                 }
                 else if (NombreEvento == "BuscarClienteBak")
@@ -117,73 +156,110 @@ namespace Ambrosia
                     BuscarClienteBak buscarClienteBak = JsonConvert.DeserializeObject<BuscarClienteBak>(readData);
 
                     listaClientes.Clear(); 
-                    listaClientes = buscarClienteBak.listaClientes;                    
+                    listaClientes = buscarClienteBak.listaClientes;
 
-                    if (UltimoBoton == "BuscarCliente")
+                    Application.UseWaitCursor = false;
+
+                    if ((UltimoBoton == "BuscarCliente") || (UltimoBoton == "FiltrarCliente"))
                     {
-                        Cursor.Current = Cursors.Default; 
                         if (listaClientes.Count > 0)
                         {
-                            ClientesCount = listaClientes.Count;
-                            IndexAbsoluto = 0;
-                            IndexClientes = 0;
+                            ActivarTbClientes();
                             MostrarCliente();
-                            IndexClientes++;
-                            IndexAbsoluto++;
-                            btSiguiente.Enabled = true;
+                            if (listaClientes.Count > 1)
+                            {
+                                btSiguiente.Enabled = true;
+                                btUltimo.Enabled = true;
+                            }
                         }
                         else
                         {
+                            DesactivarTbClientes();
+                            MessageBox.Show(this , "Ningun cliente encontrado");
                             btSiguiente.Enabled = false;
+                            btUltimo.Enabled = false;
                             btPrevio.Enabled = false;
-                            MessageBox.Show("Ningun clientes encontrado");
+                            btPrimero.Enabled = false;
                         }
                     }
                     else if (UltimoBoton == "SiguienteCliente")
                     {
-                        Cursor.Current = Cursors.Default;
                         if (listaClientes.Count > 0)
                         {
                             IndexClientes = 0;
                             MostrarCliente();
-                            IndexClientes++;
-                            IndexAbsoluto++;
-                            btSiguiente.Enabled = true;
-                            if (listaClientes.Count == 1)
+                            if (listaClientes.Count > 1)
                             {
-                                btSiguiente.Enabled = false;
-                                MessageBox.Show("No hay mas resultados");
+                                btSiguiente.Enabled = true;
+                                btUltimo.Enabled = true;
                             }
                         }
                         else
                         {
                             btSiguiente.Enabled = false;
-                            FinalClientes = true;
-                            MessageBox.Show("No hay mas resultados");                            
-                        }
+                            btUltimo.Enabled = false;
+                            MessageBox.Show(this , "No hay mas resultados");
+                            IndexAbsoluto--;
+                            IndexClientes = 0;
+                        }                
                     }
                     else if (UltimoBoton == "PrevioCliente")
                     {
-                        Cursor.Current = Cursors.Default;
+                        if (IndexAbsoluto > 4)
+                        {
+                            IndexClientes = listaClientes.Count - ContDif - 1;
+                        }
+                        else
+                        {
+                            IndexClientes = ContDif - 1;
+                            IndexAbsoluto = IndexClientes + 1;
+                        }
+                        IndexAbsoluto--;                        
+                        MostrarCliente();
+                        btUltimo.Enabled = true;
+                        btSiguiente.Enabled = true;
+                    }
+                    else if (UltimoBoton == "PrimerCliente")
+                    {
                         if (listaClientes.Count > 0)
                         {
-                            IndexClientes = listaClientes.Count - 1;
-                            if (FinalClientes)
+                            MostrarCliente();
+                            if (listaClientes.Count > 1)
                             {
-                                FinalClientes = false;
-                                IndexClientes--;
-                                IndexAbsoluto--;
+                                btSiguiente.Enabled = true;
+                                btUltimo.Enabled = true;
                             }
-                            MostrarCliente();                            
-                            IndexAbsoluto = IndexAbsoluto + Cont - 1;                            
-                            btPrevio.Enabled = true;
-                            btSiguiente.Enabled = true;
                         }
                         else
                         {
                             btPrevio.Enabled = false;
-                            MessageBox.Show("No hay mas resultados");
+                            btPrimero.Enabled = false;
+                            MessageBox.Show(this , "No hay mas resultados");                            
                         }
+                    }
+                    else if (UltimoBoton == "UltimoCliente")
+                    {
+                        if (listaClientes.Count > 0)
+                        {
+                            IndexClientes = buscarClienteBak.IndiceCliente - 1;
+                            if (IndexClientes == -1)
+                            {
+                                IndexClientes = 4;
+                            }
+                            IndexAbsoluto = buscarClienteBak.IndiceAbsoluto + IndexClientes;
+                            MostrarCliente();
+                            if (IndexAbsoluto > 1)
+                            {
+                                btPrimero.Enabled = true;
+                                btPrevio.Enabled = true;
+                            }
+                        }
+                        else
+                        {
+                            btUltimo.Enabled = false;
+                            btSiguiente.Enabled = false;
+                            MessageBox.Show(this , "No hay mas resultados");                           
+                        }                  
                     }
                 }
             }
@@ -208,18 +284,35 @@ namespace Ambrosia
         private void btBuscarCliente_Click(object sender, EventArgs e)
         {
             UltimoBoton = "BuscarCliente";
-            Cursor.Current = Cursors.WaitCursor;
+            Filtrando = false;            
+            Application.UseWaitCursor = true;
             IndexAbsoluto = 0;
+            IndexClientes = 0;
+            btPrimero.Enabled = false;
             btPrevio.Enabled = false;
-            BuscarCliente();            
+            BuscarCliente(false,false);            
         }
 
-        private void BuscarCliente()
+        private void btFiltrarCliente_Click(object sender, EventArgs e)
+        {
+            UltimoBoton = "FiltrarCliente";
+            Filtrando = true;
+            Application.UseWaitCursor = true;
+            IndexAbsoluto = 0;
+            IndexClientes = 0;
+            btPrimero.Enabled = false;
+            btPrevio.Enabled = false;
+            BuscarCliente(true,false); 
+        } 
+
+        private void BuscarCliente(bool Filtrar,bool BtUltimoCliente)
         {
             ComoBuscarCliente comoBuscarCliente = new ComoBuscarCliente();
             comoBuscarCliente.NombreEvento = "ComoBuscarCliente";
             comoBuscarCliente.CadenaBusqueda = tbContenidoBuscarCliente.Text;
             comoBuscarCliente.Index = IndexAbsoluto;
+            comoBuscarCliente.Filtrar = Filtrar;
+            comoBuscarCliente.BtUltimoCliente = BtUltimoCliente;
 
             if (cbCargarClientes.Text == "Nombre Comercial")
             {
@@ -257,8 +350,26 @@ namespace Ambrosia
             serverStream.Flush();
         }
 
+        private void BorrarCliente()
+        {
+            ClienteId clienteId = new ClienteId();
+            clienteId.NombreEvento = "BorrarCliente";
+            //clienteId.clienteId = listaClientes[UltimoClienteMostrado].ClienteId;
+            clienteId.clienteId = Int32.Parse(tbCodigoCliente.Text);
+
+            string output = JsonConvert.SerializeObject(clienteId);
+
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
+            serverStream.Write(outStream, 0, outStream.Length);
+            serverStream.Flush();
+        }
+
         private void btNuevoCliente_Click(object sender, EventArgs e)
         {
+            if (listaClientes.Count > 0)
+            {
+                BufferCliente = listaClientes[IndexClientes];
+            }            
             tbNombreComercial.Text = "";
             tbNombreFiscal.Text = "";
             tbDireccion.Text = "";
@@ -266,6 +377,12 @@ namespace Ambrosia
             tbMovil.Text = "";
             tbFijo.Text = "";
             tbCodigoCliente.Text = "";
+
+            ActivarTbClientes();
+            EstadoCliente = "NuevoCliente";
+            btConfirmar.Enabled = true;
+            btAnular.Enabled = true;
+            btBorrar.Enabled = false;
         }        
 
         private void ActivarTbClientes()
@@ -278,8 +395,18 @@ namespace Ambrosia
             tbFijo.Enabled = true;            
         }
 
-        private void MostrarCliente()
+        private void DesactivarTbClientes()
         {
+            tbNombreComercial.Enabled = false;
+            tbNombreFiscal.Enabled = false;
+            tbDireccion.Enabled = false;
+            tbNIF.Enabled = false;
+            tbMovil.Enabled = false;
+            tbFijo.Enabled = false;
+        }
+
+        private void MostrarCliente()
+        {           
             tbNombreComercial.Text = listaClientes[IndexClientes].NombreComercial;
             tbNombreFiscal.Text = listaClientes[IndexClientes].NombreFiscal;
             tbDireccion.Text = listaClientes[IndexClientes].Direccion;
@@ -287,93 +414,201 @@ namespace Ambrosia
             tbMovil.Text = listaClientes[IndexClientes].Mobil;
             tbFijo.Text = listaClientes[IndexClientes].Fijo;
             tbCodigoCliente.Text = listaClientes[IndexClientes].ClienteId.ToString();
+            BufferCliente = listaClientes[IndexClientes];
+            btBorrar.Enabled = true;
+            if (listaClientes[IndexClientes].Borrado == true)
+            {
+                DesactivarTbClientes();
+                btBorrar.Enabled = false;
+            }
+            else
+            {
+                ActivarTbClientes();
+                btBorrar.Enabled = true;
+            }
         }
 
         private void btSiguiente_Click(object sender, EventArgs e)
         {
-            if (UltimoBoton == "PrevioCliente")
-            {
-                IndexClientes++;
-                IndexAbsoluto++;
-            }
-            
             UltimoBoton = "SiguienteCliente";
-            if (listaClientes.Count == IndexClientes)
+            if (listaClientes.Count > 0)
             {
-                if (listaClientes.Count < 5)
+                IndexAbsoluto++;
+                IndexClientes++;
+                if (IndexAbsoluto > 0)
                 {
-                    btSiguiente.Enabled = false;
-                    MessageBox.Show("No hay mas resultados");
+                    btPrevio.Enabled = true;
+                    btPrimero.Enabled = true;
+                }
+                if (IndexClientes == listaClientes.Count)
+                {
+                    if (Filtrando == false)
+                    {
+                        BuscarCliente(false, false);
+                    }
+                    else
+                    {
+                        BuscarCliente(true, false);
+                    }
                 }
                 else
                 {
-                    BuscarCliente();
-                    Cursor.Current = Cursors.WaitCursor;
-                    btSiguiente.Enabled = false;
-                }                                                                                               
+                    MostrarCliente();
+                }
             }
             else
             {
-                MostrarCliente();
-                IndexClientes++;
-                IndexAbsoluto++;
-                if (IndexClientes > 1)
-                {
-                    btPrevio.Enabled = true;
-                }
-                if ((IndexClientes == listaClientes.Count) && (listaClientes.Count < 5))
-                {
-                    btSiguiente.Enabled = false;
-                    MessageBox.Show("No hay mas resultados");
-
-                }            
-            }                          
+                btSiguiente.Enabled = false;
+                btUltimo.Enabled = false;
+                MessageBox.Show(this , "No hay mas resultados");               
+            }
         }
 
         private void btPrevio_Click(object sender, EventArgs e)
         {
-            if (UltimoBoton == "SiguienteCliente")
-            {
-                IndexClientes--;
-                if (listaClientes.Count > 0)
-                {
-                    IndexAbsoluto--;
-                }
-            }            
             UltimoBoton = "PrevioCliente";
-            if ((IndexClientes == 0) || (listaClientes.Count == 0))
+
+            if (IndexAbsoluto == 0)
+            {
+                btPrimero.Enabled = false;
+                btPrevio.Enabled = false;
+                MessageBox.Show( this , "No hay mas resultados" );
+                IndexClientes = 0;
+                return;
+            }
+
+            if (IndexClientes == 0)
             {
                 IndexAbsoluto = IndexAbsoluto - 5;
                 if (IndexAbsoluto < 0)
                 {
-                    Cont = 5 - IndexAbsoluto;
+                    ContDif = 5 + IndexAbsoluto;
                     IndexAbsoluto = 0;
                 }
                 else
                 {
-                    Cont = 5;
+                    ContDif = 0;
                 }
-                BuscarCliente();
-                Cursor.Current = Cursors.WaitCursor;
-                btPrevio.Enabled = false;    
+                if (Filtrando == false)
+                {
+                    BuscarCliente(false, false);
+                }
+                else
+                {
+                    BuscarCliente(true, false);
+                }
+                IndexAbsoluto = IndexAbsoluto + 5 - ContDif;
             }
             else
             {
                 IndexClientes--;
                 IndexAbsoluto--;
                 MostrarCliente();
-                if (listaClientes.Count > 0)
-                {
-                    btSiguiente.Enabled = true;
-                }
-                if ((IndexClientes == 0) && (IndexAbsoluto == 0))
-                {
-                    btPrevio.Enabled = false;
-                    MessageBox.Show("No hay mas resultados");
-                    //IndexClientes++;
-                    //IndexAbsoluto++;
-                }                                
+                btUltimo.Enabled = true;
+                btSiguiente.Enabled = true;
             }
         }
+
+        private void btPrimero_Click(object sender, EventArgs e)
+        {
+            UltimoBoton = "PrimerCliente";
+            IndexAbsoluto = 0;
+            IndexClientes = 0;
+            if (Filtrando == false)
+            {
+                BuscarCliente(false, false);
+            }
+            else
+            {
+                BuscarCliente(true, false);
+            }
+            btPrimero.Enabled = false;
+            btPrevio.Enabled = false;
+        }
+
+        private void btUltimo_Click(object sender, EventArgs e)
+        {
+            UltimoBoton = "UltimoCliente";
+            if (Filtrando == false)
+            {
+                BuscarCliente(false, true);
+            }
+            else
+            {
+                BuscarCliente(true, true);
+            }
+            btSiguiente.Enabled = false;
+            btUltimo.Enabled = false;
+        }
+
+        private void btAnular_Click(object sender, EventArgs e)
+        {
+            tbNombreComercial.Text = BufferCliente.NombreComercial;
+            tbNombreFiscal.Text = BufferCliente.NombreFiscal;
+            tbDireccion.Text = BufferCliente.Direccion;
+            tbNIF.Text = BufferCliente.NIF;
+            tbMovil.Text = BufferCliente.Mobil;
+            tbFijo.Text = BufferCliente.Fijo;
+            tbCodigoCliente.Text = BufferCliente.ClienteId.ToString();
+            btConfirmar.Enabled = false;
+            btAnular.Enabled = false;
+            btBorrar.Enabled = true;
+        }
+
+        private void tbNombreComercial_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            btConfirmar.Enabled = true;
+            btAnular.Enabled = true;
+        }
+
+        private void tbNombreFiscal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            btConfirmar.Enabled = true;
+            btAnular.Enabled = true;
+        }
+
+        private void tbDireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            btConfirmar.Enabled = true;
+            btAnular.Enabled = true;
+        }        
+
+        private void tbContenidoBuscarCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            btBuscarCliente.Enabled = true;
+            btFiltrarCliente.Enabled = true;            
+        }
+
+        private void tbNIF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            btConfirmar.Enabled = true;
+            btAnular.Enabled = true;
+        }
+
+        private void tbMovil_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            btConfirmar.Enabled = true;
+            btAnular.Enabled = true;
+        }
+
+        private void tbFijo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            btConfirmar.Enabled = true;
+            btAnular.Enabled = true;
+        }
+
+        private void btBorrar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this , "Esta seguro de eliminar este cliente", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                BorrarCliente();
+                DesactivarTbClientes();
+                if (listaClientes.Count > 0)
+                {
+                    listaClientes[IndexClientes].Borrado = true;
+                }
+                btBorrar.Enabled = false;
+            }
+        }                     
     }
 }
