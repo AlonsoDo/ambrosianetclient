@@ -33,5 +33,11 @@ namespace Ambrosia
             Clientes FormClientes = new Clientes();
             FormClientes.ShowDialog(this);
         }
+
+        private void pbCaja_Click(object sender, EventArgs e)
+        {
+            Caja FormCaja = new Caja();
+            FormCaja.ShowDialog(this);
+        }
     }
 }

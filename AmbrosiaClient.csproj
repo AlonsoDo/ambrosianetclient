@@ -53,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuxiliarFunc.cs" />
+    <Compile Include="Caja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja.Designer.cs">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Caja.resx">
+      <DependentUpon>Caja.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -214,6 +224,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Ico\ico\first.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\actualizar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\cobrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\imprimir.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

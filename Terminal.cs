@@ -149,7 +149,7 @@ namespace Ambrosia
 
             //Conectar
             clientSocket = new System.Net.Sockets.TcpClient();
-            clientSocket.ReceiveBufferSize = 1048576;
+            clientSocket.ReceiveBufferSize = 2097152;
             serverStream = default(NetworkStream);
             clientSocket.Connect("192.168.1.2",10001);
             serverStream = clientSocket.GetStream();            
@@ -172,9 +172,8 @@ namespace Ambrosia
             while (true)
             {
                 int buffSize = 0;
-                byte[] inStream = new byte[1048576]; // 1Mbyte
+                byte[] inStream = new byte[2097152]; // 1Mbyte
 
-                //serverStream.ReadTimeout = 200;
                 buffSize = clientSocket.ReceiveBufferSize;                
                 serverStream.Read(inStream, 0, buffSize);
 
@@ -256,13 +255,20 @@ namespace Ambrosia
             }
 
             MemoPedido pedidoUltimo = new MemoPedido();
-            pedidoUltimo.NombCuen = cargarDetallePedidos.detallePedidos[j - 1].NombCuen;
-            pedidoUltimo.NombImpr = "General";
-            pedidoUltimo.NombTerm = "General";
-            pedidoUltimo.salidaPedido = salidaPedidoList.ToList();
-            pedidoUltimo.Hora = cargarDetallePedidos.detallePedidos[j - 1].Momento.ToString("HH:mm");   //DateTime.Now.ToString("HH:mm");
-            memoPedidos.Add(pedidoUltimo);
-            salidaPedidoList.Clear();
+            if (j > 0)
+            {
+                pedidoUltimo.NombCuen = cargarDetallePedidos.detallePedidos[j - 1].NombCuen;
+                pedidoUltimo.NombImpr = "General";
+                pedidoUltimo.NombTerm = "General";
+                pedidoUltimo.salidaPedido = salidaPedidoList.ToList();
+                pedidoUltimo.Hora = cargarDetallePedidos.detallePedidos[j - 1].Momento.ToString("HH:mm");   //DateTime.Now.ToString("HH:mm");
+                memoPedidos.Add(pedidoUltimo);
+                salidaPedidoList.Clear();
+            }
+            else
+            {
+                MessageBox.Show("No hay mas pedidos", "Aviso");
+            }
 
             if (cargarDetallePedidos.detallePedidos.Count > 0)
             {
@@ -490,8 +496,6 @@ namespace Ambrosia
 
         private void btDelante_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(cbTerminales.Text);
-            
             btBack.Enabled = true;            
 
             IndexMemo = IndexMemo + 2;
@@ -503,6 +507,8 @@ namespace Ambrosia
                 IndexMemo = IndexMemo - 2;
                 btDelante.Enabled = false;                
             }
+
+            tbContColu.Text = IndexMemo.ToString();
         }
 
         private void btBack_Click(object sender, EventArgs e)
@@ -518,6 +524,7 @@ namespace Ambrosia
             }
 
             MostrarPedido();
+            tbContColu.Text = IndexMemo.ToString();
         }
 
         private void bt1_Click(object sender, EventArgs e)

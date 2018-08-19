@@ -12,3 +12,4 @@ C:\AmbrosiaClient\obj\Release\Ambrosia.Pedidos.resources
 C:\AmbrosiaClient\obj\Release\Ambrosia.VentInic.resources
 C:\AmbrosiaClient\obj\Release\Ambrosia.Terminal.resources
 C:\AmbrosiaClient\obj\Release\Ambrosia.Clientes.resources
+C:\AmbrosiaClient\obj\Release\Ambrosia.Caja.resources
