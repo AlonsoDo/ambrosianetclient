@@ -36,17 +36,15 @@
             this.cbFactCerradas = new System.Windows.Forms.CheckBox();
             this.cbFactPendientes = new System.Windows.Forms.CheckBox();
             this.cbFactAbiertas = new System.Windows.Forms.CheckBox();
-            this.RecargarFacturas = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.cbImpresoras = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.btImprimirFactura = new System.Windows.Forms.Button();
             this.cbFormaPago = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tbNumeCuen = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.btCobrarFactura = new System.Windows.Forms.Button();
-            this.btAbrirFactura = new System.Windows.Forms.Button();
             this.tbTotal = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbCambio = new System.Windows.Forms.TextBox();
@@ -63,6 +61,10 @@
             this.bt9 = new System.Windows.Forms.Button();
             this.bt8 = new System.Windows.Forms.Button();
             this.bt7 = new System.Windows.Forms.Button();
+            this.RecargarFacturas = new System.Windows.Forms.Button();
+            this.btImprimirFactura = new System.Windows.Forms.Button();
+            this.btCobrarFactura = new System.Windows.Forms.Button();
+            this.btAbrirFactura = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -160,26 +162,11 @@
             this.cbFactAbiertas.Text = "Abiertas";
             this.cbFactAbiertas.UseVisualStyleBackColor = true;
             // 
-            // RecargarFacturas
-            // 
-            this.RecargarFacturas.BackColor = System.Drawing.Color.Gold;
-            this.RecargarFacturas.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RecargarFacturas.ForeColor = System.Drawing.Color.Red;
-            this.RecargarFacturas.Image = global::Ambrosia.Properties.Resources.actualizar;
-            this.RecargarFacturas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RecargarFacturas.Location = new System.Drawing.Point(17, 184);
-            this.RecargarFacturas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.RecargarFacturas.Name = "RecargarFacturas";
-            this.RecargarFacturas.Size = new System.Drawing.Size(150, 78);
-            this.RecargarFacturas.TabIndex = 29;
-            this.RecargarFacturas.Text = "Recarga  ";
-            this.RecargarFacturas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.RecargarFacturas.UseVisualStyleBackColor = false;
-            this.RecargarFacturas.Click += new System.EventHandler(this.RecargarFacturas_Click);
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.LavenderBlush;
+            this.panel4.Controls.Add(this.cbImpresoras);
+            this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.btImprimirFactura);
             this.panel4.Controls.Add(this.cbFormaPago);
@@ -211,33 +198,37 @@
             this.panel4.Size = new System.Drawing.Size(756, 287);
             this.panel4.TabIndex = 5;
             // 
+            // cbImpresoras
+            // 
+            this.cbImpresoras.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbImpresoras.ForeColor = System.Drawing.Color.Red;
+            this.cbImpresoras.FormattingEnabled = true;
+            this.cbImpresoras.Location = new System.Drawing.Point(578, 144);
+            this.cbImpresoras.Name = "cbImpresoras";
+            this.cbImpresoras.Size = new System.Drawing.Size(154, 30);
+            this.cbImpresoras.TabIndex = 46;
+            this.cbImpresoras.Text = "Caja";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(574, 119);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(112, 22);
+            this.label7.TabIndex = 45;
+            this.label7.Text = "Impresora:";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(574, 45);
+            this.label6.Location = new System.Drawing.Point(574, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 22);
             this.label6.TabIndex = 44;
             this.label6.Text = "Abierta";
-            // 
-            // btImprimirFactura
-            // 
-            this.btImprimirFactura.BackColor = System.Drawing.Color.Gold;
-            this.btImprimirFactura.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btImprimirFactura.ForeColor = System.Drawing.Color.Red;
-            this.btImprimirFactura.Image = global::Ambrosia.Properties.Resources.imprimir;
-            this.btImprimirFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btImprimirFactura.Location = new System.Drawing.Point(578, 185);
-            this.btImprimirFactura.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btImprimirFactura.Name = "btImprimirFactura";
-            this.btImprimirFactura.Size = new System.Drawing.Size(154, 78);
-            this.btImprimirFactura.TabIndex = 43;
-            this.btImprimirFactura.Text = "Imprimir  ";
-            this.btImprimirFactura.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btImprimirFactura.UseVisualStyleBackColor = false;
-            this.btImprimirFactura.Click += new System.EventHandler(this.btImprimirFactura_Click);
             // 
             // cbFormaPago
             // 
@@ -248,7 +239,7 @@
             "Contado",
             "Tarjeta",
             "Otros"});
-            this.cbFormaPago.Location = new System.Drawing.Point(578, 121);
+            this.cbFormaPago.Location = new System.Drawing.Point(578, 86);
             this.cbFormaPago.Name = "cbFormaPago";
             this.cbFormaPago.Size = new System.Drawing.Size(154, 30);
             this.cbFormaPago.TabIndex = 42;
@@ -258,7 +249,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(574, 96);
+            this.label5.Location = new System.Drawing.Point(574, 61);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(130, 22);
             this.label5.TabIndex = 41;
@@ -298,40 +289,6 @@
             this.button2.Text = ",";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btCobrarFactura
-            // 
-            this.btCobrarFactura.BackColor = System.Drawing.Color.Gold;
-            this.btCobrarFactura.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btCobrarFactura.ForeColor = System.Drawing.Color.Red;
-            this.btCobrarFactura.Image = global::Ambrosia.Properties.Resources.cobrar;
-            this.btCobrarFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btCobrarFactura.Location = new System.Drawing.Point(234, 190);
-            this.btCobrarFactura.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btCobrarFactura.Name = "btCobrarFactura";
-            this.btCobrarFactura.Size = new System.Drawing.Size(150, 78);
-            this.btCobrarFactura.TabIndex = 30;
-            this.btCobrarFactura.Text = "Cobrar    ";
-            this.btCobrarFactura.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btCobrarFactura.UseVisualStyleBackColor = false;
-            this.btCobrarFactura.Click += new System.EventHandler(this.btCobrarFactura_Click);
-            // 
-            // btAbrirFactura
-            // 
-            this.btAbrirFactura.BackColor = System.Drawing.Color.Gold;
-            this.btAbrirFactura.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAbrirFactura.ForeColor = System.Drawing.Color.Red;
-            this.btAbrirFactura.Image = global::Ambrosia.Properties.Resources.open;
-            this.btAbrirFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btAbrirFactura.Location = new System.Drawing.Point(234, 104);
-            this.btAbrirFactura.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btAbrirFactura.Name = "btAbrirFactura";
-            this.btAbrirFactura.Size = new System.Drawing.Size(150, 78);
-            this.btAbrirFactura.TabIndex = 29;
-            this.btAbrirFactura.Text = "Cargar    ";
-            this.btAbrirFactura.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btAbrirFactura.UseVisualStyleBackColor = false;
-            this.btAbrirFactura.Click += new System.EventHandler(this.btAbrirFactura_Click);
             // 
             // tbTotal
             // 
@@ -527,6 +484,74 @@
             this.bt7.UseVisualStyleBackColor = false;
             this.bt7.Click += new System.EventHandler(this.bt7_Click);
             // 
+            // RecargarFacturas
+            // 
+            this.RecargarFacturas.BackColor = System.Drawing.Color.Gold;
+            this.RecargarFacturas.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecargarFacturas.ForeColor = System.Drawing.Color.Red;
+            this.RecargarFacturas.Image = global::Ambrosia.Properties.Resources.actualizar;
+            this.RecargarFacturas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RecargarFacturas.Location = new System.Drawing.Point(17, 184);
+            this.RecargarFacturas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.RecargarFacturas.Name = "RecargarFacturas";
+            this.RecargarFacturas.Size = new System.Drawing.Size(150, 78);
+            this.RecargarFacturas.TabIndex = 29;
+            this.RecargarFacturas.Text = "Recarga  ";
+            this.RecargarFacturas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.RecargarFacturas.UseVisualStyleBackColor = false;
+            this.RecargarFacturas.Click += new System.EventHandler(this.RecargarFacturas_Click);
+            // 
+            // btImprimirFactura
+            // 
+            this.btImprimirFactura.BackColor = System.Drawing.Color.Gold;
+            this.btImprimirFactura.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btImprimirFactura.ForeColor = System.Drawing.Color.Red;
+            this.btImprimirFactura.Image = global::Ambrosia.Properties.Resources.imprimir;
+            this.btImprimirFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btImprimirFactura.Location = new System.Drawing.Point(578, 185);
+            this.btImprimirFactura.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btImprimirFactura.Name = "btImprimirFactura";
+            this.btImprimirFactura.Size = new System.Drawing.Size(154, 78);
+            this.btImprimirFactura.TabIndex = 43;
+            this.btImprimirFactura.Text = "Imprimir  ";
+            this.btImprimirFactura.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btImprimirFactura.UseVisualStyleBackColor = false;
+            this.btImprimirFactura.Click += new System.EventHandler(this.btImprimirFactura_Click);
+            // 
+            // btCobrarFactura
+            // 
+            this.btCobrarFactura.BackColor = System.Drawing.Color.Gold;
+            this.btCobrarFactura.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btCobrarFactura.ForeColor = System.Drawing.Color.Red;
+            this.btCobrarFactura.Image = global::Ambrosia.Properties.Resources.cobrar;
+            this.btCobrarFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btCobrarFactura.Location = new System.Drawing.Point(234, 190);
+            this.btCobrarFactura.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btCobrarFactura.Name = "btCobrarFactura";
+            this.btCobrarFactura.Size = new System.Drawing.Size(150, 78);
+            this.btCobrarFactura.TabIndex = 30;
+            this.btCobrarFactura.Text = "Cobrar    ";
+            this.btCobrarFactura.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btCobrarFactura.UseVisualStyleBackColor = false;
+            this.btCobrarFactura.Click += new System.EventHandler(this.btCobrarFactura_Click);
+            // 
+            // btAbrirFactura
+            // 
+            this.btAbrirFactura.BackColor = System.Drawing.Color.Gold;
+            this.btAbrirFactura.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAbrirFactura.ForeColor = System.Drawing.Color.Red;
+            this.btAbrirFactura.Image = global::Ambrosia.Properties.Resources.open;
+            this.btAbrirFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btAbrirFactura.Location = new System.Drawing.Point(234, 104);
+            this.btAbrirFactura.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btAbrirFactura.Name = "btAbrirFactura";
+            this.btAbrirFactura.Size = new System.Drawing.Size(150, 78);
+            this.btAbrirFactura.TabIndex = 29;
+            this.btAbrirFactura.Text = "Cargar    ";
+            this.btAbrirFactura.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btAbrirFactura.UseVisualStyleBackColor = false;
+            this.btAbrirFactura.Click += new System.EventHandler(this.btAbrirFactura_Click);
+            // 
             // Caja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -539,7 +564,7 @@
             this.Location = new System.Drawing.Point(120, 30);
             this.Name = "Caja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Caja";
+            this.Text = "Cobros";
             this.Load += new System.EventHandler(this.Caja_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Caja_FormClosing);
             this.panel1.ResumeLayout(false);
@@ -591,6 +616,8 @@
         private System.Windows.Forms.ComboBox cbFormaPago;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbImpresoras;
 
     }
 }

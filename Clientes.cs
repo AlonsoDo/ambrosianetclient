@@ -81,6 +81,7 @@ namespace Ambrosia
             serverStream = default(NetworkStream);
             clientSocket.Connect("192.168.1.2", 10001);
             serverStream = clientSocket.GetStream();
+            clientSocket.ReceiveBufferSize = 2097152;
 
             ctThread = new Thread(getMessage);
             ctThread.Start();
@@ -100,7 +101,7 @@ namespace Ambrosia
             while (true)
             {
                 int buffSize = 0;
-                byte[] inStream = new byte[1048576]; // 1Mbyte
+                byte[] inStream = new byte[2097152]; // 2Mbyte
                 buffSize = clientSocket.ReceiveBufferSize;
                 serverStream.Read(inStream, 0, buffSize);
                 string returndata = System.Text.Encoding.ASCII.GetString(inStream);

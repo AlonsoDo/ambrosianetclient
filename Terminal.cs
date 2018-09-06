@@ -172,7 +172,7 @@ namespace Ambrosia
             while (true)
             {
                 int buffSize = 0;
-                byte[] inStream = new byte[2097152]; // 1Mbyte
+                byte[] inStream = new byte[2097152]; // 2Mbyte
 
                 buffSize = clientSocket.ReceiveBufferSize;                
                 serverStream.Read(inStream, 0, buffSize);

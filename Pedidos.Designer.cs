@@ -93,6 +93,9 @@
             this.btEntrar = new System.Windows.Forms.Button();
             this.btBack = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.tbCodiEmpl = new System.Windows.Forms.TextBox();
             this.btX = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.bt3 = new System.Windows.Forms.Button();
@@ -1013,6 +1016,9 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.LavenderBlush;
+            this.panel4.Controls.Add(this.label26);
+            this.panel4.Controls.Add(this.label25);
+            this.panel4.Controls.Add(this.tbCodiEmpl);
             this.panel4.Controls.Add(this.btX);
             this.panel4.Controls.Add(this.button11);
             this.panel4.Controls.Add(this.bt3);
@@ -1031,6 +1037,41 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(296, 174);
             this.panel4.TabIndex = 4;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.Red;
+            this.label26.Location = new System.Drawing.Point(166, 97);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(103, 22);
+            this.label26.TabIndex = 39;
+            this.label26.Text = "Empleado";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.Red;
+            this.label25.Location = new System.Drawing.Point(166, 12);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(76, 22);
+            this.label25.TabIndex = 38;
+            this.label25.Text = "Cuenta";
+            // 
+            // tbCodiEmpl
+            // 
+            this.tbCodiEmpl.BackColor = System.Drawing.Color.Black;
+            this.tbCodiEmpl.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCodiEmpl.ForeColor = System.Drawing.Color.White;
+            this.tbCodiEmpl.Location = new System.Drawing.Point(170, 127);
+            this.tbCodiEmpl.MaxLength = 5;
+            this.tbCodiEmpl.Multiline = true;
+            this.tbCodiEmpl.Name = "tbCodiEmpl";
+            this.tbCodiEmpl.Size = new System.Drawing.Size(75, 34);
+            this.tbCodiEmpl.TabIndex = 22;
+            this.tbCodiEmpl.Click += new System.EventHandler(this.tbCodiEmpl_Click);
             // 
             // btX
             // 
@@ -1178,7 +1219,7 @@
             this.tbNumeCuen.BackColor = System.Drawing.Color.Black;
             this.tbNumeCuen.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbNumeCuen.ForeColor = System.Drawing.Color.White;
-            this.tbNumeCuen.Location = new System.Drawing.Point(211, 129);
+            this.tbNumeCuen.Location = new System.Drawing.Point(170, 45);
             this.tbNumeCuen.MaxLength = 5;
             this.tbNumeCuen.Multiline = true;
             this.tbNumeCuen.Name = "tbNumeCuen";
@@ -1317,5 +1358,8 @@
         private System.Windows.Forms.Button bt3;
         private System.Windows.Forms.Button bt2;
         private System.Windows.Forms.Button bt6;
+        private System.Windows.Forms.TextBox tbCodiEmpl;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
     }
 }

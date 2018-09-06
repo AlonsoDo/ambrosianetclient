@@ -34,6 +34,7 @@ namespace Ambrosia
         public decimal Impuesto { get; set; }
         public int ImprimirEnFactura { get; set; }
         public int ImprimirEnComanda { get; set; }
+        public int Preferencia { get; set; }
     }
 
     public class GetElementsData
@@ -53,7 +54,8 @@ namespace Ambrosia
         public decimal Precio { get; set; }
         public decimal Impuesto { get; set; }
         public int ImprimirEnFactura { get; set; }
-        public int ImprimirEnComanda { get; set; }        
+        public int ImprimirEnComanda { get; set; }
+        public int Preferencia { get; set; } 
     }
 
     public class Path
@@ -72,6 +74,7 @@ namespace Ambrosia
         public int ImprimirEnFactura { get; set; }
         public int ImprimirEnComanda { get; set; }
         public int TabLevel { get; set; }
+        public int Preferencia { get; set; }
     }
 
     public class Envio
@@ -79,6 +82,8 @@ namespace Ambrosia
         public string NombreEvento { get; set; }
         public string NumeCuen { get; set; }
         public List<LineaPedido> dataLinea { get; set; }
+        public Decimal totalFactura { get; set; }
+        public int EmpleadoId { get; set; }
     }
 
     public class SalidaPedido
@@ -232,6 +237,7 @@ namespace Ambrosia
         public int ImpEnFac { get; set; }
         public int LoteId { get; set; }
         public int TabLevel { get; set; }
+        public int Preferencia { get; set; }
     }
 
     public class Factura
@@ -280,5 +286,29 @@ namespace Ambrosia
         public Decimal Entrega { get; set; }
         public Decimal Cambio { get; set; }
         public string FormaPago { get; set; }
+    }
+
+    public class TotalesCuentas
+    {
+        public string NombreEvento { get; set; }
+        public int Abiertas { get; set; }
+        public int Pendientes { get; set; }
+        public int Cerradas { get; set; }
+        public Decimal TotalAbiertas { get; set; }
+        public Decimal TotalPendientes { get; set; }
+        public Decimal TotalCerradas { get; set; }
+    }
+
+    public class CierreCaja
+    {
+        public string NombreEvento { get; set; }
+        public string Fecha { get; set; }
+        public string Hora { get; set; }
+    }
+
+    public class ResultadoCierreCaja
+    {
+        public string NombreEvento { get; set; }
+        public string Mensaje { get; set; }
     }
 }

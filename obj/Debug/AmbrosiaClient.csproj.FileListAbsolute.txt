@@ -13,3 +13,4 @@ C:\AmbrosiaClient\obj\Debug\Ambrosia.Pedidos.resources
 C:\AmbrosiaClient\obj\Debug\Ambrosia.Terminal.resources
 C:\AmbrosiaClient\obj\Debug\Ambrosia.Clientes.resources
 C:\AmbrosiaClient\obj\Debug\Ambrosia.Caja.resources
+C:\AmbrosiaClient\obj\Debug\Ambrosia.Caja2.resources

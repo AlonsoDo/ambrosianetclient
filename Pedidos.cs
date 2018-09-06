@@ -26,20 +26,32 @@ namespace Ambrosia
         int ContNodos = 0;
         int NodoPadre = 0;
         bool TreeMode = false;
-        bool bNumeCuen = true;
+        string bNumeCuen = "Cuenta";
         bool bPor = false;
         bool bUnid = false;
         bool bNuevaUnid = true;
         public Decimal Total = 0;
         List<LineaPedido> dataLinea = new List<LineaPedido>();
+        private int _EmpleadoId;
         
         public Pedidos()
         {
             InitializeComponent();
         }
 
+        public int EmpleadoId
+        {
+            get { return _EmpleadoId; }
+            set { _EmpleadoId = value; }
+        }
+
         private void Pedidos_Load(object sender, EventArgs e)
         {
+            VentInic parent = (VentInic)this.Owner;            
+            this.EmpleadoId = parent.BufferEmpleadoId;
+            
+            tbCodiEmpl.Text = this.EmpleadoId.ToString();
+            
             Control.CheckForIllegalCrossThreadCalls = false;
 
             //Cursor.Current = Cursors.WaitCursor;
@@ -60,6 +72,7 @@ namespace Ambrosia
             infoNodo.Unid = 0;
             infoNodo.ImprimirEnComanda = 0;
             infoNodo.ImprimirEnFactura = 0;
+            infoNodo.Preferencia = 0;
             treeNode.Tag = infoNodo;
             tvOrden.Nodes.Add(treeNode);
             
@@ -68,6 +81,7 @@ namespace Ambrosia
             serverStream = default(NetworkStream);
             clientSocket.Connect("192.168.1.2",10001);
             serverStream = clientSocket.GetStream();
+            clientSocket.ReceiveBufferSize = 2097152;
 
             FuncionesAuxiliares funcionAuxiliar = new FuncionesAuxiliares();
             IdClient = funcionAuxiliar.GenerarIdCliente();            
@@ -87,7 +101,7 @@ namespace Ambrosia
             while (true)
             {                
                 int buffSize = 0;
-                byte[] inStream = new byte[1048576];
+                byte[] inStream = new byte[2097152];
                 buffSize = clientSocket.ReceiveBufferSize;
                 serverStream.Read(inStream, 0, buffSize);
                 string returndata = System.Text.Encoding.ASCII.GetString(inStream);
@@ -109,6 +123,9 @@ namespace Ambrosia
 
         private void Pedidos_FormClosing(object sender, FormClosingEventArgs e)
         {
+            VentInic parent = (VentInic)this.Owner;
+            parent.BufferEmpleadoId = Convert.ToInt16(this.tbCodiEmpl.Text);
+            
             EventoDesconectar eventoDesconectar = new EventoDesconectar();
             eventoDesconectar.NombreEvento = "Desconectar";
             eventoDesconectar.IdCliente = IdClient;
@@ -218,7 +235,8 @@ namespace Ambrosia
                     infoNodo.Impuesto = elementos.data.ElementAt(IndexAbs - 1).Impuesto;
                     infoNodo.ImprimirEnComanda = elementos.data.ElementAt(IndexAbs - 1).ImprimirEnComanda;
                     infoNodo.ImprimirEnFactura = elementos.data.ElementAt(IndexAbs - 1).ImprimirEnFactura;
-                    
+                    infoNodo.Preferencia = elementos.data.ElementAt(IndexAbs - 1).Preferencia;
+                   
                     treeNode.Name = ContNodos.ToString();
                     treeNode.Text = Unidades.ToString() + " " + nodeText;
                     treeNode.Tag = infoNodo;                    
@@ -313,7 +331,8 @@ namespace Ambrosia
                         Impuesto = infoNodo.Impuesto,
                         ImprimirEnComanda = infoNodo.ImprimirEnComanda,
                         ImprimirEnFactura = infoNodo.ImprimirEnFactura,
-                        TabLevel = tn.Level
+                        TabLevel = tn.Level,
+                        Preferencia = infoNodo.Preferencia
                     });
                     
                     //Ahora hago verificacion a los hijos del nodo actual
@@ -453,6 +472,7 @@ namespace Ambrosia
                 Unids++;
                 infoNodo.Unid = Unids;
                 tvOrden.SelectedNode.Text = Convert.ToString(Unids) + " " + infoNodo.Descripcion;
+                tbUnid.Text = Convert.ToString(Unids);
                 tvOrden.SelectedNode.Tag = infoNodo;
 
                 Total = 0;
@@ -480,6 +500,7 @@ namespace Ambrosia
                 Unids--;
                 infoNodo.Unid = Unids;
                 tvOrden.SelectedNode.Text = Convert.ToString(Unids) + " " + infoNodo.Descripcion;
+                tbUnid.Text = Convert.ToString(Unids);
                 tvOrden.SelectedNode.Tag = infoNodo;
 
                 Total = 0;
@@ -635,7 +656,7 @@ namespace Ambrosia
         private void tbNumeCuen_Click(object sender, EventArgs e)
         {
             tbNumeCuen.Text = string.Empty;
-            bNumeCuen = true;
+            bNumeCuen = "Cuenta";
             bPor = false;
             bUnid = false;
         }
@@ -647,7 +668,7 @@ namespace Ambrosia
             tbDescripcion.Text = string.Empty;
             bUnid = true;
             bPor = false;
-            bNumeCuen = false;
+            bNumeCuen = "Unidades";
         }
 
         private void btX_Click(object sender, EventArgs e)
@@ -661,10 +682,15 @@ namespace Ambrosia
 
         private void bt1_Click(object sender, EventArgs e)
         {
-            if (bNumeCuen)
+            if (bNumeCuen == "Cuenta")
             {
                 if (tbNumeCuen.Text.Length < 5)
                     tbNumeCuen.Text = tbNumeCuen.Text + "1";
+            }
+            else if (bNumeCuen == "Empleado")
+            {
+                if (tbCodiEmpl.Text.Length < 5)
+                    tbCodiEmpl.Text = tbCodiEmpl.Text + "1";
             }
             else
             {
@@ -687,10 +713,15 @@ namespace Ambrosia
 
         private void bt2_Click(object sender, EventArgs e)
         {
-            if (bNumeCuen)
+            if (bNumeCuen == "Cuenta")
             {
                 if (tbNumeCuen.Text.Length < 5)
                     tbNumeCuen.Text = tbNumeCuen.Text + "2";
+            }
+            else if (bNumeCuen == "Empleado")
+            {
+                if (tbCodiEmpl.Text.Length < 5)
+                    tbCodiEmpl.Text = tbCodiEmpl.Text + "2";
             }
             else
             {
@@ -713,10 +744,15 @@ namespace Ambrosia
 
         private void bt3_Click(object sender, EventArgs e)
         {
-            if (bNumeCuen)
+            if (bNumeCuen == "Cuenta")
             {
                 if (tbNumeCuen.Text.Length < 5)
                     tbNumeCuen.Text = tbNumeCuen.Text + "3";
+            }
+            else if (bNumeCuen == "Empleado")
+            {
+                if (tbCodiEmpl.Text.Length < 5)
+                    tbCodiEmpl.Text = tbCodiEmpl.Text + "3";
             }
             else
             {
@@ -739,10 +775,15 @@ namespace Ambrosia
 
         private void bt4_Click(object sender, EventArgs e)
         {
-            if (bNumeCuen)
+            if (bNumeCuen == "Cuenta")
             {
                 if (tbNumeCuen.Text.Length < 5)
                     tbNumeCuen.Text = tbNumeCuen.Text + "4";
+            }
+            else if (bNumeCuen == "Empleado")
+            {
+                if (tbCodiEmpl.Text.Length < 5)
+                    tbCodiEmpl.Text = tbCodiEmpl.Text + "4";
             }
             else
             {
@@ -765,10 +806,15 @@ namespace Ambrosia
 
         private void bt5_Click(object sender, EventArgs e)
         {
-            if (bNumeCuen)
+            if (bNumeCuen == "Cuenta")
             {
                 if (tbNumeCuen.Text.Length < 5)
                     tbNumeCuen.Text = tbNumeCuen.Text + "5";
+            }
+            else if (bNumeCuen == "Empleado")
+            {
+                if (tbCodiEmpl.Text.Length < 5)
+                    tbCodiEmpl.Text = tbCodiEmpl.Text + "5";
             }
             else
             {
@@ -791,10 +837,15 @@ namespace Ambrosia
 
         private void bt6_Click(object sender, EventArgs e)
         {
-            if (bNumeCuen)
+            if (bNumeCuen == "Cuenta")
             {
                 if (tbNumeCuen.Text.Length < 5)
                     tbNumeCuen.Text = tbNumeCuen.Text + "6";
+            }
+            else if (bNumeCuen == "Empleado")
+            {
+                if (tbCodiEmpl.Text.Length < 5)
+                    tbCodiEmpl.Text = tbCodiEmpl.Text + "6";
             }
             else
             {
@@ -817,10 +868,15 @@ namespace Ambrosia
 
         private void bt7_Click(object sender, EventArgs e)
         {
-            if (bNumeCuen)
+            if (bNumeCuen == "Cuenta")
             {
                 if (tbNumeCuen.Text.Length < 5)
                     tbNumeCuen.Text = tbNumeCuen.Text + "7";
+            }
+            else if (bNumeCuen == "Empleado")
+            {
+                if (tbCodiEmpl.Text.Length < 5)
+                    tbCodiEmpl.Text = tbCodiEmpl.Text + "7";
             }
             else
             {
@@ -843,10 +899,15 @@ namespace Ambrosia
 
         private void bt8_Click(object sender, EventArgs e)
         {
-            if (bNumeCuen)
+            if (bNumeCuen == "Cuenta")
             {
                 if (tbNumeCuen.Text.Length < 5)
                     tbNumeCuen.Text = tbNumeCuen.Text + "8";
+            }
+            else if (bNumeCuen == "Empleado")
+            {
+                if (tbCodiEmpl.Text.Length < 5)
+                    tbCodiEmpl.Text = tbCodiEmpl.Text + "8";
             }
             else
             {
@@ -869,10 +930,15 @@ namespace Ambrosia
 
         private void bt9_Click(object sender, EventArgs e)
         {
-            if (bNumeCuen)
+            if (bNumeCuen == "Cuenta")
             {
                 if (tbNumeCuen.Text.Length < 5)
                     tbNumeCuen.Text = tbNumeCuen.Text + "9";
+            }
+            else if (bNumeCuen == "Empleado")
+            {
+                if (tbCodiEmpl.Text.Length < 5)
+                    tbCodiEmpl.Text = tbCodiEmpl.Text + "9";
             }
             else
             {
@@ -895,10 +961,15 @@ namespace Ambrosia
 
         private void bt0_Click(object sender, EventArgs e)
         {
-            if (bNumeCuen)
+            if (bNumeCuen == "Cuenta")
             {
                 if (tbNumeCuen.Text.Length < 5)
                     tbNumeCuen.Text = tbNumeCuen.Text + "0";
+            }
+            else if (bNumeCuen == "Empleado")
+            {
+                if (tbCodiEmpl.Text.Length < 5)
+                    tbCodiEmpl.Text = tbCodiEmpl.Text + "0";
             }
             else
             {
@@ -929,12 +1000,18 @@ namespace Ambrosia
             {
                 MessageBox.Show("Debe de introducir un pedido");
             }
+            else if (tbCodiEmpl.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Debe de introducir el codigo de empleado");
+            }
             else
             {
                 Envio DatosEnvio = new Envio();
                 DatosEnvio.NombreEvento = "EnvioPedido";
                 DatosEnvio.NumeCuen = tbNumeCuen.Text.Trim();
                 DatosEnvio.dataLinea = dataLinea;
+                DatosEnvio.totalFactura = Convert.ToDecimal(tbTotal.Text);
+                DatosEnvio.EmpleadoId = Convert.ToInt16(tbCodiEmpl.Text);
                 string output = JsonConvert.SerializeObject(DatosEnvio);
 
                 byte[] outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
@@ -943,11 +1020,11 @@ namespace Ambrosia
 
                 //Reset
                 tbNumeCuen.Text = string.Empty;
-                tvOrden.Nodes.Clear();                
+                tvOrden.Nodes.Clear();
                 ContNodos = 0;
                 NodoPadre = 0;
                 TreeMode = false;
-                bNumeCuen = true;
+                bNumeCuen = "Cuenta";
                 bPor = false;
                 bUnid = false;
                 bNuevaUnid = true;
@@ -963,6 +1040,7 @@ namespace Ambrosia
                 infoNodo.Unid = 0;
                 infoNodo.ImprimirEnComanda = 0;
                 infoNodo.ImprimirEnFactura = 0;
+                infoNodo.Preferencia = 0;
                 treeNode.Tag = infoNodo;
                 tvOrden.Nodes.Add(treeNode);
                 tvOrden.SelectedNode = tvOrden.Nodes[0];
@@ -984,9 +1062,15 @@ namespace Ambrosia
                 outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
                 serverStream.Write(outStream, 0, outStream.Length);
                 serverStream.Flush();
-                
+
                 MessageBox.Show("Pedido enviado");
             }
+        }
+
+        private void tbCodiEmpl_Click(object sender, EventArgs e)
+        {
+            tbCodiEmpl.Text = string.Empty;
+            bNumeCuen = "Empleado";
         }        
     }
 }

@@ -21,6 +21,7 @@ namespace Ambrosia
         Thread ctThread;
         string IdClient = null;
         BindingList<LineaDetalleFactura> listaDetalleFactura = new BindingList<LineaDetalleFactura>();
+        BindingList<LineaDetalleFactura> listaBufferFactura = new BindingList<LineaDetalleFactura>();
         string UltimoClick = "Numero";
         bool FlagDecimal = false;        
         string UltimoBoton = "Nulo";
@@ -194,7 +195,23 @@ namespace Ambrosia
                     DatosFacturas ListaFacturas = new DatosFacturas();
                     ListaFacturas = JsonConvert.DeserializeObject<DatosFacturas>(readData);
                     RecargarFacturasBak(ListaFacturas);
-                }                
+                }
+                else if (NombreEvento == "ImpresorasTerminalesBak")
+                {
+                    ImpresorasTerminales impresorasTerminales = new ImpresorasTerminales();
+                    impresorasTerminales = JsonConvert.DeserializeObject<ImpresorasTerminales>(readData);                    
+                    cbImpresoras.DisplayMember = "NombreImpresora";
+                    if (impresorasTerminales.impresorasTer.Any()) //prevent IndexOutOfRangeException for empty list
+                    {
+                        impresorasTerminales.impresorasTer.RemoveAt(impresorasTerminales.impresorasTer.Count - 1);
+                    }
+                    if (impresorasTerminales.impresorasTer.Any()) //prevent IndexOutOfRangeException for empty list
+                    {
+                        impresorasTerminales.impresorasTer.RemoveAt(impresorasTerminales.impresorasTer.Count - 1);
+                    }
+                    cbImpresoras.DataSource = impresorasTerminales.impresorasTer;
+                    cbImpresoras.Text = "Caja";
+                }
             }
         }
 
@@ -230,6 +247,11 @@ namespace Ambrosia
 
         private void AbrirCuenta(string NumeroCuenta)
         {
+            dataGridView1.ScrollBars = ScrollBars.None;
+            dataGridView1.DataSource = listaDetalleFactura;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+            
             NumeroCuenta numeroCuenta = new NumeroCuenta();
             numeroCuenta.NombreEvento = "AbrirCuenta";
             numeroCuenta.NumeCuenta = NumeroCuenta;
@@ -255,10 +277,8 @@ namespace Ambrosia
             else
             {                
                 try
-                {                    
-                    this.dataGridView1.Rows.Clear();
-                    this.dataGridView1.Refresh();
-                    this.dataGridView1.DataSource = listaDetalleFactura;      
+                {
+                   dataGridView1.DataSource = listaDetalleFactura;
                 }
                 catch (Exception e)
                 {
@@ -292,9 +312,13 @@ namespace Ambrosia
             tbNumeCuen.Text = "";
             UltimoClick = "Numero";
             this.dataGridView1.ScrollBars = ScrollBars.None;
+            dataGridView1.DataSource = listaDetalleFactura;
             dataGridView1.Rows.Clear();
             dataGridView1.Refresh();
             UltimoBoton = "Nulo";
+            tbEntrega.Text = "0";
+            tbCambio.Text = "0";
+            tbTotal.Text = "0";
         }
 
         private void tbEntrega_Click(object sender, EventArgs e)
@@ -308,12 +332,16 @@ namespace Ambrosia
         {
             if (UltimoClick == "Numero")
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "1";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "1";
             }
             else
             {
-                tbEntrega.Text = tbEntrega.Text + "1";
-                CalcularCambio();
+                if (tbEntrega.Text.Length < 10)
+                {
+                    tbEntrega.Text = tbEntrega.Text + "1";
+                    CalcularCambio();
+                }
             }
         }
 
@@ -321,12 +349,16 @@ namespace Ambrosia
         {
             if (UltimoClick == "Numero")
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "2";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "2";
             }
             else
             {
-                tbEntrega.Text = tbEntrega.Text + "2";
-                CalcularCambio();
+                if (tbEntrega.Text.Length < 10)
+                {
+                    tbEntrega.Text = tbEntrega.Text + "2";
+                    CalcularCambio();
+                }
             }
         }
 
@@ -334,12 +366,16 @@ namespace Ambrosia
         {
             if (UltimoClick == "Numero")
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "3";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "3";
             }
             else
             {
-                tbEntrega.Text = tbEntrega.Text + "3";
-                CalcularCambio();
+                if (tbEntrega.Text.Length < 10)
+                {
+                    tbEntrega.Text = tbEntrega.Text + "3";
+                    CalcularCambio();
+                }
             }
         }
 
@@ -347,12 +383,16 @@ namespace Ambrosia
         {
             if (UltimoClick == "Numero")
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "4";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "4";
             }
             else
             {
-                tbEntrega.Text = tbEntrega.Text + "4";
-                CalcularCambio();
+                if (tbEntrega.Text.Length < 10)
+                {
+                    tbEntrega.Text = tbEntrega.Text + "4";
+                    CalcularCambio();
+                }
             }
         }
 
@@ -360,12 +400,16 @@ namespace Ambrosia
         {
             if (UltimoClick == "Numero")
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "5";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "5";
             }
             else
             {
-                tbEntrega.Text = tbEntrega.Text + "5";
-                CalcularCambio();
+                if (tbEntrega.Text.Length < 10)
+                {
+                    tbEntrega.Text = tbEntrega.Text + "5";
+                    CalcularCambio();
+                }
             }
         }
 
@@ -373,12 +417,16 @@ namespace Ambrosia
         {
             if (UltimoClick == "Numero")
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "6";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "6";
             }
             else
             {
-                tbEntrega.Text = tbEntrega.Text + "6";
-                CalcularCambio();
+                if (tbEntrega.Text.Length < 10)
+                {
+                    tbEntrega.Text = tbEntrega.Text + "6";
+                    CalcularCambio();
+                }
             }
         }
 
@@ -386,12 +434,16 @@ namespace Ambrosia
         {
             if (UltimoClick == "Numero")
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "7";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "7";
             }
             else
             {
-                tbEntrega.Text = tbEntrega.Text + "7";
-                CalcularCambio();
+                if (tbEntrega.Text.Length < 10)
+                {
+                    tbEntrega.Text = tbEntrega.Text + "7";
+                    CalcularCambio();
+                }
             }
         }
 
@@ -399,12 +451,16 @@ namespace Ambrosia
         {
             if (UltimoClick == "Numero")
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "8";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "8";
             }
             else
             {
-                tbEntrega.Text = tbEntrega.Text + "8";
-                CalcularCambio();
+                if (tbEntrega.Text.Length < 10)
+                {
+                    tbEntrega.Text = tbEntrega.Text + "8";
+                    CalcularCambio();
+                }
             }
         }
 
@@ -412,12 +468,16 @@ namespace Ambrosia
         {
             if (UltimoClick == "Numero")
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "9";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "9";
             }
             else
             {
-                tbEntrega.Text = tbEntrega.Text + "9";
-                CalcularCambio();
+                if (tbEntrega.Text.Length < 10)
+                {
+                    tbEntrega.Text = tbEntrega.Text + "9";
+                    CalcularCambio();
+                }
             }
         }
 
@@ -425,12 +485,16 @@ namespace Ambrosia
         {
             if (UltimoClick == "Numero")
             {
-                tbNumeCuen.Text = tbNumeCuen.Text + "0";
+                if (tbNumeCuen.Text.Length < 5)
+                    tbNumeCuen.Text = tbNumeCuen.Text + "0";
             }
             else
             {
-                tbEntrega.Text = tbEntrega.Text + "0";
-                CalcularCambio();
+                if (tbEntrega.Text.Length < 10)
+                {
+                    tbEntrega.Text = tbEntrega.Text + "0";
+                    CalcularCambio();
+                }
             }
         }
 
@@ -476,7 +540,8 @@ namespace Ambrosia
                 this.GridDatosFacturas.ScrollBars = ScrollBars.None;
                 this.GridDatosFacturas.Rows.Clear();
                 this.GridDatosFacturas.Refresh();
-                this.GridDatosFacturas.DataSource = Facturas.datosFacturas;
+                if (Facturas.datosFacturas.Any())
+                    this.GridDatosFacturas.DataSource = Facturas.datosFacturas;
             }
             catch (Exception e)
             {
@@ -513,10 +578,12 @@ namespace Ambrosia
                     label6.Text = "Pendiente";
                     PasarCuentaAPendiente();
                 }
+                ImprimirFactura();
                 MessageBox.Show("Imprimiendo Factura", "Aviso");
             }
             else if (UltimoBoton == "Cobrar")
-            {                
+            {
+                ImprimirFactura();
                 MessageBox.Show("Imprimiendo Factura", "Aviso");
             }
             else
@@ -593,5 +660,55 @@ namespace Ambrosia
                 }
             }
         }
+
+        private void ImprimirFactura()
+        {
+            List<LineaDetalleFactura> FacturaLimpia = new List<LineaDetalleFactura>();
+            List<LineaDetalleFactura> FacturaCompacta = new List<LineaDetalleFactura>();
+            List<LineaDetalleFactura> FacturaOrdenada = new List<LineaDetalleFactura>();
+
+            //Limpiar Factura
+            for (int i = 0; i < listaDetalleFactura.Count; i++)
+            {
+                if (listaDetalleFactura[i].ImpEnFac == 1)
+                {
+                    FacturaLimpia.Add(listaDetalleFactura[i]);
+                }
+            }            
+
+            //Compactar Factura
+            int Uni = 0;
+            string Descripcion = null;
+            bool Encontrado = false;
+            
+            for (int i = 0; i < FacturaLimpia.Count; i++)
+            {
+                //Buscar
+                Encontrado = false;
+                Uni = FacturaLimpia[i].Unidades;
+                Descripcion = FacturaLimpia[i].Descripcion;
+                for (int j = 0; j < FacturaCompacta.Count; j++)
+                {
+                    if (Descripcion == FacturaCompacta[j].Descripcion)
+                    {
+                        FacturaCompacta[j].Unidades = FacturaCompacta[j].Unidades + Uni;
+                        Encontrado = true;
+                        break;
+                    }
+                }
+                if (Encontrado == false)
+                {                    
+                    FacturaCompacta.Add(FacturaLimpia[i]);                        
+                }
+            }
+
+            FacturaOrdenada = FacturaCompacta.OrderByDescending(o => o.Preferencia).ToList();
+
+            this.dataGridView1.ScrollBars = ScrollBars.None;
+            this.dataGridView1.DataSource = listaDetalleFactura;
+            this.dataGridView1.Rows.Clear();
+            this.dataGridView1.Refresh();
+            this.dataGridView1.DataSource = FacturaOrdenada; 
+        }        
     }
 }

@@ -277,7 +277,7 @@
             // 
             // btDelante
             // 
-            this.btDelante.BackColor = System.Drawing.Color.MistyRose;
+            this.btDelante.BackColor = System.Drawing.Color.Gold;
             this.btDelante.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelante.ForeColor = System.Drawing.Color.Red;
             this.btDelante.Image = global::Ambrosia.Properties.Resources.delante;
@@ -294,7 +294,7 @@
             // 
             // btBack
             // 
-            this.btBack.BackColor = System.Drawing.Color.MistyRose;
+            this.btBack.BackColor = System.Drawing.Color.Gold;
             this.btBack.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btBack.ForeColor = System.Drawing.Color.Red;
             this.btBack.Image = global::Ambrosia.Properties.Resources.previous;
