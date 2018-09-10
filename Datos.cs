@@ -311,4 +311,16 @@ namespace Ambrosia
         public string NombreEvento { get; set; }
         public string Mensaje { get; set; }
     }
+
+    public class CalcularTotalEmpleado
+    {
+        public string NombreEvento { get; set; }
+        public string CodigoEmpleado { get; set; }
+    }
+
+    public class TotalEmpleadoBack
+    {
+        public string NombreEvento { get; set; }
+        public Decimal TotalEmpleado { get; set; }
+    }
 }

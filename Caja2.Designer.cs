@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btCerrarCaja = new System.Windows.Forms.Button();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btConsultar = new System.Windows.Forms.Button();
@@ -45,10 +47,30 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.btCerrarCaja = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.CalcularTotalEmpleado = new System.Windows.Forms.Button();
+            this.tbTotalEmpl = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tbCodiEmpl = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.btX = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.bt3 = new System.Windows.Forms.Button();
+            this.bt2 = new System.Windows.Forms.Button();
+            this.bt6 = new System.Windows.Forms.Button();
+            this.bt1 = new System.Windows.Forms.Button();
+            this.bt5 = new System.Windows.Forms.Button();
+            this.bt0 = new System.Windows.Forms.Button();
+            this.bt4 = new System.Windows.Forms.Button();
+            this.bt9 = new System.Windows.Forms.Button();
+            this.bt8 = new System.Windows.Forms.Button();
+            this.bt7 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -62,6 +84,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(225, 385);
             this.panel1.TabIndex = 1;
+            // 
+            // btCerrarCaja
+            // 
+            this.btCerrarCaja.BackColor = System.Drawing.Color.Gold;
+            this.btCerrarCaja.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btCerrarCaja.ForeColor = System.Drawing.Color.Red;
+            this.btCerrarCaja.Image = global::Ambrosia.Properties.Resources.mas;
+            this.btCerrarCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btCerrarCaja.Location = new System.Drawing.Point(23, 278);
+            this.btCerrarCaja.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btCerrarCaja.Name = "btCerrarCaja";
+            this.btCerrarCaja.Size = new System.Drawing.Size(164, 78);
+            this.btCerrarCaja.TabIndex = 50;
+            this.btCerrarCaja.Text = "  Cerrar";
+            this.btCerrarCaja.UseVisualStyleBackColor = false;
+            this.btCerrarCaja.Click += new System.EventHandler(this.btCerrarCaja_Click);
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(23, 87);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 37;
             // 
             // label4
             // 
@@ -275,33 +319,281 @@
             this.label1.TabIndex = 36;
             this.label1.Text = "Consulta de cuentas";
             // 
-            // monthCalendar1
+            // panel4
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(23, 87);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 37;
+            this.panel4.BackColor = System.Drawing.Color.LavenderBlush;
+            this.panel4.Controls.Add(this.CalcularTotalEmpleado);
+            this.panel4.Controls.Add(this.tbTotalEmpl);
+            this.panel4.Controls.Add(this.label12);
+            this.panel4.Controls.Add(this.label11);
+            this.panel4.Controls.Add(this.tbCodiEmpl);
+            this.panel4.Controls.Add(this.label10);
+            this.panel4.Controls.Add(this.label9);
+            this.panel4.Controls.Add(this.label26);
+            this.panel4.Controls.Add(this.btX);
+            this.panel4.Controls.Add(this.button11);
+            this.panel4.Controls.Add(this.bt3);
+            this.panel4.Controls.Add(this.bt2);
+            this.panel4.Controls.Add(this.bt6);
+            this.panel4.Controls.Add(this.bt1);
+            this.panel4.Controls.Add(this.bt5);
+            this.panel4.Controls.Add(this.bt0);
+            this.panel4.Controls.Add(this.bt4);
+            this.panel4.Controls.Add(this.bt9);
+            this.panel4.Controls.Add(this.bt8);
+            this.panel4.Controls.Add(this.bt7);
+            this.panel4.Location = new System.Drawing.Point(12, 413);
+            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(711, 174);
+            this.panel4.TabIndex = 6;
             // 
-            // btCerrarCaja
+            // CalcularTotalEmpleado
             // 
-            this.btCerrarCaja.BackColor = System.Drawing.Color.Gold;
-            this.btCerrarCaja.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btCerrarCaja.ForeColor = System.Drawing.Color.Red;
-            this.btCerrarCaja.Image = global::Ambrosia.Properties.Resources.mas;
-            this.btCerrarCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btCerrarCaja.Location = new System.Drawing.Point(23, 278);
-            this.btCerrarCaja.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btCerrarCaja.Name = "btCerrarCaja";
-            this.btCerrarCaja.Size = new System.Drawing.Size(164, 78);
-            this.btCerrarCaja.TabIndex = 50;
-            this.btCerrarCaja.Text = "  Cerrar";
-            this.btCerrarCaja.UseVisualStyleBackColor = false;
-            this.btCerrarCaja.Click += new System.EventHandler(this.btCerrarCaja_Click);
+            this.CalcularTotalEmpleado.BackColor = System.Drawing.Color.Gold;
+            this.CalcularTotalEmpleado.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CalcularTotalEmpleado.ForeColor = System.Drawing.Color.Red;
+            this.CalcularTotalEmpleado.Image = global::Ambrosia.Properties.Resources.mas;
+            this.CalcularTotalEmpleado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CalcularTotalEmpleado.Location = new System.Drawing.Point(498, 61);
+            this.CalcularTotalEmpleado.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CalcularTotalEmpleado.Name = "CalcularTotalEmpleado";
+            this.CalcularTotalEmpleado.Size = new System.Drawing.Size(177, 78);
+            this.CalcularTotalEmpleado.TabIndex = 52;
+            this.CalcularTotalEmpleado.Text = "    Calcular";
+            this.CalcularTotalEmpleado.UseVisualStyleBackColor = false;
+            this.CalcularTotalEmpleado.Click += new System.EventHandler(this.CalcularTotalEmpleado_Click);
+            // 
+            // tbTotalEmpl
+            // 
+            this.tbTotalEmpl.BackColor = System.Drawing.Color.Black;
+            this.tbTotalEmpl.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTotalEmpl.ForeColor = System.Drawing.Color.White;
+            this.tbTotalEmpl.Location = new System.Drawing.Point(306, 101);
+            this.tbTotalEmpl.MaxLength = 10;
+            this.tbTotalEmpl.Multiline = true;
+            this.tbTotalEmpl.Name = "tbTotalEmpl";
+            this.tbTotalEmpl.ReadOnly = true;
+            this.tbTotalEmpl.Size = new System.Drawing.Size(153, 38);
+            this.tbTotalEmpl.TabIndex = 51;
+            this.tbTotalEmpl.Text = "0";
+            this.tbTotalEmpl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(302, 76);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(103, 22);
+            this.label12.TabIndex = 50;
+            this.label12.Text = "Empleado";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Red;
+            this.label11.Location = new System.Drawing.Point(302, 54);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(57, 22);
+            this.label11.TabIndex = 49;
+            this.label11.Text = "Total";
+            // 
+            // tbCodiEmpl
+            // 
+            this.tbCodiEmpl.BackColor = System.Drawing.Color.Black;
+            this.tbCodiEmpl.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCodiEmpl.ForeColor = System.Drawing.Color.White;
+            this.tbCodiEmpl.Location = new System.Drawing.Point(172, 101);
+            this.tbCodiEmpl.MaxLength = 10;
+            this.tbCodiEmpl.Multiline = true;
+            this.tbCodiEmpl.Name = "tbCodiEmpl";
+            this.tbCodiEmpl.ReadOnly = true;
+            this.tbCodiEmpl.Size = new System.Drawing.Size(93, 38);
+            this.tbCodiEmpl.TabIndex = 48;
+            this.tbCodiEmpl.Text = "0";
+            this.tbCodiEmpl.Click += new System.EventHandler(this.tbCodiEmpl_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(168, 54);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 22);
+            this.label10.TabIndex = 41;
+            this.label10.Text = "Codigo";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(272, 14);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(294, 29);
+            this.label9.TabIndex = 40;
+            this.label9.Text = "Rendimiento Empleados";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.Red;
+            this.label26.Location = new System.Drawing.Point(168, 76);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(103, 22);
+            this.label26.TabIndex = 39;
+            this.label26.Text = "Empleado";
+            // 
+            // btX
+            // 
+            this.btX.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btX.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btX.Location = new System.Drawing.Point(86, 130);
+            this.btX.Name = "btX";
+            this.btX.Size = new System.Drawing.Size(40, 40);
+            this.btX.TabIndex = 21;
+            this.btX.Text = "X";
+            this.btX.UseVisualStyleBackColor = false;
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.button11.Location = new System.Drawing.Point(44, 130);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(40, 40);
+            this.button11.TabIndex = 20;
+            this.button11.UseVisualStyleBackColor = false;
+            // 
+            // bt3
+            // 
+            this.bt3.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt3.Location = new System.Drawing.Point(86, 88);
+            this.bt3.Name = "bt3";
+            this.bt3.Size = new System.Drawing.Size(40, 40);
+            this.bt3.TabIndex = 19;
+            this.bt3.Text = "3";
+            this.bt3.UseVisualStyleBackColor = false;
+            this.bt3.Click += new System.EventHandler(this.bt3_Click);
+            // 
+            // bt2
+            // 
+            this.bt2.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt2.Location = new System.Drawing.Point(44, 88);
+            this.bt2.Name = "bt2";
+            this.bt2.Size = new System.Drawing.Size(40, 40);
+            this.bt2.TabIndex = 18;
+            this.bt2.Text = "2";
+            this.bt2.UseVisualStyleBackColor = false;
+            this.bt2.Click += new System.EventHandler(this.bt2_Click);
+            // 
+            // bt6
+            // 
+            this.bt6.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt6.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt6.Location = new System.Drawing.Point(86, 45);
+            this.bt6.Name = "bt6";
+            this.bt6.Size = new System.Drawing.Size(40, 40);
+            this.bt6.TabIndex = 17;
+            this.bt6.Text = "6";
+            this.bt6.UseVisualStyleBackColor = false;
+            this.bt6.Click += new System.EventHandler(this.bt6_Click);
+            // 
+            // bt1
+            // 
+            this.bt1.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt1.Location = new System.Drawing.Point(3, 88);
+            this.bt1.Name = "bt1";
+            this.bt1.Size = new System.Drawing.Size(40, 40);
+            this.bt1.TabIndex = 16;
+            this.bt1.Text = "1";
+            this.bt1.UseVisualStyleBackColor = false;
+            this.bt1.Click += new System.EventHandler(this.bt1_Click);
+            // 
+            // bt5
+            // 
+            this.bt5.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt5.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt5.Location = new System.Drawing.Point(44, 45);
+            this.bt5.Name = "bt5";
+            this.bt5.Size = new System.Drawing.Size(40, 40);
+            this.bt5.TabIndex = 15;
+            this.bt5.Text = "5";
+            this.bt5.UseVisualStyleBackColor = false;
+            this.bt5.Click += new System.EventHandler(this.bt5_Click);
+            // 
+            // bt0
+            // 
+            this.bt0.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt0.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt0.Location = new System.Drawing.Point(3, 130);
+            this.bt0.Name = "bt0";
+            this.bt0.Size = new System.Drawing.Size(40, 40);
+            this.bt0.TabIndex = 14;
+            this.bt0.Text = "0";
+            this.bt0.UseVisualStyleBackColor = false;
+            this.bt0.Click += new System.EventHandler(this.bt0_Click);
+            // 
+            // bt4
+            // 
+            this.bt4.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt4.Location = new System.Drawing.Point(3, 45);
+            this.bt4.Name = "bt4";
+            this.bt4.Size = new System.Drawing.Size(40, 40);
+            this.bt4.TabIndex = 13;
+            this.bt4.Text = "4";
+            this.bt4.UseVisualStyleBackColor = false;
+            this.bt4.Click += new System.EventHandler(this.bt4_Click);
+            // 
+            // bt9
+            // 
+            this.bt9.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt9.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt9.Location = new System.Drawing.Point(86, 3);
+            this.bt9.Name = "bt9";
+            this.bt9.Size = new System.Drawing.Size(40, 40);
+            this.bt9.TabIndex = 12;
+            this.bt9.Text = "9";
+            this.bt9.UseVisualStyleBackColor = false;
+            this.bt9.Click += new System.EventHandler(this.bt9_Click);
+            // 
+            // bt8
+            // 
+            this.bt8.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt8.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt8.Location = new System.Drawing.Point(44, 3);
+            this.bt8.Name = "bt8";
+            this.bt8.Size = new System.Drawing.Size(40, 40);
+            this.bt8.TabIndex = 11;
+            this.bt8.Text = "8";
+            this.bt8.UseVisualStyleBackColor = false;
+            this.bt8.Click += new System.EventHandler(this.bt8_Click);
+            // 
+            // bt7
+            // 
+            this.bt7.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.bt7.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt7.Location = new System.Drawing.Point(3, 3);
+            this.bt7.Name = "bt7";
+            this.bt7.Size = new System.Drawing.Size(40, 40);
+            this.bt7.TabIndex = 10;
+            this.bt7.Text = "7";
+            this.bt7.UseVisualStyleBackColor = false;
+            this.bt7.Click += new System.EventHandler(this.bt7_Click);
             // 
             // Caja2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 409);
+            this.ClientSize = new System.Drawing.Size(732, 601);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Caja2";
@@ -313,6 +605,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -338,5 +632,26 @@
         private System.Windows.Forms.Button btConsultar;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Button btCerrarCaja;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button btX;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button bt3;
+        private System.Windows.Forms.Button bt2;
+        private System.Windows.Forms.Button bt6;
+        private System.Windows.Forms.Button bt1;
+        private System.Windows.Forms.Button bt5;
+        private System.Windows.Forms.Button bt0;
+        private System.Windows.Forms.Button bt4;
+        private System.Windows.Forms.Button bt9;
+        private System.Windows.Forms.Button bt8;
+        private System.Windows.Forms.Button bt7;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tbTotalEmpl;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tbCodiEmpl;
+        private System.Windows.Forms.Button CalcularTotalEmpleado;
     }
 }

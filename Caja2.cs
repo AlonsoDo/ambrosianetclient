@@ -75,6 +75,11 @@ namespace Ambrosia
                     ResultadoCierreCaja resultado = JsonConvert.DeserializeObject<ResultadoCierreCaja>(readData);
                     MessageBox.Show(resultado.Mensaje, "Aviso");
                 }
+                else if (NombreEvento == "TotalEmpleadoBack")
+                {
+                    TotalEmpleadoBack totalEmpleado = JsonConvert.DeserializeObject<TotalEmpleadoBack>(readData);
+                    tbTotalEmpl.Text = totalEmpleado.TotalEmpleado.ToString();
+                }
             }
         }
 
@@ -137,5 +142,107 @@ namespace Ambrosia
                 MessageBox.Show("Ningun cambio realizado", "Aviso");
             }
         }
+
+        private void tbCodiEmpl_Click(object sender, EventArgs e)
+        {
+            tbCodiEmpl.Text = "";
+        }
+
+        private void bt1_Click(object sender, EventArgs e)
+        {
+            if (tbCodiEmpl.Text.Length < 5)
+            {
+                tbCodiEmpl.Text = tbCodiEmpl.Text + "1";
+            }
+        }
+
+        private void bt2_Click(object sender, EventArgs e)
+        {
+            if (tbCodiEmpl.Text.Length < 5)
+            {
+                tbCodiEmpl.Text = tbCodiEmpl.Text + "2";
+            }
+        }
+
+        private void bt3_Click(object sender, EventArgs e)
+        {
+            if (tbCodiEmpl.Text.Length < 5)
+            {
+                tbCodiEmpl.Text = tbCodiEmpl.Text + "3";
+            }
+        }
+
+        private void bt4_Click(object sender, EventArgs e)
+        {
+            if (tbCodiEmpl.Text.Length < 5)
+            {
+                tbCodiEmpl.Text = tbCodiEmpl.Text + "4";
+            }
+        }
+
+        private void bt5_Click(object sender, EventArgs e)
+        {
+            if (tbCodiEmpl.Text.Length < 5)
+            {
+                tbCodiEmpl.Text = tbCodiEmpl.Text + "5";
+            }
+        }
+
+        private void bt6_Click(object sender, EventArgs e)
+        {
+            if (tbCodiEmpl.Text.Length < 5)
+            {
+                tbCodiEmpl.Text = tbCodiEmpl.Text + "6";
+            }
+        }
+
+        private void bt7_Click(object sender, EventArgs e)
+        {
+            if (tbCodiEmpl.Text.Length < 5)
+            {
+                tbCodiEmpl.Text = tbCodiEmpl.Text + "7";
+            }
+        }
+
+        private void bt8_Click(object sender, EventArgs e)
+        {
+            if (tbCodiEmpl.Text.Length < 5)
+            {
+                tbCodiEmpl.Text = tbCodiEmpl.Text + "8";
+            }
+        }
+
+        private void bt9_Click(object sender, EventArgs e)
+        {
+            if (tbCodiEmpl.Text.Length < 5)
+            {
+                tbCodiEmpl.Text = tbCodiEmpl.Text + "9";
+            }
+        }
+
+        private void bt0_Click(object sender, EventArgs e)
+        {
+            if (tbCodiEmpl.Text.Length < 5)
+            {
+                tbCodiEmpl.Text = tbCodiEmpl.Text + "0";
+            }
+        }
+
+        private void CalcularTotalEmpleado_Click(object sender, EventArgs e)
+        {
+            CalcularTotalEmpleado calcularTotalEmpleado = new CalcularTotalEmpleado();
+            calcularTotalEmpleado.NombreEvento = "CalcularTotalEmpleado";
+            calcularTotalEmpleado.CodigoEmpleado = tbCodiEmpl.Text;
+
+            if (tbCodiEmpl.Text == "")
+                MessageBox.Show("Debe indicar un codigo para el empleado", "Aviso");
+
+            string output = JsonConvert.SerializeObject(calcularTotalEmpleado);
+
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(output + "$");
+            serverStream.Write(outStream, 0, outStream.Length);
+            serverStream.Flush();
+        }
+
     }
 }
